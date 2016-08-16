@@ -1,0 +1,190 @@
+#!/usr/bin/env zsh
+# -*- Mode: Shell-script -*-
+#
+# zshrc --- Z Shell initialisation.
+#
+# Copyright (c) 2016 Paul Ward <asmodai@gmail.com>
+#
+# Author:     Paul Ward <asmodai@gmail.com>
+# Maintainer: Paul Ward <asmodai@gmail.com>
+# Created:    15 Aug 2016 19:03:51
+# Keywords:   
+# URL:        not distributed yet
+#
+# {{{ License:
+#
+# This program is free software: you can redistribute it
+# and/or modify it under the terms of the GNU General Public
+# License as published by the Free Software Foundation,
+# either version 3 of the License, or (at your option) any
+# later version.
+#
+# This program is distributed in the hope that it will be
+# useful, but WITHOUT ANY  WARRANTY; without even the implied
+# warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
+# PURPOSE.  See the GNU General Public License for more
+# details.
+#
+# You should have received a copy of the GNU General Public
+# License along with this program.  If not, see
+# <http://www.gnu.org/licenses/>.
+#
+# }}}
+# {{{ Commentary:
+#
+# }}}
+
+# Profile location
+export ZSH=${HOME}/zshrc.d
+
+# Theme name.
+ZSH_THEME=""""
+
+# Use case-sensitive completion?
+CASE_SENSITIVE="false"
+
+# Use hyphen-insensitive completion?
+HYPHEN_INSENSITIVE="true"
+
+# Disable bi-weekly auto-update checks?
+DISABLE_AUTO_UPDATE="false"
+
+# Auto-update period (in days)
+export UPDATE_ZSH_DAYS=13
+
+# Disable 'ls' colors?
+DISABLE_LS_COLORS="false"
+
+# Disable terminal title?
+DISABLE_AUTO_TITLE="false"
+
+# Command auto correction?
+DISABLE_AUTO_CORRECTION="false"
+
+# Display red dots whilst waiting for completion
+COMPLETION_WAITING_DOTS="true"
+
+# Disable mark untracked files as dirty?
+DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+# Time stamp output
+HIST_STAMPS="yyyy-mm-dd"
+
+# Language setting
+export LANG=en_GB.UTF-8
+
+# Unix session defaults.
+export EDITOR='vim'
+export PAGER='less'
+
+# Go language settings.
+export GOPATH=${HOME}/Projects/Go
+
+TRUE="true"
+FALSE="false"
+
+function zshOrDie () {
+    if [[ -z "${ZSH_VERSION}" ]];
+    then
+        printf "This requires ZSH in order to run. You used: %s\n" $SHELL
+        exit 1
+    fi
+}
+
+function isRHEL () {
+    test -f /etc/redhat-release && echo $TRUE || echo $FALSE
+}
+
+function isCentOS () {
+    test -f /etc/centos-release && echo $TRUE || echo $FALSE
+}
+
+function isUbuntu () {
+  # lsb_release -i | awk '{ print $3 }'
+
+  if [[ -f /usr/bin/lsb_release ]];
+  then
+    local data=$(/usr/bin/lsb_release -i | awk '{ print $3 }')
+
+    if [ "${data}" = "Ubuntu" ];
+    then
+        echo $TRUE
+        return
+    fi
+  fi
+
+  echo $FALSE
+}
+
+function getDistro () {
+    local gotCentOS=$(isCentOS)
+    local gotRHEL=$(isRHEL)
+    local gotUbuntu=$(isUbuntu)
+    local distro=
+
+    if [ ${gotCentOS} = ${TRUE} ];
+    then
+        distro="CentOS"
+    elif [ ${gotRHEL} = ${TRUE} ];
+    then
+        distro="RedHat"
+    elif [ ${gotUbuntu} = ${TRUE} ];
+    then
+        distro="Ubuntu"
+    else
+        distro="unknown"
+    fi
+
+    echo ${distro}
+}
+
+function getPaths() {
+    typeset -a paths
+    local index=0
+
+    paths+='/bin'
+    paths+='/usr/bin'
+    paths+='/usr/local/bin'
+    paths+='/usr/sbin'
+    paths+='/usr/local/sbin'
+
+    if [[ -d /opt/local/bin ]];
+    then
+        paths+='/opt/local/bin'
+    fi
+
+    if [[ -f /usr/bin/go ]];
+    then
+        if [[ -d ${HOME}/Projects/Go ]];
+        then
+            export GOPATH="${HOME}/Projects/Go"
+        fi
+    fi
+
+    if [[ -d ${GOPATH} ]];
+    then
+        printf "[ZSH] Go path located at [%s]\n" ${GOPATH}
+        paths+="${GOPATH}/bin"
+    fi
+
+    export PATH=${(j;:;)paths}
+}
+
+function boot() {
+    local distro=$(getDistro)
+
+    print "[ZSH] Setting up ZSH ${ZSH_VERSION} on ${distro}"
+
+    getPaths
+}
+
+zshOrDie
+boot
+
+unset boot
+unset getPaths
+unset zshOrDie
+export PATH
+source ${ZSH}/boot.zsh
+
+# zshrc ends here.
