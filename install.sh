@@ -70,7 +70,10 @@ installZsh() {
         echo "Installing ZSH dotfiles..."
 
         rm ${HOME}/.zshrc 2>/dev/null
+        rm -rf ${HOME}/.zshrc.d 2>/dev/null
+
         ln -s ${_rootwd}/zshrc.d/zshrc ${HOME}/.zshrc
+        ln -s ${_rootwd}/zshrc.d ${HOME}/.zshrc.d
 
         echo "Done."
     fi
