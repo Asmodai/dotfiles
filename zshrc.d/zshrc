@@ -37,7 +37,10 @@
 # Profile location
 export ZSH=${HOME}/.zshrc.d
 
-# Theme name.
+# Allow scripts to detect this 'library'.
+export ZSH_HACKER="true"
+
+# Set the theme. [deprecated]
 ZSH_THEME=""""
 
 # Use case-sensitive completion?
@@ -83,59 +86,14 @@ export GOPATH=${HOME}/Projects/Go
 TRUE="true"
 FALSE="false"
 
+source ${ZSH}/lib/utils.zsh
+
 function zshOrDie () {
     if [[ -z "${ZSH_VERSION}" ]];
     then
         printf "This requires ZSH in order to run. You used: %s\n" $SHELL
         exit 1
     fi
-}
-
-function isRHEL () {
-    test -f /etc/redhat-release && echo $TRUE || echo $FALSE
-}
-
-function isCentOS () {
-    test -f /etc/centos-release && echo $TRUE || echo $FALSE
-}
-
-function isUbuntu () {
-  # lsb_release -i | awk '{ print $3 }'
-
-  if [[ -f /usr/bin/lsb_release ]];
-  then
-    local data=$(/usr/bin/lsb_release -i | awk '{ print $3 }')
-
-    if [ "${data}" = "Ubuntu" ];
-    then
-        echo $TRUE
-        return
-    fi
-  fi
-
-  echo $FALSE
-}
-
-function getDistro () {
-    local gotCentOS=$(isCentOS)
-    local gotRHEL=$(isRHEL)
-    local gotUbuntu=$(isUbuntu)
-    local distro=
-
-    if [ ${gotCentOS} = ${TRUE} ];
-    then
-        distro="CentOS"
-    elif [ ${gotRHEL} = ${TRUE} ];
-    then
-        distro="RedHat"
-    elif [ ${gotUbuntu} = ${TRUE} ];
-    then
-        distro="Ubuntu"
-    else
-        distro="unknown"
-    fi
-
-    echo ${distro}
 }
 
 function getPaths() {
@@ -161,10 +119,20 @@ function getPaths() {
         fi
     fi
 
+    if [[ -d ${HOME}/Projects/Lisp ]];
+    then
+        export LISPPATH="${HOME}/Projects/Lisp"
+    fi
+
     if [[ -d ${GOPATH} ]];
     then
-        printf "[ZSH] Go path located at [%s]\n" ${GOPATH}
         paths+="${GOPATH}/bin"
+    fi
+
+    # Finally check for zshrc.d/bin.
+    if [[ -d ${HOME}/.zshrc.d/bin ]];
+    then
+        paths+="${HOME}/.zshrc.d/bin"
     fi
 
     export PATH=${(j;:;)paths}
@@ -172,8 +140,6 @@ function getPaths() {
 
 function boot() {
     local distro=$(getDistro)
-
-    print "[ZSH] Setting up ZSH ${ZSH_VERSION} on ${distro}"
 
     getPaths
 }
