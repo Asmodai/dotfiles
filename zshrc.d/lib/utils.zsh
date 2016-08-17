@@ -81,4 +81,8 @@ function getDistro () {
     echo ${distro}
 }
 
+function isDistro () {
+    [[ "$(getDistro)" = "$1" ]] && echo ${TRUE} || echo ${FALSE}
+}
+
 # utils.zsh ends here.
