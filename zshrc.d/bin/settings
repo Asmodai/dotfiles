@@ -52,11 +52,20 @@ function procPaths() {
     echo "Paths:"
 
     local output=""
+    local -a paths
+   
+    paths=("${(@s/:/)PATH}") 
 
-    test -n "${GOPATH}"   && output="${output}\n:Go path:${GOPATH}"
-    test -n "${LISPPATH}" && output="${output}\n:Lisp path:${LISPPATH}"
+    for elt in $paths;
+    do
+      output="${output}\n  :Unix:${elt}"
+    done
 
-    echo -ne ${output} | column -t -s ':'
+    test -n "${GOPATH}"   && output="${output}\n  :Go:${GOPATH}"
+    test -n "${LISPPATH}" && output="${output}\n  :Lisp:${LISPPATH}"
+
+    output="${output}\n"
+    echo -ne ${output} | column -t -s ':' -c 80
 }
 
 function procPlugins() {
@@ -71,10 +80,11 @@ function procPlugins() {
 
         if [[ -f "$dir/${_base}.plugin.zsh" ]];
         then
-            output="${output}\n:${_base}:Loaded."
+            output="${output}\n  :${_base}:Loaded."
         fi
     done
 
+    output="${output}\n"
     echo -ne ${output} | column -t -s ':'
 }
 
