@@ -34,19 +34,26 @@
 #
 # }}}
 
-alias ys="yum search"
-alias yp="yum info"
-alias yl="yum list"
-alias ygl="yum grouplist"
-alias yli="yum list installed"
-alias ymc="yum makecache"
+. ${ZSH}/lib/utils.zsh
 
-alias yu="sudo yum update"
-alias yi="sudo yum install"
-alias ygi="sudo yum groupinstall"
-alias yr="sudo yum remove"
-alias ygr="sudo yum groupremove"
-alias yrl="sudo yum remove --remove-leaves"
-alias yc="sudo yum clean all"
+if [[ "$(isDistro CentOS)" = "${TRUE}" ]];
+then
+    alias ys="yum search"
+    alias yp="yum info"
+    alias yl="yum list"
+    alias ygl="yum grouplist"
+    alias yli="yum list installed"
+    alias ymc="yum makecache"
+
+    alias yu="sudo yum update"
+    alias yi="sudo yum install"
+    alias ygi="sudo yum groupinstall"
+    alias yr="sudo yum remove"
+    alias ygr="sudo yum groupremove"
+    alias yrl="sudo yum remove --remove-leaves"
+    alias yc="sudo yum clean all"
+else
+    echo "The Yum module will not work on $(getDistro)."
+fi
 
 # yum.plugin.zsh ends here.
