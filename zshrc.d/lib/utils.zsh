@@ -34,6 +34,8 @@
 #
 # }}}
 
+. ${ZSH}/lib/defns.zsh
+
 function isRHEL () {
     test -f /etc/redhat-release && echo $TRUE || echo $FALSE
 }
@@ -79,6 +81,16 @@ function getDistro () {
     fi
 
     echo ${distro}
+}
+
+function isRedHat () {
+    local distro=$(getDistro)
+
+    case $distro in
+        RedHat)    echo ${TRUE}  ;;
+        CentOS)    echo ${TRUE}  ;;
+        *)         echo ${FALSE} ;;
+    esac
 }
 
 function isDistro () {

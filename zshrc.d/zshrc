@@ -83,9 +83,6 @@ export PAGER='less'
 # Go language settings.
 export GOPATH=${HOME}/Projects/Go
 
-TRUE="true"
-FALSE="false"
-
 source ${ZSH}/lib/utils.zsh
 
 function zshOrDie () {
