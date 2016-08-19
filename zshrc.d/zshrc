@@ -97,17 +97,6 @@ function getPaths() {
     typeset -a paths
     local index=0
 
-    paths+='/bin'
-    paths+='/usr/bin'
-    paths+='/usr/local/bin'
-    paths+='/usr/sbin'
-    paths+='/usr/local/sbin'
-
-    if [[ -d /opt/local/bin ]];
-    then
-        paths+='/opt/local/bin'
-    fi
-
     if [[ -f /usr/bin/go ]];
     then
         if [[ -d ${HOME}/Projects/Go ]];
@@ -121,16 +110,17 @@ function getPaths() {
         export LISPPATH="${HOME}/Projects/Lisp"
     fi
 
-    if [[ -d ${GOPATH} ]];
-    then
-        paths+="${GOPATH}/bin"
-    fi
-
-    # Finally check for zshrc.d/bin.
-    if [[ -d ${HOME}/.zshrc.d/bin ]];
-    then
-        paths+="${HOME}/.zshrc.d/bin"
-    fi
+    test -d /bin                   && paths+='/bin'
+    test -d /sbin                  && paths+='/sbin'
+    test -d /usr/bin               && paths+='/usr/bin'
+    test -d /usr/local/bin         && paths+='/usr/local/bin'
+    test -d /usr/sbin              && paths+='/usr/sbin'
+    test -d /usr/local/sbin        && paths+='/usr/local/sbin'
+    test -d /opt/bin               && paths+='/opt/bin'
+    test -d /opt/local/bin         && paths+='/opt/local/bin'
+    test -d "${GOPATH}"            && paths+="${GOPATH}"
+    test -d "${HOME}/bin"          && paths+="${HOME}/bin"
+    test -d "${HOME}/.zshrc.d/bin" && paths+="${HOME}/.zshrc.d/bin"
 
     export PATH=${(j;:;)paths}
 }
