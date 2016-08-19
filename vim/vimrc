@@ -1,0 +1,64 @@
+" Necesary  for lots of cool vim things
+set nocompatible
+
+" This shows what you are typing as a command.  I love this!
+set showcmd
+
+" Who doesn't like autoindent?
+set autoindent smartindent
+
+" Spaces are better than a tab character
+set expandtab
+set smarttab
+
+" Who wants an 8 character tab?  Not me!
+set shiftwidth=4
+set softtabstop=4
+
+" Enable mouse support in console
+" set mouse=a
+
+" Got backspace?
+set backspace=2
+
+" Line Numbers PWN!
+set number
+
+" Ignoring case is a fun trick
+set ignorecase
+
+" And so is Artificial Intellegence!
+set smartcase
+
+" Incremental searching is sexy
+set incsearch
+
+" Highlight things that we find with the search
+set hlsearch
+
+map N Nzz
+map n nzz
+
+syntax on
+
+set background=dark
+
+filetype on                   " Enable filetype detection
+filetype indent on            " Enable filetype-specific indenting
+filetype plugin on
+
+set ruler
+
+" For regular expressions turn magic on
+set magic
+
+colorscheme slate
+
+" powerline magic
+set rtp+=/usr/local/lib/python2.7/dist-packages/powerline/bindings/vim/
+
+" Always show status
+set laststatus=2
+
+" Use 256 colours
+set t_Co=256

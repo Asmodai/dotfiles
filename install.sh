@@ -93,9 +93,22 @@ installPowerLine() {
     fi
 }
 
+installVim() {
+    yesOrNo "Install vim config"
+
+    if [[ "${YESORNO}" = "${TRUE}" ]];
+    then
+        echo "Installing vim config..."
+
+        rm -rf ${HOME}/.vimrc
+        ln -s ${_rootwd}/vim/vimrc ${HOME}/.vimrc
+
+        echo "Done."
+    fi
+}
+
 installZsh
 installPowerLine
-
-
+installVim
 
 # install.sh ends here.
