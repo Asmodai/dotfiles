@@ -118,7 +118,7 @@ function getPaths() {
     test -d /usr/local/sbin        && paths+='/usr/local/sbin'
     test -d /opt/bin               && paths+='/opt/bin'
     test -d /opt/local/bin         && paths+='/opt/local/bin'
-    test -d "${GOPATH}"            && paths+="${GOPATH}"
+    test -d "${GOPATH}"            && paths+="${GOPATH}/bin"
     test -d "${HOME}/bin"          && paths+="${HOME}/bin"
     test -d "${HOME}/.zshrc.d/bin" && paths+="${HOME}/.zshrc.d/bin"
 
