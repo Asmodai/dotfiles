@@ -112,8 +112,23 @@ installVim() {
     fi
 }
 
+installX11() {
+    yesOrNo "Install X11 configs"
+
+    if [[ "${YESORNO}" = "${TRUE}" ]];
+    then
+        echo "Installing X11 configs..."
+
+        rm -rf ${HOME}/.Xdefaults
+        ln -s ${_rootwd}/X11/Xdefaults ${HOME}/.Xdefaults
+
+        echo "Done."
+    fi
+}
+
 installZsh
 installPowerLine
 installVim
+installX11
 
 # install.sh ends here.

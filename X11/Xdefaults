@@ -1,0 +1,65 @@
+!! Xdefaults dotfile
+
+Xft.lcdfilter:      lcddefault
+Xft.dpi:            96
+Xft.antialias:      true
+Xft.rgba:           rgb
+Xft.hinting:        true
+Xft.hintStyle:      hintslight
+
+XTerm*termName:     xterm-256color
+XTerm*renderFont:   true
+XTerm*faceName:     xft:Source Code Pro for Powerline
+XTerm*faceSize:     10
+
+UXTerm*termName:    xterm-256color
+UXTerm*renderFont:  true
+UXTerm*faceName:    xft:Source Code Pro for Powerline
+UXTerm*faceSize:    10
+
+URxvt*termName:     rxvt-256color
+URxvt*renderFont:   true
+URxvt*faceName:     xft:Source Code Pro for Powerline
+URxvt*faceSize:     10
+URxvt.preeditType:  OverTheSpot
+
+
+#define termbg  #121212
+#define termfg  #B2B2B2
+
+#define base0   #181818
+#define base1   #CC0000
+#define base2   #4E9A06
+#define base3   #C4A000
+#define base4   #3465A4
+#define base5   #75507B
+#define base6   #06989A
+#define base7   #D3D7CF
+#define base8   #555753
+#define base9   #EF2929
+#define base10  #8AE234
+#define base11  #FCE94F
+#define base12  #729FCF
+#define base13  #AD7FA8
+#define base14  #34E2E2
+#define base15  #EEEEEC
+
+*VT100*foreground:  termfg
+*VT100*background:  termbg
+
+*.color0:           base0
+*.color1:           base1
+*.color2:           base2
+*.color3:           base3
+*.color4:           base4
+*.color5:           base5
+*.color6:           base6
+*.color7:           base7
+*.color8:           base8
+*.color9:           base9
+*.color10:          base10
+*.color11:          base11
+*.color12:          base12
+*.color13:          base13
+*.color14:          base14
+*.color15:          base15
