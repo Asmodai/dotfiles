@@ -84,6 +84,11 @@ installPowerLine() {
 
     if [[ "${YESORNO}" = "${TRUE}" ]];
     then
+        echo "Installing PowerLine..."
+
+        pip install powerline-gitstatus
+        pip install powerline-status
+
         echo "Installing PowerLine config..."
 
         rm -rf ${HOME}/.config/powerline 2>/dev/null
