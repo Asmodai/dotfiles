@@ -52,8 +52,6 @@ then
     alias ygr="sudo yum groupremove"
     alias yrl="sudo yum remove --remove-leaves"
     alias yc="sudo yum clean all"
-else
-    echo "The Yum module will not work on $(getDistro)."
 fi
 
 # yum.plugin.zsh ends here.

@@ -36,35 +36,28 @@
 
 . ${ZSH}/lib/defns.zsh
 
-function isRHEL () {
+function getRHEL () {
     test -f /etc/redhat-release && echo $TRUE || echo $FALSE
 }
 
-function isCentOS () {
+function getCentOS () {
     test -f /etc/centos-release && echo $TRUE || echo $FALSE
 }
 
-function isUbuntu () {
-    # lsb_release -i | awk '{ print $3 }'
-
+function getLSB () {
     if [[ -f /usr/bin/lsb_release ]];
     then
-        local data=$(/usr/bin/lsb_release -i | awk '{ print $3 }')
-
-        if [ "${data}" = "Ubuntu" ];
-        then
-            echo $TRUE
-            return
-        fi
+        echo $(/usr/bin/lsb_release -i | awk '{ print $3 }')
+        return
     fi
 
-    echo $FALSE
+    echo ${FALSE}
 }
 
 function getDistro () {
-    local gotCentOS=$(isCentOS)
-    local gotRHEL=$(isRHEL)
-    local gotUbuntu=$(isUbuntu)
+    local gotCentOS=$(getCentOS)
+    local gotRHEL=$(getRHEL)
+    local gotDebian=$(getLSB)
     local distro=
 
     if [ ${gotCentOS} = ${TRUE} ];
@@ -73,9 +66,9 @@ function getDistro () {
     elif [ ${gotRHEL} = ${TRUE} ];
     then
         distro="RedHat"
-    elif [ ${gotUbuntu} = ${TRUE} ];
+    elif [ ! ${gotDebian} = ${FALSE} ];
     then
-        distro="Ubuntu"
+        distro=${gotDebian}
     else
         distro="unknown"
     fi
