@@ -36,7 +36,7 @@
 
 if [ "${DISABLE_AUTO_UPDATE}" != 'true' ];
 then
-    /usr/bin/env ZSH=$ZSH DISABLE_UPDATE_PROMPT=${DISABLE_UPDATE_PROMPT} /usr/bin/zsh -f ${ZSH}/tools/check_for_update.zsh
+    /usr/bin/env ZSH=$ZSH DISABLE_UPDATE_PROMPT=${DISABLE_UPDATE_PROMPT} zsh -f ${ZSH}/tools/check_for_update.zsh
 fi
 
 # Add a function path.
