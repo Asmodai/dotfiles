@@ -43,6 +43,9 @@
     if [[ "${OSTYPE}" = darwin* ]]
     then
         _pip="/opt/local/bin/pip"
+
+        # Because Apple.
+        test -f /usr/local/bin/pip && _pip="/usr/local/bin/pip"
     else
         _pip="pip"
     fi
