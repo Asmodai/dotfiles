@@ -1,0 +1,14 @@
+#!/bin/sh
+
+echo "powerline-gitstatus symbology:"
+echo ""
+echo "		branch name or commit hash"
+echo "	★	most recent tag (if enabled)"
+echo "	↓	n commits behind"
+echo "	↑	n commits ahead"
+echo "	●	n staged files"
+echo "	✖	n unmerged files (conflicts)"
+echo "	✚	n changed files"
+echo "	…	n untracked files"
+echo "	⚑	n stashed files"
+echo ""
