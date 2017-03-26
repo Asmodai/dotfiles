@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=X-GNOME-Metatheme
+Name=MyDark
+Comment=Derpy derp.
+Encoding=UTF-8
+
+[X-GNOME-Metatheme]
+Name=MyDark
+GtkTheme=MyDark
+IconTheme=MyDark
+MetacityTheme=MyDark

@@ -126,6 +126,20 @@ installX11() {
     fi
 }
 
+installGtkThemes() {
+    yesOrNo "Install GTK themes"
+
+    if [[ "${YESORNO}" = "${TRUE}" ]]
+    then
+        echo "Installing GTK themes..."
+
+        rm -rf ${HOME}/.themes/MyDark
+        ln -s ${_rootwd}/X11/themes/gtk/MyDark ${HOME}/.themes/MyDark
+
+        echo "Done."
+    fi
+}
+
 installPlank() {
     yesOrNo "Install Plank config"
 
@@ -186,6 +200,7 @@ installPowerLine
 installVim
 
 installX11
+installGtkThemes
 test -f /usr/bin/plank && installPlank
 test -f /usr/bin/fvwm2 && installFVWM
 test -f /usr/bin/conky && installConky
