@@ -1,0 +1,337 @@
+ImagePath $HOME/.fvwm/pixmaps:/usr/share/icons/Vibrancy-Kali
+
+DestroyFunc XDGRegen
+AddToFunc XDGRegen
++ I PipeHead '/home/asmodai/.fvwm/make-xdg-menu.sh'
++ I Read $[FVWM_USERDIR]/.XDGMenu
+
+# Stuff to do at startup
+DestroyFunc StartFunction
+AddToFunc StartFunction
++ I Module FvwmCommandS
++ I Module FvwmButtons TopPanel
++ I Schedule 500 Module FvwmEvent
++ I PipeRead 'echo "SendToModule FvwmButtons ChangeButton \
+  TaskTime Title \"`date +%r`\""'
++ I Schedule Periodic 10000 PipeRead \
+  'echo "SendToModule FvwmButtons ChangeButton TaskTime Title \"`date +%R`\""'
++ I Exec exec $[FVWM_USERDIR]/startup.sh start
++ I Test (!f $[FVWM_USERDIR]/.XDGMenu) XDGRegen
++ I Read $[FVWM_USERDIR]/.XDGMenu
+
+DestroyFunc ExitFunction
+AddToFunc ExitFunction
++ I Exec exec $[FVWM_USERDIR]/startup.sh stop
+
+# Color sets:
+#
+#   7   Menues
+#   8   Active menues
+#   9   Tooltips/balloons
+Colorset  7 fg #d8d8d8, bg #343434
+Colorset  8 fg white,   bg #693876
+ColorSet  9 fg #000000, bg #CEA93E, hi #ffffff, sh #121212
+Colorset 10 fg #343434, bg #272727, hi #d8d8d8, sh #121212
+Colorset 11 fg #693876, bg #693876, hi #dadada, sh #121212
+Colorset 12 fg #d8d8d8, bg #424242, hi #693876, sh #121212
+Colorset 13 fg #272727, bg #404040, hi #693876, sh #121212
+Colorset 15 fg #d8d8d8, bg #343434, hi #d8d8d8, sh #121212
+Colorset 16 fg #d8d8d8, bg #404040, hi #d8d8d8, sh #121212
+
+IgnoreModifiers L25
+DesktopSize 1x1
+Emulate Fvwm
+HideGeometryWindow Always
+OpaqueMoveSize unlimited
+BugOpts RaiseOverUnmanaged off
+DefaultFont "xft:Cantarell:pixelsize=12"
+DefaultColors #FFFFFF #343434
+
+Style * NoIcon
+style * ClickToFocus
+Style * ResizeOpaque
+Style * MwmFunctions
+Style * MwmDecor
+Style * OLDecor
+Style * !StippledTitle
+Style * DecorateTransient
+Style * EWMHUseStackingOrderHints
+Style * BorderWidth 3
+Style * HandleWidth 3
+Style * SnapAttraction 13 SameType Screen
+Style * Font "xft:Cantarell:pixelsize=15"
+Style * ForeColor darkgray
+Style * BackColor #343434
+Style * HilightFore white
+Style * HilightBack #343434
+Style * TileCascadePlacement
+
+CursorStyle ROOT left_ptr
+CursorStyle TITLE left_ptr
+CursorStyle DEFAULT left_ptr
+CursorStyle SYS left_ptr
+CursorStyle MENU left_ptr
+CursorStyle WAIT left_ptr
+BusyCursor DynamicMenu True, Read True
+
+MenuStyle * MenuColorset 7
+MenuStyle * ActiveColorset 8
+MenuStyle * TrianglesRelief
+MenuStyle * Animation
+MenuStyle * SidePic
+MenuStyle * SideColor
+MenuStyle * HilightBack
+MenuStyle * ActiveFore
+MenuStyle * Hilight3DOff
+MenuStyle * TitleUnderlines1
+MenuStyle * BorderWidth 0
+MenuStyle * VerticalMargins 0 0
+MenuStyle * TitleFont "xft:Cantarell:pixelsize=12:Bold:antialias=true"
+MenuStyle * Font "xft:Cantarell:pixelsize=12:antialias=true"
+#MenuStyle * ItemFormat "%|%5.5i%1.3l%2.3>%|"
+MenuStyle * ItemFormat "%5.4s%.1|%5.5i%.5l%.5r%.5i%2.3>%1|"
+MenuStyle * PopupOffset +6 95, TitleWarpOff
+MenuStyle * PopupAsSubmenu, HoldSubmenus, SubmenusRight
+MenuStyle * VerticalItemSpacing 3 3
+MenuStyle * VerticalTitleSpacing 3 3
+
+TitleStyle ActiveUp solid #343434 -- Flat
+TitleStyle ActiveDown solid #343434 -- Flat
+TitleStyle Inactive solid #343434 -- Flat
+TitleStyle Centered Height 24
+
+BorderStyle Inactive -- HiddenHandles NoInset Flat
+BorderStyle Active -- HiddenHandles NoInset Flat
+
+ButtonStyle 1 Pixmap close.png -- Flat
+ButtonStyle 3 Pixmap min.png -- Flat
+ButtonStyle 5 Pixmap max.png -- Flat
+
+ButtonStyle 1 Inactive Pixmap unfocused.png -- Flat
+ButtonStyle 3 Inactive Pixmap unfocused.png -- Flat
+ButtonStyle 5 Inactive Pixmap unfocused.png -- Flat
+
+ButtonStyle 1 ActiveDown Pixmap close-press.png -- Flat
+ButtonStyle 3 ActiveDown Pixmap min-press.png -- Flat
+ButtonStyle 5 ActiveDown Pixmap max-press.png -- Flat
+
+DestroyFunc MaximizeOrMove
+AddToFunc MaximizeOrMove
++ I Raise
++ I Focus
++ D Maximize
++ M ThisWindow (Maximized, !Shaded) Maximize False
++ M TestRc (Match) WarpToWindow 50 1
++ M Move
+
+DestroyFunc LowerTo4
+AddToFunc LowerTo4
++ I Layer 0 4
++ I Lower
+
+DestroyFunc MyMove
+AddToFunc MyMove
++ I ThisWindow (Maximized) Maximize False
++ I WarpToWindow 50 1
++ I Move
+
+DestroyMenu WindowSendTo
+AddToMenu WindowSendTo
++ "%desktop-1.png%Desktop 1" MoveToDesk 0 0 0 3
++ "%desktop-2.png%Desktop 2"     MoveToDesk 0 1 0 3
++ "%desktop-3.png%Desktop 3"     MoveToDesk 0 2 0 3
++ "%desktop-4.png%Desktop 4"     MoveToDesk 0 3 0 3
+
+DestroyMenu WindowOptions
+AddToMenu WindowOptions
++ "%go-down.png%Lower"             LowerTo4
++ "%focus-windows.png%On Top"      Layer 0 6
++ "%go-top.png%Shade"              ToggleShade
++ ""                               Nop
++ "%window-minimize.png%Minimize"  Iconify
++ "%window-maximize.png%Maximize"  Maximize
++ "%transform-move.png%Move"       MyMove
++ ""                               Nop
++ "%help-about.png%Always Visible" Stick
++ "%view-grid.png%Move To"         Popup WindowSendTo
++ ""                               Nop
++ "%system-search.png%Identify"    Module FvwmIdent
++ ""                               Nop
++ "%window-close.png%Close"        Close
+
+DestroyMenu UserMenu
+AddToMenu UserMenu
++ "XScreenSaver%apps/16/xscreensaver.png%"        Exec exec xscreensaver-command -prefs
++ "System Monitor%apps/16/utilities-system-monitor.png%" Exec exec gnome-system-monitor
++ "Character Map%apps/16/gnome-character-map.png%" Exec exec gnome-characters
++ "Calculator%apps/16/gnome-calculator.png%"      Exec exec gnome-calculator
++ "Dictionary%apps/16/dictionary.png%"            Exec exec gnome-dictionary
++ "Weather%apps/16/gnome-weather.png%"            Exec exec gnome-weather
++ ""                                              Nop
++ "&Lock%actions/16/lock.png%"                    Exec exec xscreensaver-command -lock
++ "&Restart%actions/16/system-restart-panel.png%" Restart
++ "&Quit%actions/16/system-log-out.png%"          FvwmForm FvwmForm-QuitVerify
+
+DestroyMenu RootMenu
+AddToMenu RootMenu "FVWM"                         Title
++ "Thunar%apps/16/thunar.png%"                    Exec exec thunar
++ "XTerm%apps/16/xterm.png%"                      Exec exec xterm -ls -sb -geometry 84x24
++ "Emacs%apps/16/emacs.png%"                      Exec exec emacs
++ "Geary%apps/16/geary.png%"                      Exec exec geary
++ "Chrome%apps/16/google-chrome.png%"             Exec exec google-chrome
++ ""                                              Nop
++ "&Identify%status/16/info.png%"                 Module FvwmIdent
++ "&Console%apps/16/gnome-logs.png%"              FvwmConsole
++ ""                                              Nop
++ "&Lock%actions/16/lock.png%"                    Exec exec xscreensaver-command -lock
++ "&Restart%actions/16/system-restart-panel.png%" Restart
++ "&Quit%actions/16/system-log-out.png%"          FvwmForm FvwmForm-QuitVerify
+
+DestroyFunc ShowDesktop
+AddToFunc ShowDesktop
++ I All (CurrentPage, AcceptsFocus, !Iconic, !TopPanel, !conky, !plank, !Plank) \
+    Iconify
+
+DestroyFunc FocusWhenMove
+AddToFunc FocusWhenMove
++ I Raise
++ I Focus
++ M ThisWindow (Maximized) Maximize False
++ M TestRc (Match) WarpToWindow 50 10
++ M Move
+
+DestroyFunc ToggleShade
+AddToFunc ToggleShade
++ I ThisWindow (Shaded) WindowShade False
++ I TestRc (Match) Break 1
++ I ThisWindow (!Shaded) WindowShade True
+
+DestroyFunc MoveOrShade
+AddToFunc MoveOrShade
++ M FocusWhenMove
++ D ToggleShade
+
+DestroyFunc FocusWhenResize
+AddToFunc FocusWhenResize
++ I Raise
++ I Focus
++ I Resize Direction Automatic
+
+DestroyFunc TileLeft
+AddToFunc TileLeft
++ I ThisWindow (!Shaded, !Iconic) Maximize 50 100
++ I ThisWindow (Maximized, !Shaded, !Iconic) Move 0 0
+
+DestroyFunc TileRight
+AddToFunc TileRight
++ I ThisWindow (!Shaded, !Iconic) Maximize 50 100
++ I ThisWindow (Maximized, !Shaded, !Iconic) Move 50 0
+
+DestroyFunc UnMaximizeIconify
+AddToFunc UnMaximizeIconify
++ I ThisWindow (Maximized) Maximize False
++ I TestRc (!Match) Iconify
+
+DestroyFunc MoveUp
+AddToFunc MoveUp
++ I ThisWindow (!Maximized, !Shaded, !Iconic) AnimatedMove keep w+-20p
+
+DestroyFunc MoveDown
+AddToFunc MoveDown
++ I ThisWindow (!Maxmized, !Shaded, !Iconic) AnimatedMove keep w+20p
+
+DestroyFunc MoveLeft
+AddToFunc MoveLeft
++ I ThisWindow (!Maximized, !Shaded, !Iconic) AnimatedMove w+-20p keep
+
+DestroyFunc MoveRight
+AddToFunc MoveRight
++ I ThisWindow (!Maximized, !Shaded, !Iconic) AnimatedMove w+20p keep
+
+Mouse 1 1  A        Close
+Mouse 1 3  A        Iconify
+Mouse 1 5  A        Maximize
+Mouse 1 R  A        Nop
+Mouse 1 T  A        MaximizeOrMove
+Mouse 2 T  A        WindowShade
+Mouse 2 R  A        WindowList NoCurrentDeskTitle, TitleForAllDesks
+Mouse 3 T  A        Menu WindowOptions
+Mouse 3 WT 4        Menu WindowOptions mouse 0p 0p
+Mouse 3 R  A        Menu RootMenu mouse -1p -1p
+Mouse 1 T  A        MoveOrShade
+Mouse 1 WT 4        FocusWhenMove
+Mouse 2 ST A        FocusWhenResize
+
+Key Space A 4        Menu WindowOptions
+Key Up    A 4        Maximize True
+Key Down  A 4        UnMaximizeIconify
+Key Left  A 4        TileLeft
+Key Right A 4        TileRight
+Key Up    A C4       MoveUp
+Key Down  A C4       MoveDown
+Key Left  A C4       MoveLeft
+Key Right A C4       MoveRight
+Key Tab   A M        WindowList (AcceptsFocus !Shaded !Iconic CurrentPage)
+Key Tab   A MS       WindowList (AcceptsFocus !Shaded !Iconic CurrentPage)
+Key Tab   A 4        WindowList (AcceptsFocus !Shaded !Iconic)
+Key Tab   A S4       WindowList (AcceptsFocus !Shaded !Iconic)
+Key D     A 4        ShowDesktop
+Key L     A 4        Exec exec xscreensaver-command -lock
+
+# Special keys
+Key XF86AudioLowerVolume A A    Exec amixer set Master 5%- unmute
+Key XF86AudioRaiseVolume A A    Exec amixer set Master 5%+ unmute
+Key XF86AudioMute        A A    Exec amixer set Master,0 toggle
+
+EwmhBaseStruts 0 0 24 0
+
+DestroyModuleConfig FvwmIdent:*
+*FvwmIdent: Colorset 15
+
+DestroyModuleConfig FvwmPager:*
+*FvwmPager: Colorset * 10
+*FvwmPager: UseSkipList
+*FvwmPager: HilightColorset * 13
+*FvwmPager: BalloonColorset * 9
+*FvwmPager: WindowColorsets 12 11
+*FvwmPager: Font None
+*FvwmPager: Balloons All
+*FvwmPager: BalloonFont "xft:Cantarell:pixelsize=12:Bold:antialias=true"
+*FvwmPager: BalloonYOffset +2
+*FvwmPager: MiniIcons
+
+DestroyModuleConfig TopPanel: *
+*TopPanel: Geometry 1366x24+0+0
+*TopPanel: Colorset 15
+*TopPanel: Frame 0
+*TopPanel: Font "xft:Cantarell:pixelsize=12:Bold:antialias=true"
+*TopPanel: Rows 1
+*TopPanel: Columns 1366
+*TopPanel: (55x1, Title "", Icon "fvwm-logo-small.png", ActiveColorSet 16, \
+           Action (Mouse 1) Menu Applications Root 0 24p, Frame 0)
+*TopPanel: (200x1, Swallow FvwmPager, 'Module FvwmPager 0 3', Frame 0)
+*TopPanel: (916x1)
+*TopPanel: (140x1, Swallow(NoClose, UseOld) stalonetray \
+            'Exec exec stalonetray', Frame 0)
+*TopPanel: (55x1, id "TaskTime", ActiveColorset 16, Title "Time", \
+            Action (Mouse 1) Menu UserMenu Root 1316p 24p, Frame 0)
+
+Style FvwmForm-QuitVerify WindowListSkip, !Title
+*FvwmFormDefault: Font "xft:Cantarell:pixelsize=12"
+*FvwmFormDefault: ButtonFont "xft:Cantarell:pixelsize=12"
+*FvwmFormDefault: TimeoutFont "xft:Cantarell:pixelsize=12"
+*FvwmFormDefault: Fore white
+*FvwmFormDefault: Back #343434
+*FvwmFormDefault: ItemFore white
+*FvwmFormDefault: ItemBack #4A4A4A
+
+Style TopPanel !Borders, !Title, WindowListSkip, StaysOnTop, Sticky
+Style Plank Unmanaged
+Style conky NoTitle, StaysOnBottom, Sticky, NoIcon, NeverFocus, WindowListSkip, \
+            !Borders, DoNotAttract
+Style cairo-dock NoTitle, Sticky, NoIcon, NeverFocus, WindowListSkip, \
+                 !Borders
+Style synapse NoTitle, Sticky, NoIcon, WindowListSkip, !Borders, DoNotAttract
+Style google-chrome NoPPosition
+Style chromium-browser NoPPosition
+ 

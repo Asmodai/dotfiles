@@ -39,7 +39,7 @@ FALSE="false"
 
 _rootwd=`pwd`
 
-if [[ ! -f install.sh ]];
+if [[ ! -f install.sh ]]
 then
     echo "Please run this sript from inside the dotfiles folder."
     exit 1
@@ -65,7 +65,7 @@ yesOrNo() {
 installZsh() {
     yesOrNo "Install ZSH doftiles"
 
-    if [[ "${YESORNO}" = "${TRUE}" ]];
+    if [[ "${YESORNO}" = "${TRUE}" ]]
     then
         echo "Installing ZSH dotfiles..."
 
@@ -82,7 +82,7 @@ installZsh() {
 installPowerLine() {
     yesOrNo "Install PowerLine config"
 
-    if [[ "${YESORNO}" = "${TRUE}" ]];
+    if [[ "${YESORNO}" = "${TRUE}" ]]
     then
         echo "Installing PowerLine..."
 
@@ -101,7 +101,7 @@ installPowerLine() {
 installVim() {
     yesOrNo "Install vim config"
 
-    if [[ "${YESORNO}" = "${TRUE}" ]];
+    if [[ "${YESORNO}" = "${TRUE}" ]]
     then
         echo "Installing vim config..."
 
@@ -115,7 +115,7 @@ installVim() {
 installX11() {
     yesOrNo "Install X11 configs"
 
-    if [[ "${YESORNO}" = "${TRUE}" ]];
+    if [[ "${YESORNO}" = "${TRUE}" ]]
     then
         echo "Installing X11 configs..."
 
@@ -126,9 +126,69 @@ installX11() {
     fi
 }
 
+installPlank() {
+    yesOrNo "Install Plank config"
+
+    if [[ "${YESORNO}" = "${TRUE}" ]]
+    then
+        echo "Installing Plank config..."
+
+        rm -rf ${HOME}/.local/share/plank/themes 2>/dev/null
+        mkdir -p ${HOME}/.local/share/plank/themes
+        ln -s ${_rootwd}/X11/plank/Hacker ${HOME}/.local/share/plank/themes/
+
+        echo "Done."
+    fi
+}
+
+installFVWM() {
+    yesOrNo "Install FVWM config"
+
+    if [[ "${YESORNO}" = "${TRUE}" ]]
+    then
+        echo "Installing FVWM config..."
+
+        rm -rf ${HOME}/.fvwm
+        ln -s ${_rootwd}/X11/fvwm ${HOME}/.fvwm
+
+        echo "Done."
+    fi
+}
+
+installConky() {
+    yesOrNo "Install Conky configs"
+
+    if [[ "${YESORNO}" = "${TRUE}" ]]
+    then
+        echo "Installing Conky config..."
+        rm -rf ${HOME}/.conky 2>/dev/null
+        mkdir -p ${HOME}/bin 2>/dev/null
+        ln -s ${_rootwd}/X11/conky ${HOME}/.conky
+        ln -s ${_rootwd}/X11/conky/conky ${HOME}/bin/
+        echo "Done."
+    fi
+}
+
+installStalonetray() {
+    yesOrNo "Install stalonetray config"
+
+    if [[ "${YESORNO}" = "${TRUE}" ]]
+    then
+        echo "Installing stalonetray config..."
+        rm -rf ${HOME}/.stalonetrayrc
+        ln -s ${_rootwd}/X11/stalonetray/rc ${HOME}/.stalonetrayrc
+        echo "Done."
+    fi
+}
+
 installZsh
 installPowerLine
 installVim
+
 installX11
+test -f /usr/bin/plank && installPlank
+test -f /usr/bin/fvwm2 && installFVWM
+test -f /usr/bin/conky && installConky
+test -f /usr/bin/stalonetray && installStalonetray
 
 # install.sh ends here.

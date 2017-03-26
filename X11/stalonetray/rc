@@ -1,0 +1,13 @@
+decorations none
+dockapp_mode none
+fuzzy_edges 0
+geometry 7x1
+icon_size 18
+kludges force_icons_size
+max_geometry 8x1
+parent_bg true
+icon_gravity E
+no_shrink true
+skip_taskbar true
+transparent false
+vertical false

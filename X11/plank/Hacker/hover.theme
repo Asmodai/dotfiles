@@ -1,0 +1,8 @@
+[PlankDrawingTheme]
+TopRoundness=0
+BottomRoundness=0
+LineWidth=1
+OuterStrokeColor=13;;13;;13;;255
+FillStartColor=52;;52;;52;;255
+FillEndColor=52;;52;;52;;255
+InnerStrokeColor=52;;52;;52;;255

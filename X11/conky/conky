@@ -1,0 +1,17 @@
+#!/bin/sh
+
+CONKYRC=${HOME}/.conkyrc
+LUARC=${HOME}/.conky/conkyrc.lua
+ARGS=
+
+if [ -f ${CONKYRC} ]
+then
+    ARGS="-c ${CONKYRC}"
+else
+    if [ -f ${LUARC} ]
+    then
+      ARGS="-c ${LUARC}"
+    fi
+fi
+
+/usr/bin/conky ${ARGS}
