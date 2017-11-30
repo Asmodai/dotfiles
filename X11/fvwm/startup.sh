@@ -16,7 +16,7 @@ case ${1} in
         gnome-settings-daemon                                      2>/dev/null &
         xfce4-power-manager                                        2>/dev/null &
         pasystray                                                  2>/dev/null &
-        /usr/bin/conky -c /home/asmodai/.conky/conkyrc             2>/dev/null &
+        /home/asmodai/.conky/conky                                 2>/dev/null &
         nm-applet                                                  2>/dev/null &
         plank                                                      2>/dev/null &
         gtk-redshift                                               2>/dev/null &

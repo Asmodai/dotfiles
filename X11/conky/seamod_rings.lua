@@ -241,8 +241,9 @@ gauge = {
     graduation_thickness=0,        graduation_mark_thickness=2,
     graduation_unit_angle=27,
     graduation_fg_colour=0xFFFFFF, graduation_fg_alpha=0.3,
-    caption='Volume',
-    caption_weight=0.8,            caption_size=9.0,
+    caption='🕩',
+    font_name='symbola',
+    caption_weight=1.0,            caption_size=9.0,
     caption_fg_colour=0xFFFFFF,    caption_fg_alpha=0.5,
 },
 {
@@ -264,8 +265,9 @@ gauge = {
     graduation_thickness=0,        graduation_mark_thickness=2,
     graduation_unit_angle=27,
     graduation_fg_colour=0xFFFFFF, graduation_fg_alpha=0.3,
-    caption='Brightness',
-    caption_weight=0.8,            caption_size=9.0,
+    caption='☼',
+    font_name='symbola',
+    caption_weight=1.0,            caption_size=9.0,
     caption_fg_colour=0xFFFFFF,    caption_fg_alpha=0.5,
 },
 {
@@ -279,14 +281,15 @@ gauge = {
     graph_fg_colour=0xFFFFFF,      graph_fg_alpha=0.8,
     hand_fg_colour=0xEF5A29,       hand_fg_alpha=1.0,
     txt_radius=0,
-    txt_weight=0,                txt_size=8.0,
+    txt_weight=0,                  txt_size=8.0,
     txt_fg_colour=0xEF5A29,        txt_fg_alpha=1.0,
     graduation_radius=46,
     graduation_thickness=3,        graduation_mark_thickness=2,
     graduation_unit_angle=14,
     graduation_fg_colour=0xFFFFFF, graduation_fg_alpha=0.6,
-    caption='Battery',
-    caption_weight=0.8,            caption_size=9.0,
+    caption='🔋',
+    font_name='symbola',
+    caption_weight=1.0,            caption_size=9.0,
     caption_fg_colour=0xFFFFFF,    caption_fg_alpha=0.5,
 },
 {
@@ -392,7 +395,7 @@ function draw_gauge_ring(display, data, value, border)
     local txt_fg_colour, txt_fg_alpha = data['txt_fg_colour'], data['txt_fg_alpha']
     local movex = txt_radius * math.cos(angle_to_position(graph_start_angle, angle))
     local movey = txt_radius * math.sin(angle_to_position(graph_start_angle, angle))
-    cairo_select_font_face (display, "ubuntu", CAIRO_FONT_SLANT_NORMAL, txt_weight)
+    cairo_select_font_face (display, "Hack", CAIRO_FONT_SLANT_NORMAL, txt_weight)
     cairo_set_source_rgba (display, rgb_to_r_g_b(txt_fg_colour, txt_fg_alpha))
     cairo_set_font_size (display, txt_size)
     if txt_radius > 0 then
@@ -407,7 +410,11 @@ function draw_gauge_ring(display, data, value, border)
     local caption_fg_colour, caption_fg_alpha = data['caption_fg_colour'], data['caption_fg_alpha']
     local tox = graph_radius * (math.cos((graph_start_angle * 2 * math.pi / 360)-(math.pi/2)))
     local toy = graph_radius * (math.sin((graph_start_angle * 2 * math.pi / 360)-(math.pi/2)))
-    cairo_select_font_face (display, "ubuntu", CAIRO_FONT_SLANT_NORMAL, caption_weight);
+    local font_name = data['font_name']
+    if not font_name then
+        font_name = 'Hack'
+    end
+    cairo_select_font_face (display, font_name, CAIRO_FONT_SLANT_NORMAL, caption_weight);
     cairo_set_font_size (display, caption_size)
     cairo_set_source_rgba (display, rgb_to_r_g_b(caption_fg_colour, caption_fg_alpha))
     cairo_move_to (display, x + tox + 5, y + toy + 5)

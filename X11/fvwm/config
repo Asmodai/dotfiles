@@ -163,6 +163,7 @@ DestroyMenu UserMenu
 AddToMenu UserMenu
 + "XScreenSaver%apps/16/xscreensaver.png%"        Exec exec xscreensaver-command -prefs
 + "System Monitor%apps/16/utilities-system-monitor.png%" Exec exec gnome-system-monitor
++ "Font Viewer%apps/16/font-viewer.png%"          Exec exec gnome-font-viewer
 + "Character Map%apps/16/gnome-character-map.png%" Exec exec gnome-characters
 + "Calculator%apps/16/gnome-calculator.png%"      Exec exec gnome-calculator
 + "Dictionary%apps/16/dictionary.png%"            Exec exec gnome-dictionary
@@ -176,6 +177,7 @@ DestroyMenu RootMenu
 AddToMenu RootMenu "FVWM"                         Title
 + "Thunar%apps/16/thunar.png%"                    Exec exec thunar
 + "XTerm%apps/16/xterm.png%"                      Exec exec xterm -ls -sb -geometry 84x24
++ "Terminator%apps/16/xterm.png%"                 Exec exec terminator
 + "Emacs%apps/16/emacs.png%"                      Exec exec emacs
 + "Geary%apps/16/geary.png%"                      Exec exec geary
 + "Chrome%apps/16/google-chrome.png%"             Exec exec google-chrome

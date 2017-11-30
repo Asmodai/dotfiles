@@ -70,35 +70,27 @@ lua_draw_hook_post = 'conky_main',
 };
 
 conky.text = [[
-# Showing CPU Graph with TOP 5
 ${offset 230}${alignr}${font Ubuntu:size=10:style=normal}${color2} 
 ${offset 230}${alignr}${font Ubuntu:size=10:style=normal}${color1}${freq_g cpu0} GHz  //  ${hwmon 2 temp 1} ºC
 ${voffset 20}
 ${offset 145}${cpugraph cpu0 30,220 222222 666666}
 ${offset 230}${alignr}${font Ubuntu:size=10:style=normal}${color2}
-${voffset -50}
+${voffset -60}
 ${offset 105}${font Ubuntu:size=11:style=bold}${color5}PROC
-# Showing TOP 5 CPU-consumers
 ${offset 110}${font Ubuntu:size=10:style=normal}${color4}${top name 1}${alignr}${top cpu 1}%
 ${offset 110}${font Ubuntu:size=10:style=normal}${color1}${top name 2}${alignr}${top cpu 2}%
 ${offset 110}${font Ubuntu:size=9:style=normal}${color2}${top name 3}${alignr}${top cpu 3}%
 ${offset 110}${font Ubuntu:size=9:style=normal}${color3}${top name 4}${alignr}${top cpu 4}%
 ${offset 110}${font Ubuntu:size=9:style=normal}${color3}${top name 5}${alignr}${top cpu 5}%
-
-
-#Showing memory Graph with TOP 5
 ${voffset 22}
 ${offset 145}${memgraph 30,220 222222 666666}
-${voffset -32}
+${voffset -22}
 ${offset 105}${font Ubuntu:size=11:style=bold}${color5}MEM
 ${offset 110}${font Ubuntu:size=10:style=normal}${color4}${top_mem name 1}${alignr}${top_mem mem_res 1}
 ${offset 110}${font Ubuntu:size=10:style=normal}${color1}${top_mem name 2}${alignr}${top_mem mem_res 2}
 ${offset 110}${font Ubuntu:size=9:style=normal}${color2}${top_mem name 3}${alignr}${top_mem mem_res 3}
 ${offset 110}${font Ubuntu:size=9:style=normal}${color3}${top_mem name 4}${alignr}${top_mem mem_res 4}
 ${offset 110}${font Ubuntu:size=9:style=normal}${color3}${top_mem name 5}${alignr}${top_mem mem_res 5}
-
-
-# Network data (assumes wireless info). NET ring is mostly useless but looks pretty, main info is in the graphs
 ${voffset 28}\
 ${if_match "${addr eth0}" != "No Address"}\
 ${offset 180}${alignr}${font Ubuntu:size=10:style=normal}${color1}Wired network
@@ -126,7 +118,7 @@ ${offset 180}${font Ubuntu:size=10:style=bold}${color1}Disconnected
 ${offset 180}${font Ubuntu:size=9:style=normal}${color3}(eth0 and wlan0 have no IP)
 ${endif}\
 ${endif}\
-${voffset -118}\
+${voffset -115}\
 ${offset 105}${font Ubuntu:size=11:style=bold}${color5}NET
 
 ${voffset 120}
