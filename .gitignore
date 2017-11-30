@@ -1,5 +1,5 @@
 *.bak
 *~
 *.tmp
-.zshrc.d/cache
+zshrc.d/cache
 X11/themes/gtk/MyDark/.sass-cache
