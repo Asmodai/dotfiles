@@ -7,84 +7,82 @@
 -----------------------------------------------------------------------------
 
 conky.config = {
+   background = yes,
+   update_interval = 2,
+   update_interval_on_battery = 10,
 
-background = yes,
-update_interval = 2,
-update_interval_on_battery = 10,
+   cpu_avg_samples = 1,
+   net_avg_samples = 2,
+   temperature_unit = 'celsius',
+   if_up_strictness = 'address',
 
-cpu_avg_samples = 1,
-net_avg_samples = 2,
-temperature_unit = 'celsius',
-if_up_strictness = 'address',
-
-double_buffer = true,
-no_buffers = true,
-text_buffer_size = 2048,
-
-own_window = true,
-own_window_type = 'conky',
-own_window_type = 'desktop',
-own_window_hints = 'undecorated,sticky,skip_taskbar,skip_pager,below',
-        
-own_window_colour = '#000000',
-own_window_transparent = true,
-own_window_argb_visual = true,
-own_window_argb_value = 50,
-
-draw_shades = false,
-draw_outline = false,
-draw_borders = false,
-draw_graph_borders = false,
-        
-alignment = 'top_right',
-gap_x = 15,
-gap_y = 25,
-minimum_width = 360,
-minimum_height = 685,
-maximum_width = 360,
-border_inner_margin = 0,
-border_outer_margin =0,
-xinerama_head = 0,
-
-override_utf8_locale = true,
-use_xft = true,
-font = 'Ubuntu:size=11',
-xftalpha = 0.8,
-uppercase = false,
-       
--- Defining colors
-default_color = '#FFFFFF',
--- Shades of Gray
-color1 = '#DDDDDD',
-color2 = '#AAAAAA',
-color3 = '#888888',
--- Orange
-color4 = '#EF5A29',
--- Green
-color5 = '#77B753',
-
--- Loading lua script for drawning rings
-lua_load = '~/.conky/seamod_rings.lua',
-lua_draw_hook_post = 'conky_main',
-        
+   double_buffer = true,
+   no_buffers = true,
+   text_buffer_size = 2048,
+   
+   own_window = true,
+   own_window_type = 'conky',
+   own_window_type = 'desktop',
+   own_window_hints = 'undecorated,sticky,skip_taskbar,skip_pager,below',
+   
+   own_window_colour = '#000000',
+   own_window_transparent = true,
+   own_window_argb_visual = true,
+   own_window_argb_value = 50,
+   
+   draw_shades = false,
+   draw_outline = false,
+   draw_borders = false,
+   draw_graph_borders = false,
+   
+   alignment = 'top_right',
+   gap_x = 15,
+   gap_y = 25,
+   minimum_width = 360,
+   minimum_height = 685,
+   maximum_width = 360,
+   border_inner_margin = 0,
+   border_outer_margin =0,
+   xinerama_head = 0,
+   
+   override_utf8_locale = true,
+   use_xft = true,
+   font = 'Ubuntu:size=11',
+   xftalpha = 0.8,
+   uppercase = false,
+   
+   -- Defining colors
+   default_color = '#FFFFFF',
+   -- Shades of Gray
+   color1 = '#DDDDDD',
+   color2 = '#AAAAAA',
+   color3 = '#888888',
+   -- Orange
+   color4 = '#EF5A29',
+   -- Green
+   color5 = '#77B753',
+   
+   -- Loading lua script for drawning rings
+   lua_load = '~/.conky/seamod_rings.lua',
+   lua_draw_hook_post = 'conky_main',
 };
 
 conky.text = [[
 ${offset 230}${alignr}${font Ubuntu:size=10:style=normal}${color2} 
 ${offset 230}${alignr}${font Ubuntu:size=10:style=normal}${color1}${freq_g cpu0} GHz  //  ${hwmon 2 temp 1} ºC
-${voffset 20}
-${offset 145}${cpugraph cpu0 30,220 222222 666666}
+${voffset 12}
+${offset 145}${cpugraph cpu0 30,220 222222 666666 -l -t}
 ${offset 230}${alignr}${font Ubuntu:size=10:style=normal}${color2}
-${voffset -60}
+${voffset -56}
 ${offset 105}${font Ubuntu:size=11:style=bold}${color5}PROC
 ${offset 110}${font Ubuntu:size=10:style=normal}${color4}${top name 1}${alignr}${top cpu 1}%
 ${offset 110}${font Ubuntu:size=10:style=normal}${color1}${top name 2}${alignr}${top cpu 2}%
 ${offset 110}${font Ubuntu:size=9:style=normal}${color2}${top name 3}${alignr}${top cpu 3}%
 ${offset 110}${font Ubuntu:size=9:style=normal}${color3}${top name 4}${alignr}${top cpu 4}%
 ${offset 110}${font Ubuntu:size=9:style=normal}${color3}${top name 5}${alignr}${top cpu 5}%
-${voffset 22}
-${offset 145}${memgraph 30,220 222222 666666}
-${voffset -22}
+${voffset 39}
+${offset 145}${memgraph 30,220 222222 666666 -l -t}
+${voffset -39}
 ${offset 105}${font Ubuntu:size=11:style=bold}${color5}MEM
 ${offset 110}${font Ubuntu:size=10:style=normal}${color4}${top_mem name 1}${alignr}${top_mem mem_res 1}
 ${offset 110}${font Ubuntu:size=10:style=normal}${color1}${top_mem name 2}${alignr}${top_mem mem_res 2}
