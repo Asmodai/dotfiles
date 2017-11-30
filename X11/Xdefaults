@@ -8,7 +8,7 @@
     xft:Cantarell:pixelsize=12,style=regular
 
 #define termfont \
-    xft:Source Code Pro for Powerline:pixelsize=12,style=regular
+    xft:"Source Code Pro for Powerline":pixelsize=12,style=regular
 
 ! --------------------------------------------------------------------
 ! Global settings.
