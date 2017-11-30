@@ -120,21 +120,29 @@ installX11() {
         echo "Installing X11 configs..."
 
         rm -rf ${HOME}/.Xdefaults
-        ln -s ${_rootwd}/X11/Xdefaults ${HOME}/.Xdefaults
+        rm -rf ${HOME}/.xsessionrc
+
+        ln -s ${_rootwd}/X11/Xdefaults  ${HOME}/.Xdefaults
+        ln -s ${_rootwd}/X11/xsessionrc ${HOME}/.xsessionrc
 
         echo "Done."
     fi
 }
 
-installGtkThemes() {
-    yesOrNo "Install GTK themes"
+installThemes() {
+    yesOrNo "Install themes"
 
     if [[ "${YESORNO}" = "${TRUE}" ]]
     then
-        echo "Installing GTK themes..."
+        echo "Installing themes..."
 
         rm -rf ${HOME}/.themes/MyDark
+        rm -rf ${HOME}/.xsessionrc
+        rm -rf ${HOME}/.config/qt5ct
+
         ln -s ${_rootwd}/X11/themes/gtk/MyDark ${HOME}/.themes/MyDark
+        ln -s ${_rootwd}/X11/themes/qt5ct      ${HOME}/.config/qt5ct
+        ln -s ${_rootwd}/X11/xsessionrc        ${HOME}/.xsessionrc
 
         echo "Done."
     fi
@@ -150,6 +158,20 @@ installPlank() {
         rm -rf ${HOME}/.local/share/plank/themes 2>/dev/null
         mkdir -p ${HOME}/.local/share/plank/themes
         ln -s ${_rootwd}/X11/plank/Hacker ${HOME}/.local/share/plank/themes/
+
+        echo "Done."
+    fi
+}
+
+installSynapse() {
+    yesOrNo "Install synapse config"
+
+    if [[ "${YESORNO}" = "${TRUE}" ]]
+    then
+        echo "Installing synapse config..."
+
+        rm -rf ${HOME}/.config/synapse
+        ln -s ${_rootwd}/X11/synapse ${HOME}/.config/synapse
 
         echo "Done."
     fi
@@ -212,10 +234,11 @@ installVim
 
 installX11
 installFonts
-installGtkThemes
+installThemes
 test -f /usr/bin/plank && installPlank
 test -f /usr/bin/fvwm2 && installFVWM
 test -f /usr/bin/conky && installConky
 test -f /usr/bin/stalonetray && installStalonetray
+test -f /usr/bin/synapse && installSynapse
 
 # install.sh ends here.
