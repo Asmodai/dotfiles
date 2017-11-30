@@ -4,6 +4,12 @@
 #define bgcolor  #343434
 #define hlcolor  #693876
 
+#define uifont \
+    xft:Cantarell:pixelsize=12,style=regular
+
+#define termfont \
+    xft:Source Code Pro for Powerline:pixelsize=12,style=regular
+
 ! --------------------------------------------------------------------
 ! Global settings.
 !
@@ -12,7 +18,7 @@
 *Scrollbar*thumb:       black
 *foreground:            fgcolor
 *background:            bgcolor
-*font:                  -*-lucida-medium-r-normal-sans-14-*-*-*-*-*-*-*
+*fontFace:              uifont
 
 ! --------------------------------------------------------------------
 ! Xft settings.
@@ -36,8 +42,7 @@ XCalc.TItle:                          Calculator
 XCalc.IconName:                       Calc
 XCalc.IconPixmap:                     calculator
 XCalc*Cursor:                         hand2
-XCalc*faceName:                       xft:Source Code Pro for Powerline
-XCalc*faceSize:                       10
+XCalc*faceName:                       termfont
 XCalc*ShapeStyle:                     rectangle
 XCalc*Command.horizDistance:          2
 XCalc*Command.vertDistance:           2
@@ -485,8 +490,7 @@ XCalc*ti.button40.displayList:        foreground calcoph;\
 !
 XTerm*termName:                 xterm-256color
 XTerm*renderFont:               true
-XTerm*faceName:                 xft:Source Code Pro for Powerline
-XTerm*faceSize:                 10
+XTerm*faceName:                 termfont
 XTerm*rightScrollBar:           true
 XTerm*ScrollBar:                true
 XTerm*saveLines:                1024
@@ -515,16 +519,14 @@ XTerm*tekMenu*foreground:       fgcolor
 !
 UXTerm*termName:    xterm-256color
 UXTerm*renderFont:  true
-UXTerm*faceName:    xft:Source Code Pro for Powerline
-UXTerm*faceSize:    10
+UXTerm*faceName:    termfont
 
 ! --------------------------------------------------------------------
 ! URxvt settings.
 !
 URxvt*termName:     rxvt-256color
 URxvt*renderFont:   true
-URxvt*faceName:     xft:Source Code Pro for Powerline
-URxvt*faceSize:     10
+URxvt*faceName:     termfont
 URxvt.preeditType:  OverTheSpot
 
 ! --------------------------------------------------------------------
