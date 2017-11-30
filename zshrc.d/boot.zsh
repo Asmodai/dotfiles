@@ -72,13 +72,19 @@ function isPlugin () {
     local base=$1
     local name=$2
 
-    test -f ${base}/plugins/${name}/${name}.pluginz.zsh \
+    test -f ${base}/plugins/${name}/${name}.plugin.zsh \
          || test -f ${base}/plugins/${name}/_${name}
 }
 
 function listPlugins () {
   local base=$1
   typeset -a dirs
+
+  if [ -z ${base} ]
+  then
+      echo "No argument provided!"
+      return
+  fi
   
   for i in $(ls -d ${base}/plugins/*);
   do
