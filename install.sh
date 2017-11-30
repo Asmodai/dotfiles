@@ -195,11 +195,23 @@ installStalonetray() {
     fi
 }
 
+installFonts() {
+    yesOrNo "Install fonts"
+
+    if [[ "${YESORNO}" = "${TRUE}" ]]
+    then
+        echo "Installing fonts..."
+        bash X11/fonts/install.sh
+        echo "Done."
+    fi
+}
+
 installZsh
 installPowerLine
 installVim
 
 installX11
+installFonts
 installGtkThemes
 test -f /usr/bin/plank && installPlank
 test -f /usr/bin/fvwm2 && installFVWM
