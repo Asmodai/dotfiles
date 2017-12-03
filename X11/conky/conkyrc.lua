@@ -71,7 +71,7 @@ conky.text = [[
 ${offset 230}${alignr}${font Ubuntu:size=10:style=normal}${color2} 
 ${offset 230}${alignr}${font Ubuntu:size=10:style=normal}${color1}${freq_g cpu0} GHz  //  ${hwmon 2 temp 1} ºC
 ${voffset 12}
-${offset 145}${cpugraph cpu0 30,220 222222 666666 -l -t}
+${offset 145}${cpugraph cpu0 30,220 77B753 ff0000 scale -t}
 ${offset 230}${alignr}${font Ubuntu:size=10:style=normal}${color2}
 ${voffset -56}
 ${offset 105}${font Ubuntu:size=11:style=bold}${color5}PROC
@@ -81,7 +81,7 @@ ${offset 110}${font Ubuntu:size=9:style=normal}${color2}${top name 3}${alignr}${
 ${offset 110}${font Ubuntu:size=9:style=normal}${color3}${top name 4}${alignr}${top cpu 4}%
 ${offset 110}${font Ubuntu:size=9:style=normal}${color3}${top name 5}${alignr}${top cpu 5}%
 ${voffset 39}
-${offset 145}${memgraph 30,220 222222 666666 -l -t}
+${offset 145}${memgraph 30,220 77B753 ff0000 scale -t}
 ${voffset -39}
 ${offset 105}${font Ubuntu:size=11:style=bold}${color5}MEM
 ${offset 110}${font Ubuntu:size=10:style=normal}${color4}${top_mem name 1}${alignr}${top_mem mem_res 1}
@@ -97,7 +97,7 @@ ${offset 145}${color1}${font Ubuntu:size=10:style=bold}Up ${alignr}${font Ubuntu
 ${offset 145}${downspeedgraph eth0 25,220 324D23 77B753 9000KiB -l}
 ${offset 145}${color1}${font Ubuntu:size=10:style=bold}Down ${alignr}${font Ubuntu:size=10:style=normal}${color3}${downspeed eth0} / ${totaldown eth0}
 ${offset 180}${font Ubuntu:size=10:style=bold}${color3}IP ${alignr}${font Ubuntu:size=10:style=normal}${color1}${addr eth0}
-${offset 180}${font Ubuntu:size=10:style=bold}${color3}Public IP ${alignr}${font Ubuntu:size=10:style=normal}${color1}${execi 300 ~/.conky/get_ext_ip.sh}
+${offset 180}${font Ubuntu:size=10:style=bold}${color3}Public IP ${alignr}${font Ubuntu:size=10:style=normal}${color1}${execi 1200 ~/.conky/get_ext_ip.sh}
 ${else}${if_match "${addr wlan0}" != "No Address"}\
 ${offset 145}${alignr}${font Ubuntu:size=10:style=normal}${color1}Wifi   ${wireless_essid} (${wireless_bitrate wlan0})
 ${offset 145}${upspeedgraph wlan0 25,220 4B1B0C FF5C2B 9000KiB -l}
@@ -105,7 +105,7 @@ ${offset 145}${color1}${font Ubuntu:size=10:style=bold}Up ${alignr}${font Ubuntu
 ${offset 145}${downspeedgraph wlan0 25,220 324D23 77B753 9000KiB -l}
 ${offset 145}${color1}${font Ubuntu:size=10:style=bold}Down ${alignr}${font Ubuntu:size=10:style=normal}${color3}${downspeed wlan0} / ${totaldown wlan0}
 ${offset 180}${font Ubuntu:size=10:style=bold}${color3}IP ${alignr}${font Ubuntu:size=10:style=normal}${color1}${addr wlan0}
-${offset 180}${font Ubuntu:size=10:style=bold}${color1}Public IP ${alignr}${font Ubuntu:size=10:style=normal}${color2}${execi 300 ~/.conky/get_ext_ip.sh}
+${offset 180}${font Ubuntu:size=10:style=bold}${color1}Public IP ${alignr}${font Ubuntu:size=10:style=normal}${color2}${execi 1200 ~/.conky/get_ext_ip.sh}
 ${else}\
 ${offset 145}${alignr}${font Ubuntu:size=10:style=normal}${color1}No network connection
 ${offset 145}${upspeedgraph lo 25,220 4B1B0C FF5C2B 9000KiB -l}
