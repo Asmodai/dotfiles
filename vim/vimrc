@@ -1,4 +1,4 @@
-" Necesary  for lots of cool vim things
+" Be vim, not vi!
 set nocompatible
 
 " This shows what you are typing as a command.  I love this!
@@ -12,11 +12,8 @@ set expandtab
 set smarttab
 
 " Who wants an 8 character tab?  Not me!
-set shiftwidth=4
-set softtabstop=4
-
-" Enable mouse support in console
-" set mouse=a
+set shiftwidth=2
+set softtabstop=2
 
 " Got backspace?
 set backspace=2
@@ -24,41 +21,63 @@ set backspace=2
 " Line Numbers PWN!
 set number
 
-" Ignoring case is a fun trick
+" Ignoring case is a fun trick.
 set ignorecase
 
 " And so is Artificial Intellegence!
 set smartcase
 
-" Incremental searching is sexy
+" Incremental searching is sexy.
 set incsearch
 
 " Highlight things that we find with the search
 set hlsearch
 
+" Some nice mapping going on here.
 map N Nzz
 map n nzz
 
+" I like syntax highlighting.
 syntax on
 
+" Dark background? yes please.
 set background=dark
 
+" Filetype stuff.
 filetype on                   " Enable filetype detection
 filetype indent on            " Enable filetype-specific indenting
 filetype plugin on
 
+" Ruler! Becuase I like to know where the cursor is.
 set ruler
 
-" For regular expressions turn magic on
+" For regular expressions turn magic on.
 set magic
 
+" Colour scheme.
 colorscheme slate
 
-" powerline magic
+" powerline magic.
 set rtp+=/usr/local/lib/python2.7/dist-packages/powerline/bindings/vim/
 
-" Always show status
+" Always show status.
 set laststatus=2
 
-" Use 256 colours
+" Use 256 colours.
 set t_Co=256
+
+" GUI font.
+set gfn=Source\ Code\ Pro\ for\ Powerline\ 10
+
+" Show current mode.
+set smd
+
+" Might as well remind mehsel dat eie canat speel.
+set spell
+
+" GUI stuff.
+set stal=1
+set gtl=Tabs
+set title
+set titlestring=VIM
+
