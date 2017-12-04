@@ -67,7 +67,7 @@ set laststatus=2
 set t_Co=256
 
 " GUI font.
-set gfn=Source\ Code\ Pro\ for\ Powerline\ 10
+set gfn=Source\ Code\ Pro\ for\ Powerline\ 9
 
 " Show current mode.
 set smd
