@@ -60,6 +60,7 @@
         *)
             POWERLINE_PATH="/usr/local/bin"
             test -f /bin/powerline-daemon && POWERLINE_PATH="/bin"
+            test -f ${HOME}/.local/bin/powerline-daemon && POWERLINE_PATH="${HOME}/.local/bin"
             ;;
     esac
     
