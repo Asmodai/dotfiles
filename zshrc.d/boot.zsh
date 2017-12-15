@@ -42,7 +42,7 @@ fi
 # Check if there's a ${HOME}/.local/bin
 if [ -t "${HOME}/.local/bin" ]
 then
-    export PATH="${HOME}/.local/bin;${PATH}"
+    export PATH="${HOME}/.local/bin:${PATH}"
 fi
 
 # Add a function path.
