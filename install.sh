@@ -140,6 +140,7 @@ installThemes() {
         rm -rf ${HOME}/.xsessionrc
         rm -rf ${HOME}/.config/qt5ct
 
+        mkdir -p ${HOME}/.themes
         ln -s ${_rootwd}/X11/themes/gtk/MyDark ${HOME}/.themes/MyDark
         ln -s ${_rootwd}/X11/themes/qt5ct      ${HOME}/.config/qt5ct
         ln -s ${_rootwd}/X11/xsessionrc        ${HOME}/.xsessionrc
@@ -171,6 +172,7 @@ installSynapse() {
         echo "Installing synapse config..."
 
         rm -rf ${HOME}/.config/synapse
+        mkdir -p ${HOME}/.config
         ln -s ${_rootwd}/X11/synapse ${HOME}/.config/synapse
 
         echo "Done."
