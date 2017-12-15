@@ -3,6 +3,8 @@
 #define fgcolor  #d8d8d8
 #define bgcolor  #343434
 #define hlcolor  #693876
+#define termbg   #121212
+#define termfg   #B2B2B2
 
 #define uifont \
     xft:Cantarell:pixelsize=12,style=regular
@@ -496,6 +498,8 @@ XTerm*ScrollBar:                true
 XTerm*saveLines:                1024
 XTerm*ptyInitialErase:          true
 
+XTerm*scrollbar.foreground:     hlcolor
+XTerm*scrollbar.background:     bgcolor
 XTerm*simpleMenu*borderColor:   bgcolor
 XTerm*simpleMenu*background:    bgcolor
 XTerm*simpleMenu*foreground:    fgcolor
@@ -532,8 +536,6 @@ URxvt.preeditType:  OverTheSpot
 ! --------------------------------------------------------------------
 ! VT100 widget settings.
 !
-#define termbg  #121212
-#define termfg  #B2B2B2
 
 #define base0   #181818
 #define base1   #CC0000
@@ -561,14 +563,10 @@ URxvt.preeditType:  OverTheSpot
 *VT100*foreground:               termfg
 *VT100*background:               termbg
 *VT100*scrollbar.thumb:          black
-*VT100*scrollbar.width:          14
+*VT100*scrollbar.width:          10
+*VT100*.scrollBarBorder:         0
 *VT100*scrollbar.background:     bgcolor
 *VT100*scrollbar.foreground:     hlcolor
-*VT100*scrollbar.displayList:    background  #343434;             \
-                                 foreground  #343434;             \
-                                 lines       1, -1, -1, -1, -1, 1;\
-                                 foreground  #343434;             \
-                                 lines       -1, 0, 0, 0, 0, -1
 
 *.color0:           base0
 *.color1:           base1
