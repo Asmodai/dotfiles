@@ -39,6 +39,12 @@ then
     /usr/bin/env ZSH=$ZSH DISABLE_UPDATE_PROMPT=${DISABLE_UPDATE_PROMPT} zsh -f ${ZSH}/tools/check_for_update.zsh
 fi
 
+# Check if there's a ${HOME}/.local/bin
+if [ -t "${HOME}/.local/bin" ]
+then
+    export PATH="${HOME}/.local/bin;${PATH}"
+fi
+
 # Add a function path.
 fpath=(${ZSH}/functions ${ZSH}/completions ${fpath})
 
