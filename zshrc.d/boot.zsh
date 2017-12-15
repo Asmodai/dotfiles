@@ -40,7 +40,7 @@ then
 fi
 
 # Check if there's a ${HOME}/.local/bin
-if [ -t "${HOME}/.local/bin" ]
+if [ -d "${HOME}/.local/bin" ]
 then
     export PATH="${HOME}/.local/bin:${PATH}"
 fi
