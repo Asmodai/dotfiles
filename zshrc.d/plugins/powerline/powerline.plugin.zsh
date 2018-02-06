@@ -71,6 +71,7 @@
         $POWERLINE_PATH/powerline-daemon -q
     fi
 
+    export PATH=$POWERLINE_PATH:$PATH
     source $POWERLINE_LIB/powerline/bindings/zsh/powerline.zsh
 }
 
