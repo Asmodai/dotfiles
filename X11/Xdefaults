@@ -490,14 +490,16 @@ XCalc*ti.button40.displayList:        foreground calcoph;\
 ! --------------------------------------------------------------------
 ! XTerm settings.
 !
-XTerm*termName:                 xterm-256color
-XTerm*renderFont:               true
-XTerm*faceName:                 termfont
-XTerm*rightScrollBar:           true
-XTerm*ScrollBar:                true
-XTerm*toolBar:                  false
-XTerm*saveLines:                1024
-XTerm*ptyInitialErase:          true
+XTerm*termName:        xterm-256color
+XTerm*renderFont:      true
+XTerm*faceName:        termfont
+XTerm*rightScrollBar:  true
+XTerm*ScrollBar:       true
+XTerm*toolBar:         false
+XTerm*saveLines:       1024
+XTerm*ptyInitialErase: true
+
+XTerm.iconHint:        none
 
 XTerm*scrollbar.foreground:     hlcolor
 XTerm*scrollbar.background:     bgcolor
