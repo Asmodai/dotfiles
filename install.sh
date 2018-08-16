@@ -52,7 +52,7 @@ yesOrNo() {
 
     while true;
     do
-        read -N 1 input
+        read -n 1 input
         echo
 
         case ${input} in

@@ -73,7 +73,7 @@ set gfn=Source\ Code\ Pro\ for\ Powerline\ 9
 set smd
 
 " Might as well remind mehsel dat eie canat speel.
-set spell
+" set spell
 
 " GUI stuff.
 set stal=1
