@@ -1,5 +1,11 @@
 # install in /etc/zsh/zshrc or your personal .zshrc
 
+# Check for go installation on macOS
+if [ -d /usr/local/go/bin ]
+then
+    export PATH=$PATH:/usr/local/go/bin
+fi
+
 # gc
 prefixes=(5 6 8)
 for p in $prefixes; do

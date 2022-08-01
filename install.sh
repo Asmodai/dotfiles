@@ -52,7 +52,7 @@ yesOrNo() {
 
     while true;
     do
-        read -N 1 input
+        read -n 1 input
         echo
 
         case ${input} in
@@ -193,6 +193,18 @@ installFVWM() {
     fi
 }
 
+installKDE() {
+    yesOrNo "Install KDE colour scheme"
+
+    if [[ "${YESORNO}" = "${TRUE}" ]]
+    then
+        echo "Installing KDE colour scheme..."
+        ln -s ${_rootwd}/X11/themes/kde/Mine.colors \
+              ${HOME}/.kde/share/apps/color-schemes/Mine.colors
+        echo "Done."
+    fi
+}
+
 installConky() {
     yesOrNo "Install Conky configs"
 
@@ -242,5 +254,6 @@ test -f /usr/bin/fvwm2 && installFVWM
 test -f /usr/bin/conky && installConky
 test -f /usr/bin/stalonetray && installStalonetray
 test -f /usr/bin/synapse && installSynapse
+test -d ${HOME}/.kde/ && installKDE
 
 # install.sh ends here.

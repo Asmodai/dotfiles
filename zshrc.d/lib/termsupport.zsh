@@ -49,7 +49,7 @@ if [[ "$TERM_PROGRAM" == Apple_Terminal ]]; then
 fi
 
 # Runs before showing the prompt
-function omz_termsupport_precmd {
+function zsh_termsupport_precmd {
   emulate -L zsh
 
   if [[ "$DISABLE_AUTO_TITLE" == true ]]; then
@@ -60,7 +60,7 @@ function omz_termsupport_precmd {
 }
 
 # Runs before executing the command
-function omz_termsupport_preexec {
+function zsh_termsupport_preexec {
   emulate -L zsh
   setopt extended_glob
 
@@ -75,8 +75,8 @@ function omz_termsupport_preexec {
   title '$CMD' '%100>...>$LINE%<<'
 }
 
-precmd_functions+=(omz_termsupport_precmd)
-preexec_functions+=(omz_termsupport_preexec)
+precmd_functions+=(zsh_termsupport_precmd)
+preexec_functions+=(zsh_termsupport_preexec)
 
 
 # Keep Apple Terminal.app's current working directory updated
@@ -91,7 +91,7 @@ if [[ "$TERM_PROGRAM" == "Apple_Terminal" ]] && [[ -z "$INSIDE_EMACS" ]]; then
     emulate -L zsh
 
     # Percent-encode the pathname.
-    local URL_PATH="$(omz_urlencode -P $PWD)"
+    local URL_PATH="$(zsh_urlencode -P $PWD)"
     [[ $? != 0 ]] && return 1
 
     # Undocumented Terminal.app-specific control sequence
