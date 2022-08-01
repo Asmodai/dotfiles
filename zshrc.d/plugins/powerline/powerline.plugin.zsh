@@ -54,7 +54,7 @@
 
     case "${OSTYPE}" in
         darwin*)
-            POWERLINE_PATH="${HOME}/Library/Python/2.7/bin"
+            POWERLINE_PATH="${HOME}/Library/Python/3.8/bin"
             test -f  /usr/local/bin/powerline-daemon && POWERLINE_PATH="/usr/local/bin"
             ;;
         *)

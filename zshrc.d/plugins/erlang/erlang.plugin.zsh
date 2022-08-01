@@ -52,6 +52,6 @@ then
   set_erlang_aliases
 
 
-  export ERLANG_VERSION="20.1.7.1"
+  export ERLANG_VERSION="21.3.8.9"
   set_default_erlang
 fi

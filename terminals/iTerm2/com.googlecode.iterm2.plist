@@ -937,7 +937,7 @@
 		</dict>
 	</dict>
 	<key>PrefsCustomFolder</key>
-	<string>/Users/pward/Projects/Configs/iTerm2</string>
+        <string>/Users/pward/Projects/Configs/terminals/iTerm2</string>
 	<key>PromptOnQuit</key>
 	<true/>
 	<key>QuitWhenAllWindowsClosed</key>
