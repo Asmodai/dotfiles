@@ -214,8 +214,11 @@ installKDE() {
         fi
         echo "Installing Konsole colour scheme..."
         rm -f ${HOME}/.local/share/konsole/Mine.colorscheme
+        rm -f ${HOME}/.local/share/konsole/Mine.profile
         ln -s ${_rootwd}/terminals/konsole/Mine.colorscheme \
               ${HOME}/.local/share/konsole/Mine.colorscheme
+        ln -s ${_rootwd}/terminals/konsole/Mine.profile \
+              ${HOME}/.local/share/konsole/Mine.profile
         echo "Done."
 
     fi
