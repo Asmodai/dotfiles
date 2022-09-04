@@ -8,7 +8,7 @@
 # Author:     Paul Ward <asmodai@gmail.com>
 # Maintainer: Paul Ward <asmodai@gmail.com>
 # Created:    16 Aug 2016 21:31:24
-# Keywords:   
+# Keywords:
 # URL:        not distributed yet
 #
 # {{{ License:
@@ -194,14 +194,30 @@ installFVWM() {
 }
 
 installKDE() {
-    yesOrNo "Install KDE colour scheme"
+    yesOrNo "Install KDE colour schemes"
 
     if [[ "${YESORNO}" = "${TRUE}" ]]
     then
+        if [ ! -d ${HOME}/.local/share/color-schemes/ ]
+        then
+            mkdir -p ${HOME}/.local/share/color-schemes/
+        fi
         echo "Installing KDE colour scheme..."
+        rm -f ${HOME}/.local/share/color-schemes/Mine.colors
         ln -s ${_rootwd}/X11/themes/kde/Mine.colors \
-              ${HOME}/.kde/share/apps/color-schemes/Mine.colors
+              ${HOME}/.local/share/color-schemes/Mine.colors
         echo "Done."
+
+        if [ ! -d ${HOME}/.local/share/konsole ]
+        then
+            mkdir -p ${HOME}/.local/share/konsole
+        fi
+        echo "Installing Konsole colour scheme..."
+        rm -f ${HOME}/.local/share/konsole/Mine.colorscheme
+        ln -s ${_rootwd}/terminals/konsole/Mine.colorscheme \
+              ${HOME}/.local/share/konsole/Mine.colorscheme
+        echo "Done."
+
     fi
 }
 
