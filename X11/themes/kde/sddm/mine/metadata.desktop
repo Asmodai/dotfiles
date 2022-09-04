@@ -1,0 +1,20 @@
+[SddmGreeterTheme]
+Name=Mine
+Name[en_GB]=Mine
+Name[x-test]=xxMinexx
+Description=Mine
+Description[en_GB]=Mine
+Description[x-test]=xxMinexx
+Author=Paul Ward
+Copyright=(c) 2014, Paul Ward
+License=CC-BY-SA
+Type=sddm-theme
+Version=0.1
+Website=https://github.com/sddm/sddm
+Screenshot=preview.png
+MainScript=Main.qml
+ConfigFile=theme.conf
+TranslationsDirectory=translations
+Email=asmodai@gmail.com
+Theme-Id=mine
+Theme-API=2.0
