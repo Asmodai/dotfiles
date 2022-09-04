@@ -6,6 +6,12 @@ then
     export PATH=$PATH:/usr/local/go/bin
 fi
 
+# Check for $GOPATH/bin
+if [ -d ${GOPATH}/bin ]
+then
+    export PATH=$PATH:${GOPATH}/bin
+fi
+
 # gc
 prefixes=(5 6 8)
 for p in $prefixes; do
