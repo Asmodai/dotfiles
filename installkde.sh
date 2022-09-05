@@ -73,7 +73,7 @@ installColorScheme() {
 
         echo "Installing KDE colour scheme..."
         rm -f ${_kdeConf}/color-schemes/Mine.colors
-        ln -s ${_rootwd}/X11/themes/kde/Mine.colors \
+        ln -s ${_rootwd}/X11/themes/kde/color-schemes/Mine.colors \
               ${_kdeConf}/color-schemes/Mine.colors
         echo "Done."
     fi
