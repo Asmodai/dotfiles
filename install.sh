@@ -194,33 +194,11 @@ installFVWM() {
 }
 
 installKDE() {
-    yesOrNo "Install KDE colour schemes"
+    yesOrNo "Install KDE settings"
 
     if [[ "${YESORNO}" = "${TRUE}" ]]
     then
-        if [ ! -d ${HOME}/.local/share/color-schemes/ ]
-        then
-            mkdir -p ${HOME}/.local/share/color-schemes/
-        fi
-        echo "Installing KDE colour scheme..."
-        rm -f ${HOME}/.local/share/color-schemes/Mine.colors
-        ln -s ${_rootwd}/X11/themes/kde/Mine.colors \
-              ${HOME}/.local/share/color-schemes/Mine.colors
-        echo "Done."
-
-        if [ ! -d ${HOME}/.local/share/konsole ]
-        then
-            mkdir -p ${HOME}/.local/share/konsole
-        fi
-        echo "Installing Konsole colour scheme..."
-        rm -f ${HOME}/.local/share/konsole/Mine.colorscheme
-        rm -f ${HOME}/.local/share/konsole/Mine.profile
-        ln -s ${_rootwd}/terminals/konsole/Mine.colorscheme \
-              ${HOME}/.local/share/konsole/Mine.colorscheme
-        ln -s ${_rootwd}/terminals/konsole/Mine.profile \
-              ${HOME}/.local/share/konsole/Mine.profile
-        echo "Done."
-
+        ${_rootwd}/installkde.sh
     fi
 }
 

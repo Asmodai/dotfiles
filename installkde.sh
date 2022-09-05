@@ -62,7 +62,7 @@ yesOrNo() {
 }
 
 installColorScheme() {
-    yesOrNo "Install KDE colour scheme?"
+    yesOrNo "Install KDE colour scheme"
 
     if [[ "${YESORNO}" = "${TRUE}" ]]
     then
@@ -92,7 +92,7 @@ installKonsole() {
         echo "Installing konsole colour scheme..."
         rm -f ${_kdeConf}/konsole/Mine.colorscheme
         ln -s ${_rootwd}/terminals/konsole/Mine.colorscheme \
-              ${_kdeConf}/konsole/color-schemes/Mine.colorscheme
+              ${_kdeConf}/konsole/Mine.colorscheme
         echo "Done."
 
         echo "Installing konsole profile..."
