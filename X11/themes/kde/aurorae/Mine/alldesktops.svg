@@ -19,18 +19,6 @@
   <defs
      id="defs4430">
     <linearGradient
-       inkscape:collect="always"
-       id="linearGradient904">
-      <stop
-         style="stop-color:#36d1dc;stop-opacity:1"
-         offset="0"
-         id="stop900" />
-      <stop
-         style="stop-color:#5b86e5;stop-opacity:0.99607843"
-         offset="1"
-         id="stop902" />
-    </linearGradient>
-    <linearGradient
        id="linearGradient3913">
       <stop
          style="stop-color:#ffffff;stop-opacity:1;"
@@ -387,42 +375,6 @@
          stdDeviation="1.2065266"
          id="feGaussianBlur5357" />
     </filter>
-    <linearGradient
-       inkscape:collect="always"
-       xlink:href="#linearGradient904"
-       id="linearGradient914"
-       x1="5.937387"
-       y1="460.5625"
-       x2="917.78784"
-       y2="460.5625"
-       gradientUnits="userSpaceOnUse" />
-    <linearGradient
-       inkscape:collect="always"
-       xlink:href="#linearGradient904"
-       id="linearGradient916"
-       x1="44.710686"
-       y1="460.5625"
-       x2="879.01453"
-       y2="460.5625"
-       gradientUnits="userSpaceOnUse" />
-    <linearGradient
-       inkscape:collect="always"
-       xlink:href="#linearGradient904"
-       id="linearGradient932"
-       x1="5.9373512"
-       y1="466.21042"
-       x2="917.7879"
-       y2="466.21042"
-       gradientUnits="userSpaceOnUse" />
-    <linearGradient
-       inkscape:collect="always"
-       xlink:href="#linearGradient904"
-       id="linearGradient934"
-       x1="44.710667"
-       y1="466.21042"
-       x2="879.01459"
-       y2="466.21042"
-       gradientUnits="userSpaceOnUse" />
   </defs>
   <sodipodi:namedview
      id="base"
@@ -431,11 +383,11 @@
      borderopacity="1.0"
      inkscape:pageopacity="1"
      inkscape:pageshadow="2"
-     inkscape:zoom="3.0916835"
-     inkscape:cx="82.155887"
-     inkscape:cy="-0.97034512"
+     inkscape:zoom="12.366734"
+     inkscape:cx="41.239668"
+     inkscape:cy="12.614487"
      inkscape:document-units="px"
-     inkscape:current-layer="active-center"
+     inkscape:current-layer="pressed-center"
      showgrid="false"
      inkscape:snap-bbox="true"
      inkscape:window-width="1920"
@@ -514,12 +466,12 @@
       <path
          inkscape:connector-curvature="0"
          d="m 461.86451,4.6374457 c 251.80184,0 455.92334,204.1245143 455.92334,455.9292243 0,251.79508 -204.1215,455.92086 -455.92334,455.92086 -251.8007,0 -455.927123,-204.12578 -455.927123,-455.92086 0,-251.80471 204.126423,-455.9292243 455.927123,-455.9292243"
-         style="fill:url(#linearGradient914);fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1.06667;enable-background:new"
+         style="fill:#36ced5;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1.06667;enable-background:new"
          id="path14-3-7" />
       <path
          inkscape:connector-curvature="0"
          d="m 461.86261,43.416911 c 230.38514,0 417.15194,186.762879 417.15194,417.149989 0,230.37856 -186.7668,417.14116 -417.15194,417.14116 -230.38407,0 -417.151923,-186.7626 -417.151923,-417.14116 0,-230.38711 186.767853,-417.149989 417.151923,-417.149989"
-         style="fill:url(#linearGradient916);fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1.06667;enable-background:new"
+         style="fill:#36ced5;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1.06667;enable-background:new"
          id="path16-5" />
       <ellipse
          cy="-460.5625"
@@ -535,12 +487,12 @@
        transform="matrix(0.02211825,0,0,-0.02211836,47.96021,1117.9438)">
       <path
          id="path14-2"
-         style="fill:url(#linearGradient932);fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1.06667"
+         style="fill:#36b5d5;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1.06667"
          d="m 461.86449,10.287447 c 251.80179,0 455.92339,204.123583 455.92339,455.927123 0,251.79395 -204.1216,455.91881 -455.92339,455.91881 -251.80072,0 -455.927139,-204.12486 -455.927139,-455.91881 0,-251.80354 204.126419,-455.927123 455.927139,-455.927123"
          inkscape:connector-curvature="0" />
       <path
          id="path16-9"
-         style="fill:url(#linearGradient934);fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1.06667"
+         style="fill:#36b5d5;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1.06667"
          d="m 461.86262,49.066727 c 230.38516,0 417.15195,186.762053 417.15195,417.148103 0,230.37753 -186.76679,417.13927 -417.15195,417.13927 -230.38409,0 -417.151953,-186.76174 -417.151953,-417.13927 0,-230.38605 186.767863,-417.148104 417.151953,-417.148104"
          inkscape:connector-curvature="0" />
       <ellipse

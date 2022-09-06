@@ -19,18 +19,6 @@
   <defs
      id="defs4430">
     <linearGradient
-       inkscape:collect="always"
-       id="linearGradient936">
-      <stop
-         style="stop-color:#fcbe07;stop-opacity:1;"
-         offset="0"
-         id="stop932" />
-      <stop
-         style="stop-color:#fcbe07;stop-opacity:0;"
-         offset="1"
-         id="stop934" />
-    </linearGradient>
-    <linearGradient
        id="linearGradient3868">
       <stop
          style="stop-color:#5a5a5a;stop-opacity:1;"
@@ -349,36 +337,6 @@
          offset="1"
          style="stop-color:#dadad3;stop-opacity:1;" />
     </linearGradient>
-    <linearGradient
-       inkscape:collect="always"
-       id="linearGradient824">
-      <stop
-         style="stop-color:#f7f206;stop-opacity:1"
-         offset="0"
-         id="stop820" />
-      <stop
-         style="stop-color:#ffbb24;stop-opacity:1"
-         offset="1"
-         id="stop822" />
-    </linearGradient>
-    <linearGradient
-       inkscape:collect="always"
-       xlink:href="#linearGradient824"
-       id="linearGradient930"
-       x1="44.754131"
-       y1="458.00204"
-       x2="879.04962"
-       y2="458.00204"
-       gradientUnits="userSpaceOnUse" />
-    <linearGradient
-       inkscape:collect="always"
-       xlink:href="#linearGradient936"
-       id="linearGradient938"
-       x1="47.741653"
-       y1="466.21019"
-       x2="882.03733"
-       y2="466.21019"
-       gradientUnits="userSpaceOnUse" />
   </defs>
   <sodipodi:namedview
      id="base"
@@ -388,10 +346,10 @@
      inkscape:pageopacity="1"
      inkscape:pageshadow="2"
      inkscape:zoom="18.526428"
-     inkscape:cx="27.690173"
+     inkscape:cx="42.911672"
      inkscape:cy="15.221499"
      inkscape:document-units="px"
-     inkscape:current-layer="active-center"
+     inkscape:current-layer="pressed-center"
      showgrid="false"
      inkscape:snap-bbox="true"
      inkscape:window-width="1920"
@@ -466,12 +424,12 @@
       <path
          inkscape:connector-curvature="0"
          d="m 461.904,2.079168 c 251.80053,0 455.92533,204.124562 455.92533,455.925102 0,251.79626 -204.1248,455.92106 -455.92533,455.92106 C 210.10453,913.92533 5.979168,709.80053 5.979168,458.00427 5.979168,206.20373 210.10453,2.079168 461.904,2.079168"
-         style="fill:#da9e10;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1.06667"
+         style="fill:#fcbe07;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1.06667"
          id="path14-9" />
       <path
          inkscape:connector-curvature="0"
          d="m 461.904,40.854187 c 230.384,0 417.1456,186.762883 417.1456,417.150083 0,230.38293 -186.7616,417.1456 -417.1456,417.1456 -230.38293,0 -417.149867,-186.76267 -417.149867,-417.1456 0,-230.3872 186.766937,-417.150083 417.149867,-417.150083"
-         style="fill:url(#linearGradient930);fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1.06667"
+         style="fill:#fcbe07;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1.06667"
          id="path16-6" />
       <path
          inkscape:connector-curvature="0"
@@ -499,12 +457,12 @@
       <path
          inkscape:connector-curvature="0"
          d="m 464.88747,10.287499 c 251.80373,0 455.9296,204.125301 455.9296,455.920501 0,251.80053 -204.12587,455.92533 -455.9296,455.92533 C 213.088,922.13333 8.962496,718.00853 8.962496,466.208 8.962496,214.4128 213.088,10.287499 464.88747,10.287499"
-         style="fill:#fcbe07;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1.06667"
+         style="fill:#fca807;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1.06667"
          id="path14-26" />
       <path
          inkscape:connector-curvature="0"
          d="m 464.88747,49.062507 c 230.3872,0 417.14986,186.766823 417.14986,417.145493 0,230.38827 -186.76266,417.14987 -417.14986,417.14987 -230.38294,0 -417.145817,-186.7616 -417.145817,-417.14987 0,-230.37867 186.762877,-417.145493 417.145817,-417.145493"
-         style="fill:url(#linearGradient938);fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1.06667"
+         style="fill:#fca807;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1.06667"
          id="path16-4" />
       <path
          inkscape:connector-curvature="0"
