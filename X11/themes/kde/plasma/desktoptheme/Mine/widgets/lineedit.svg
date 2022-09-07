@@ -329,7 +329,7 @@
     </linearGradient>
   </defs>
   <rect
-     style="fill:#171322;fill-opacity:1;stroke:none;opacity:0.5"
+     style="fill:#302f2f;fill-opacity:1;stroke:none;opacity:0.5"
      id="base-center"
      width="80"
      height="20"
@@ -347,7 +347,7 @@
        height="2"
        width="80"
        id="rect3984"
-       style="fill:#171322;fill-opacity:1;stroke:none;opacity:0.5"
+       style="fill:#302f2f;fill-opacity:1;stroke:none;opacity:0.5"
        class="ColorScheme-ViewBackground" />
   </g>
   <g
@@ -458,7 +458,7 @@
     <rect
        class="ColorScheme-ViewBackground"
        inkscape:label="#rect4010"
-       style="fill:#171322;fill-opacity:1;stroke:none;opacity:0.5"
+       style="fill:#302f2f;fill-opacity:1;stroke:none;opacity:0.5"
        id="rect3869"
        width="1"
        height="20"
@@ -475,7 +475,7 @@
   <g
      id="base-topright">
     <path
-       style="fill:#171322;fill-opacity:1;stroke:none;opacity:0.5"
+       style="fill:#302f2f;fill-opacity:1;stroke:none;opacity:0.5"
        d="M 115 -37 L 115 -36 L 115 -35 L 116 -35 L 116 -36 A 1 1 0 0 0 115 -37 z "
        id="rect3857" />
   </g>
@@ -486,7 +486,7 @@
        transform="matrix(1,0,0,-1,-3.9230599e-8,-48)"
        class="ColorScheme-ViewBackground"
        sodipodi:type="arc"
-       style="fill:#171322;fill-opacity:1;stroke:none;opacity:0.5"
+       style="fill:#302f2f;fill-opacity:1;stroke:none;opacity:0.5"
        id="path3861-9"
        sodipodi:cx="150"
        sodipodi:cy="-35"
@@ -505,7 +505,7 @@
        height="20"
        width="1"
        id="rect3873"
-       style="fill:#171322;fill-opacity:1;stroke:none;opacity:0.5"
+       style="fill:#302f2f;fill-opacity:1;stroke:none;opacity:0.5"
        inkscape:label="#rect4010"
        class="ColorScheme-ViewBackground" />
   </g>
@@ -522,7 +522,7 @@
      id="base-bottom">
     <rect
        class="ColorScheme-ViewBackground"
-       style="fill:#171322;fill-opacity:1;stroke:none;opacity:0.5"
+       style="fill:#302f2f;fill-opacity:1;stroke:none;opacity:0.5"
        id="rect3905"
        width="80"
        height="1"
@@ -548,7 +548,7 @@
        sodipodi:cy="-35"
        sodipodi:cx="150"
        id="path3926"
-       style="fill:#171322;fill-opacity:1;stroke:none;opacity:0.5"
+       style="fill:#302f2f;fill-opacity:1;stroke:none;opacity:0.5"
        sodipodi:type="arc"
        class="ColorScheme-ViewBackground"
        transform="matrix(1,0,0,-1,-3.9230599e-8,-48)" />
@@ -736,7 +736,7 @@
      id="base-topleft"
      transform="matrix(-1,0,0,1,150,0)">
     <path
-       style="color:#fcfcfc;fill:#171322;fill-opacity:1;stroke:none;opacity:0.5"
+       style="color:#fcfcfc;fill:#302f2f;fill-opacity:1;stroke:none;opacity:0.5"
        d="M 35 -37 A 1 1 0 0 0 34 -36 L 34 -35 L 35 -35 L 35 -36 L 35 -37 z "
        transform="matrix(-1,0,0,1,150,0)"
        id="rect989" />

@@ -1,6 +1,6 @@
 [Colors:Button]
 BackgroundNormal=48,47,47
-DecorationFocus=#493559
+DecorationFocus=d96fff
 DecorationHover=#5c4371
 ForegroundNormal=224,222,219
 
@@ -18,7 +18,7 @@ ForegroundNormal=224,222,219
 
 [Colors:Window]
 BackgroundNormal=23,19,34
-DecorationHover=#493559
+DecorationHover=d96fff
 ForegroundLink=152,102,254
 ForegroundNormal=224,222,219
 ForegroundVisited=242,80,192
