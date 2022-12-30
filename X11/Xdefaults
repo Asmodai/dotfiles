@@ -561,7 +561,7 @@ URxvt.preeditType:  OverTheSpot
 *VT100*boldColors:            on
 *VT100*dynamicColors:         on
 *VT100*wideChars:             on
-*VT100*decTerminalID:         340    ! VT340, ReGIS + SiXEL.
+*VT100*decTerminalID:         420
 *VT100*maxGraphicSize:        auto
 *VT100*privateColorRegisters: true
 *VT100*regisDefaultFont:      termfont
@@ -578,6 +578,10 @@ URxvt.preeditType:  OverTheSpot
 *VT100*borderWidth:           0
 *VT100*scrollbar.background:  bgcolor
 *VT100*scrollbar.foreground:  hlcolor
+
+! Specifics for custom builds of xterm.
+vt340*decTerminalID:          340
+vt420*decTerminalID:          420
 
 *.color0:           base0
 *.color1:           base1

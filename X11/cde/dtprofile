@@ -1,0 +1,29 @@
+# Hey, Emacs... -*- shell-script -*-
+##########################################################################
+#
+#  .dtprofile
+#
+#  user personal environment variables
+#
+##########################################################################
+
+echo "This session log file is currently disabled."  >  $dtstart_sessionlogfile
+echo "To enable logging, edit $HOME/.dtprofile and"  >> $dtstart_sessionlogfile
+echo "remove dtstart_sessionlogfile=/dev/null line." >> $dtstart_sessionlogfile
+export dtstart_sessionlogfile="/dev/null"
+
+# Settings for various things
+export GTK2_RC_FILES=/home/asmodai/.themes/MyDark/gtk-2.0/gtkrc
+export GTK_THEME=MyDark
+export QT_QPA_PLATFORMTHEME=qt5ct
+
+# Can we set the wallpaper?
+if [ -f /bin/xsetbg ]
+then
+    if [ -f ${HOME}/Pictures/wallpaper.jpg ]
+    then
+        /bin/xsetbg ${HOME}/Pictures/wallpaper.jpg
+    fi
+fi
+
+# EOF

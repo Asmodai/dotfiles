@@ -193,6 +193,20 @@ installFVWM() {
     fi
 }
 
+installCDE() {
+    yesOrNo "Install CDE configs"
+
+    if [[ "${YESORNO}" = "${TRUE}" ]]
+    then
+        echo "Installing CDE configs..."
+
+        rm -rf ${HOME}/.dtprofile
+        ln -s ${_rootwd}/X11/cde/dtprofile ${HOME}/.dtprofile
+
+        echo "Done."
+    fi
+}
+
 installKDE() {
     yesOrNo "Install KDE settings"
 
@@ -251,6 +265,7 @@ test -f /usr/bin/fvwm2 && installFVWM
 test -f /usr/bin/conky && installConky
 test -f /usr/bin/stalonetray && installStalonetray
 test -f /usr/bin/synapse && installSynapse
+test -d /usr/dt && installCDE
 test -d ${HOME}/.kde/ && installKDE
 
 # install.sh ends here.
