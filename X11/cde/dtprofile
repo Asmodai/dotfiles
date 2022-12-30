@@ -17,6 +17,9 @@ export GTK2_RC_FILES=/home/asmodai/.themes/MyDark/gtk-2.0/gtkrc
 export GTK_THEME=MyDark
 export QT_QPA_PLATFORMTHEME=qt5ct
 
+# Undo nefarious crap
+export EDITOR=/bin/vi
+
 # Can we set the wallpaper?
 if [ -f /bin/xsetbg ]
 then
