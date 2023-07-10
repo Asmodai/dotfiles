@@ -1,0 +1,83 @@
+" Be vim, not vi!
+set nocompatible
+
+" This shows what you are typing as a command.  I love this!
+set showcmd
+
+" Who doesn't like autoindent?
+set autoindent smartindent
+
+" Spaces are better than a tab character
+set expandtab
+set smarttab
+
+" Who wants an 8 character tab?  Not me!
+set shiftwidth=2
+set softtabstop=2
+
+" Got backspace?
+set backspace=2
+
+" Line Numbers PWN!
+set number
+
+" Ignoring case is a fun trick.
+set ignorecase
+
+" And so is Artificial Intellegence!
+set smartcase
+
+" Incremental searching is sexy.
+set incsearch
+
+" Highlight things that we find with the search
+set hlsearch
+
+" Some nice mapping going on here.
+map N Nzz
+map n nzz
+
+" I like syntax highlighting.
+syntax on
+
+" Dark background? yes please.
+set background=dark
+
+" Filetype stuff.
+filetype on                   " Enable filetype detection
+filetype indent on            " Enable filetype-specific indenting
+filetype plugin on
+
+" Ruler! Becuase I like to know where the cursor is.
+set ruler
+
+" For regular expressions turn magic on.
+set magic
+
+" Colour scheme.
+colorscheme slate
+
+" powerline magic.
+set rtp+=~/Library/Python/3.8/lib/python/site-packages/powerline/bindings/vim
+
+" Always show status.
+set laststatus=2
+
+" Use 256 colours.
+set t_Co=256
+
+" GUI font.
+set gfn=Source\ Code\ Pro\ for\ Powerline\ 9
+
+" Show current mode.
+set smd
+
+" Might as well remind mehsel dat eie canat speel.
+" set spell
+
+" GUI stuff.
+set stal=1
+set gtl=Tabs
+set title
+set titlestring=VIM
+

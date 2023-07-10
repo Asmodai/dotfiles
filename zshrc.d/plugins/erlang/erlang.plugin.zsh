@@ -36,8 +36,7 @@ set_default_erlang()
 
 if [ -d ~/erlang ]
 then
-  export KERL_CONFIGURE_OPTIONS="--enable-smp-support \
-                                 --enable-threads     \
+  export KERL_CONFIGURE_OPTIONS="--enable-threads     \
                                  --enable-kernel-poll \
                                  --enable-hipe        \
                                  --enable-m64-build"
@@ -52,6 +51,6 @@ then
   set_erlang_aliases
 
 
-  export ERLANG_VERSION="21.3.8.9"
+  export ERLANG_VERSION="21.3.8.21"
   set_default_erlang
 fi

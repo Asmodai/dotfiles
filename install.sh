@@ -106,7 +106,11 @@ installVim() {
         echo "Installing vim config..."
 
         rm -rf ${HOME}/.vimrc
-        ln -s ${_rootwd}/vim/vimrc ${HOME}/.vimrc
+
+        case $(uname -s) in
+            Darwin*) ln -s ${_rootwd}/vim/vimrc.macos ${HOME}/.vimrc;;
+            *)       ln -s ${_rootwd}/vim/vimrc ${HOME}/.vimrc;;
+        esac
 
         echo "Done."
     fi
