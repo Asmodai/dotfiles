@@ -1,10 +1,16 @@
 [Background]
 Color=18,18,18
 
+[BackgroundFaint]
+Color=18,18,18
+
 [BackgroundIntense]
 Color=104,104,104
 
 [Color0]
+Color=24,24,24
+
+[Color0Faint]
 Color=24,24,24
 
 [Color0Intense]
@@ -13,10 +19,16 @@ Color=85,87,83
 [Color1]
 Color=204,0,0
 
+[Color1Faint]
+Color=204,0,0
+
 [Color1Intense]
 Color=239,41,41
 
 [Color2]
+Color=78,154,6
+
+[Color2Faint]
 Color=78,154,6
 
 [Color2Intense]
@@ -25,10 +37,16 @@ Color=138,226,52
 [Color3]
 Color=196,160,0
 
+[Color3Faint]
+Color=196,160,0
+
 [Color3Intense]
 Color=252,233,79
 
 [Color4]
+Color=52,101,164
+
+[Color4Faint]
 Color=52,101,164
 
 [Color4Intense]
@@ -37,10 +55,16 @@ Color=114,159,207
 [Color5]
 Color=117,80,123
 
+[Color5Faint]
+Color=117,80,123
+
 [Color5Intense]
 Color=173,127,168
 
 [Color6]
+Color=6,152,154
+
+[Color6Faint]
 Color=6,152,154
 
 [Color6Intense]
@@ -49,16 +73,24 @@ Color=52,226,226
 [Color7]
 Color=211,215,207
 
+[Color7Faint]
+Color=211,215,207
+
 [Color7Intense]
 Color=238,238,236
 
 [Foreground]
 Color=178,178,178
 
+[ForegroundFaint]
+Color=178,178,178
+
 [ForegroundIntense]
 Color=255,255,255
 
 [General]
+Blur=false
+ColorRandomization=false
 Description=Mine
 Opacity=1
 Wallpaper=
