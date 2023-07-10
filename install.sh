@@ -91,6 +91,8 @@ installPowerLine() {
 
         echo "Installing PowerLine config..."
 
+        test -d ${HOME}/.config || mkdir ${HOME}/.config
+
         rm -rf ${HOME}/.config/powerline 2>/dev/null
         ln -s ${_rootwd}/powerline ${HOME}/.config/powerline
 
