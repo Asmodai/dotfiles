@@ -43,12 +43,12 @@ chatnets = {
   CyberArmy = {
     type = "IRC";
     nick = "Asmodai";
-    autosendcmd = "/msg nickserv identify <PASSWORD>; wait 2000";
+    autosendcmd = "/msg nickserv identify PASSWORD; wait 2000";
   };
   FreshChat = {
     type = "IRC";
     nick = "Asmodai";
-    autosendcmd = "/msg nickserv identify <PASSWORD>; wait 2000";
+    autosendcmd = "/msg nickserv identify PASSWORD; wait 2000";
   };
   OFTC = {
     type = "IRC";
@@ -56,19 +56,16 @@ chatnets = {
     max_msgs = "3";
     max_whois = "30";
     nick = "Asmodai";
-    autosendcmd = "/msg nickserv identify <PASSWORD>; wait 2000";
+    autosendcmd = "/msg nickserv identify PASSWORD; wait 2000";
   };
 };
 
 channels = (
-  { name = "#gibbs-hosting"; chatnet = "Derp"; autojoin = "Yes"; },
   { name = "#cyberarmy"; chatnet = "CyberArmy"; autojoin = "Yes"; },
   { name = "#cryogenix"; chatnet = "CyberArmy"; autojoin = "Yes"; },
   { name = "#lisp"; chatnet = "CyberArmy"; autojoin = "Yes"; },
   { name = "#services"; chatnet = "CyberArmy"; autojoin = "Yes"; },
   { name = "#nerds"; chatnet = "OFTC"; autojoin = "Yes"; },
-  { name = "#codebro"; chatnet = "Freenode"; autojoin = "Yes"; },
-  { name = "#gnustep"; chatnet = "Freenode"; autojoin = "Yes"; },
   { name = "#freshchat"; chatnet = "FreshChat"; autojoin = "Yes"; },
   { 
     name = "#Lady_pinkpearl";
@@ -83,7 +80,7 @@ channels = (
     chatnet = "CyberArmy";
     autojoin = "yes";
     botmasks = "irpg@g5e.o0m.hfjtnc.IP";
-    autosendcmd = "wait 2000; /^msg $0 Login USERNAME PASSWORD";
+    autosendcmd = "wait 2000; /^msg $0 Login Asmodai PASSWORD";
   }
 );
 
@@ -268,11 +265,13 @@ settings = {
     real_name = "Paul";
     user_name = "asmodai";
     nick = "Asmodai";
-    timestamp_format = "%y-%m-%d|%H:%M";
+    timestamp_format = "%H:%M│%d/%m";
   };
-  "fe-text" = { actlist_sort = "refnum"; };
+  "fe-text" = { actlist_sort = "refnum"; indent = "28"; };
   "fe-common/core" = { theme = "mine"; awaylog_colors = "no"; };
   "perl/core/scripts" = {
+    awl_all_disable = "no";
+    awl_automode = "sbar";
     awl_block = "-20";
     awl_sbar_maxlength = "off";
     awl_hide_empty = "yes";
