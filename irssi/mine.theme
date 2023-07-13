@@ -299,7 +299,7 @@ abstracts = {
 
 formats = {
   "fe-common/core" = {
-    daychange        = "          %g-----%w-%W-%n Day changed to %%D %W-%w-%g-----%n";
+    daychange        = "          %g────%w──%W┤%n Day changed to %%D %W├%w──%g────%n";
     timestamp        = "{timestamp $Z} %N";
     line_start_irssi = "{line_start_to}%N ";
     join             = "%2{line_start_to}%W{lbl_join}%N%g{fto}%N%w {nick $0} {chanhost $1} joined {channel $2}%N";
