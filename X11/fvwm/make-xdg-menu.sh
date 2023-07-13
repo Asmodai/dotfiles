@@ -1,10 +1,10 @@
 #!/bin/bash
 
-/usr/bin/fvwm-menu-desktop                             \
+/usr/local/bin/fvwm-menu-desktop                       \
     --regen-cmd XDGRegen                               \
     --enable-mini-icons                                \
     --theme "gnome"                                    \
-    --set-menus /etc/xdg/menus/gnome-applications.menu \
+    --set-menus /etc/xdg/menus/kf5-applications.menu \
     --size 16                                          \
     --app-icon openterm                                \
     --title "Applications"                             \

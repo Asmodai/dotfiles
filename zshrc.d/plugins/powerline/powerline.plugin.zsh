@@ -72,6 +72,8 @@
     fi
 
     export PATH=$POWERLINE_PATH:$PATH
+    export POWERLINE_PATH
+    export PYTHONPATH
     source $POWERLINE_LIB/powerline/bindings/zsh/powerline.zsh
 }
 
