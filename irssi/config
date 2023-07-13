@@ -150,7 +150,7 @@ statusbar = {
 
     # treated "normally", you could change the time/user name to whatever
     time = "{sb $Z}";
-    user = "%3{sb {sbnickmode $[-2]cumode}%k$N %w {sbumode %K$usermode} %y%0{sbaway $A}}";
+    user = "%5{sb {sbnickmode %k$[-2]cumode}%W%_$N%_ %k {sbumode %k$usermode} %N%m{sbaway $A}}%5";
 
     # treated specially .. window is printed with non-empty windows,
     # window_empty is printed with empty windows
