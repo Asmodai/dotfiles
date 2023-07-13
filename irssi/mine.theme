@@ -20,6 +20,7 @@ abstracts = {
   lbl_join        = "JOIN       ";
   lbl_invite      = "INVITE     ";
   lbl_part        = " PART      ";
+  lbl_quit        = " KICK      ";
   lbl_quit        = " QUIT      ";
   lbl_rename      = "RENAME     ";
   lbl_topic       = "TOPIC      ";
@@ -302,9 +303,11 @@ formats = {
     daychange        = "          %g────%w──%W┤%n Day changed to %%D %W├%w──%g────%n";
     timestamp        = "{timestamp $Z} %N";
     line_start_irssi = "{line_start_to}%N ";
+
     join             = "%2{line_start_to}%W{lbl_join}%N%g{fto}%N%w {nick $0} {chanhost $1} joined {channel $2}%N";
     part             = "%y{line_start_fr}%W%3{lbl_part}%k%3{ffr}%N%w  {nick $0} {chanhost $1} left {channel $2}%N";
-    quit             = "%R{line_start_fr}%7%R%8{lbl_quit}%8%R%0%8{ffr}%8%N  {nick $0} {chanhost $1} {comment {reason $2}}";
+    kick             = "%R{line_start_fr}%7%R%8{lbl_kick}%8%R%0%8{ffr}%8%N  {nick $0} was kicked {channel $1} by {nick %2} {comment {reason $3}}%N";
+    quit             = "%R{line_start_fr}%7%R%8{lbl_quit}%8%R%0%8{ffr}%8%N  {nick $0} {chanhost $1} {comment {reason $2}}%N";
 
     new_topic = "%4{line_start_to}%W{lbl_topic}%N%b{fto}%w {channel $1} by {nick $0}%N {comment %W$2}%N";
 
