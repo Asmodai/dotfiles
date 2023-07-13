@@ -1,1 +1,0 @@
-../sysinfoplus.pl
