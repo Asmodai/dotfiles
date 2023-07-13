@@ -150,12 +150,12 @@ statusbar = {
 
     # treated "normally", you could change the time/user name to whatever
     time = "{sb $Z}";
-    user = "%5{sb {sbnickmode %k$[-2]cumode}%W%_$N%_ %k {sbumode %k$usermode} %N%m{sbaway $A}}%5";
+    user = "%5{sb {sbnickmode %k$[-2]cumode}%W%_$N%_ %k {sbumode %k$usermode} %0%m{sbaway $A}}%5";
 
     # treated specially .. window is printed with non-empty windows,
     # window_empty is printed with empty windows
-    window = " {sb $tag/{channel $itemname} %C {sbmode $M}} %C%n ";
-    window_empty = "{sb {sbservertag $tag}}";
+    window = "%0 {sb $tag/{channel $itemname} %C {sbmode $M}} %C%n ";
+    window_empty = "%0{sb {sbservertag $tag}}";
     prompt = "{prompt $[.15]itemname}";
     prompt_empty = "{prompt $winname}";
 
