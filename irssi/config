@@ -73,8 +73,6 @@ channels = (
     autojoin = "Yes";
   },
   { name = "#wales"; chatnet = "FreshChat"; autojoin = "Yes"; },
-  { name = "#allnitecafe"; chatnet = "FreshChat"; autojoin = "Yes"; },
-  { name = "#pinktrivia"; chatnet = "FreshChat"; autojoin = "Yes"; },
   {
     name = "#idlerpg";
     chatnet = "CyberArmy";

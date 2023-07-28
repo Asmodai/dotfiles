@@ -8,3 +8,7 @@ Name=Mine
 Parent=FALLBACK/
 TerminalColumns=80
 TerminalRows=25
+
+[Scrolling]
+HistoryMode=1
+HistorySize=1000
