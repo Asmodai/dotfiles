@@ -1,4 +1,4 @@
-if [ test -f /usr/bin/ng ]
+if [ -x /usr/bin/ng ]
 then
 
   source <(/usr/bin/ng completion script)
