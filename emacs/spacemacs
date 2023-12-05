@@ -32,12 +32,16 @@ This function should only modify configuration layer settings."
 
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(typescript
-     perl5
-     php
-     yaml
+   '(yaml
      html
+     php
      erlang
+     ;; ----------------------------------------------------------------
+     ;; Example of useful layers you may want to use right away.
+     ;; Uncomment some layer names and press `SPC f e R' (Vim style) or
+     ;; `M-m f e R' (Emacs style) to install them.
+     ;; ----------------------------------------------------------------
+     osx
      javascript
      auto-completion
      better-defaults
@@ -59,7 +63,6 @@ This function should only modify configuration layer settings."
           org-roam-ui-follow          t
           org-roam-ui-update-on-save  t
           org-roam-ui-open-on-start   t)
-     ;; org
      ;; (shell :variables
      ;;        shell-default-height 30
      ;;        shell-default-position 'bottom)
@@ -68,9 +71,13 @@ This function should only modify configuration layer settings."
      ;; version-control
      treemacs
      (c-c++ :variables
-            c-c++-enable-google-style         t
-            c-c++-adopt-subprojects           t
-            c-c++-enable-clang-format-on-save t)
+            c-c++-enable-google-style           t
+            c-c++-adopt-subprojects             t
+            c-c++-backend                       'lsp-clangd
+            c-c++-lsp-enable-semantic-highlight 'rainbow
+            c-c++-dap-adapters                  '(dap-lldb dap-cpptools)
+            c-c++-enable-google-style           t
+            c-c++-enable-clang-format-on-save   nil)
      go
      sql
      common-lisp
@@ -84,8 +91,7 @@ This function should only modify configuration layer settings."
    ;; `dotspacemacs/user-config'. To use a local version of a package, use the
    ;; `:location' property: '(your-package :location "~/path/to/your-package/")
    ;; Also include the dependencies as they will not be resolved automatically.
-   dotspacemacs-additional-packages '((custom-template :location local)
-                                      (sunrise :location local))
+   dotspacemacs-additional-packages '((custom-template :location local))
 
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -278,7 +284,7 @@ It should only modify the values of Spacemacs settings."
    ;; a non-negative integer (pixel size), or a floating-point (point size).
    ;; Point size is recommended, because it's device independent. (default 10.0)
    dotspacemacs-default-font '("Source Code Pro for Powerline"
-                               :size 10.0
+                               :size 12.0
                                :weight normal
                                :width normal)
 
@@ -563,7 +569,8 @@ This function defines the environment variables for your Emacs session. By
 default it calls `spacemacs/load-spacemacs-env' which loads the environment
 variables declared in `~/.spacemacs.env' or `~/.spacemacs.d/.spacemacs.env'.
 See the header of this file for more information."
-  (spacemacs/load-spacemacs-env))
+  (spacemacs/load-spacemacs-env)
+)
 
 (defun dotspacemacs/user-init ()
   "Initialization for user code:
@@ -571,10 +578,10 @@ This function is called immediately after `dotspacemacs/init', before layer
 configuration.
 It is mostly for variables that should be set before packages are loaded.
 If you are unsure, try setting them in `dotspacemacs/user-config' first."
+  (setenv "JAVA_HOME" "/opt/homebrew/Cellar/openjdk/20.0.1/libexec/openjdk.jdk/Contents/Home/")
+  (setq-default mac-right-option-modifier nil)
   (setq ebib-bibtex-dialect 'BibTeX
-        bibtex-dialect      'BibTeX
-        cperl-indent-level  2
-        sh-basic-offset     2)
+        bibtex-dialect      'BibTeX)
   (setq user-url-address          "http://lisphacker.uk"
         user-full-name            "Paul Ward"
         user-mail-address         "asmodai@gmail.com"
@@ -587,7 +594,7 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
 This function is called only while dumping Spacemacs configuration. You can
 `require' or `load' the libraries of your choice that will be included in the
 dump."
-  )
+)
 
 
 (defun dotspacemacs/user-config ()
@@ -596,17 +603,9 @@ This function is called at the very end of Spacemacs startup, after layer
 configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
-  (require 'sunrise)
+  (require 'custom-template)
   (menu-bar-mode t)
-  (scroll-bar-mode t)
-  ;; Alignment for web-mode
-  (add-hook 'web-mode-hook
-            (lambda ()
-              (setq web-mode-attr-indent-offset nil)))
-  (add-hook 'editorconfig-custom-hooks
-            (lambda (hash)
-              (setq web-mode-block-padding 0))))
-
+  (scroll-bar-mode t))
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
@@ -622,25 +621,36 @@ This function is called at the very end of Spacemacs initialization."
  ;; If there is more than one, they won't work right.
  '(blink-cursor-mode nil)
  '(column-number-mode t)
+ '(custom-safe-themes
+   '("8875a97fb7b972df3ec9d08d8e77ce15b1cb95a4e0b81bbb22bb8c4fdc086f01" default))
  '(evil-want-Y-yank-to-eol nil)
+ '(global-display-line-numbers-mode t)
+ '(ns-right-alternate-modifier nil)
  '(package-selected-packages
-   '(typescript-mode company-plsense realgud test-simple loc-changes load-relative add-node-modules-path eldoc impatient-mode htmlize import-js grizzl js-doc js2-refactor multiple-cursors livid-mode nodejs-repl npm-mode prettier-js skewer-mode js2-mode simple-httpd tern web-beautify highlight-indent-guides sqlup-mode company-go counsel-gtags counsel swiper ivy dap-mode lsp-docker lsp-treemacs bui lsp-mode flycheck-golangci-lint ggtags go-eldoc go-fill-struct go-gen-test go-guru go-impl go-rename go-tag go-mode godoctor helm-gtags ace-jump-helm-line ace-link aggressive-indent auto-compile packed auto-highlight-symbol centered-cursor-mode clean-aindent-mode column-enforce-mode define-word devdocs dired-quick-sort drag-stuff dumb-jump editorconfig elisp-def elisp-slime-nav emr clang-format list-utils eval-sexp-fu evil-anzu anzu evil-args evil-cleverparens paredit evil-collection annalist evil-ediff evil-escape evil-exchange evil-goggles evil-iedit-state iedit evil-indent-plus evil-lion evil-lisp-state evil-matchit evil-mc evil-nerd-commenter evil-numbers evil-surround evil-textobj-line evil-tutor evil-unimpaired evil-visual-mark-mode evil-visualstar expand-region eyebrowse fancy-battery flx-ido flycheck-elsa flycheck-package package-lint flycheck golden-ratio google-translate helm-ag helm-descbinds helm-flx flx helm-make helm-mode-manager helm-org helm-projectile helm-purpose helm-swoop helm-themes helm-xref helm helm-core help-fns+ hide-comnt highlight-indentation highlight-numbers parent-mode highlight-parentheses hl-todo compat hungry-delete indent-guide info+ inspector link-hint lorem-ipsum macrostep multi-line shut-up nameless open-junk-file org-superstar overseer f pkg-info epl paradox spinner password-generator popup popwin quickrun rainbow-delimiters request restart-emacs smartparens space-doc spaceline-all-the-icons memoize spaceline all-the-icons powerline spacemacs-purpose-popwin spacemacs-whitespace-cleanup string-edit string-inflection symbol-overlay symon term-cursor toc-org treemacs-icons-dired treemacs-persp persp-mode treemacs-projectile treemacs projectile cfrs ht pfuture ace-window avy posframe s undo-tree queue uuidgen vi-tilde-fringe vim-powerline volatile-highlights window-purpose imenu-list winum dash writeroom-mode visual-fill-column ws-butler async bind-map diminish dotenv-mode evil-evilified-state font-lock+ holy-mode hybrid-mode evil goto-chg hydra lv pcre2el use-package bind-key which-key))
+   '(emacsql-sqlite-builtin emacsql-sqlite-module yaml-mode company-web web-completion-data counsel-css emmet-mode helm-css-scss pug-mode sass-mode haml-mode scss-mode slim-mode tagedit web-mode company-php ac-php-core xcscope company-phpactor drupal-mode geben php-auto-yasnippets php-extras php-mode phpactor composer php-runtime phpcbf phpunit company erlang add-node-modules-path eldoc impatient-mode htmlize import-js grizzl js-doc js2-refactor multiple-cursors livid-mode nodejs-repl npm-mode prettier-js skewer-mode js2-mode simple-httpd tern web-beautify highlight-indent-guides sqlup-mode company-go counsel-gtags counsel swiper ivy dap-mode lsp-docker lsp-treemacs bui lsp-mode flycheck-golangci-lint ggtags go-eldoc go-fill-struct go-gen-test go-guru go-impl go-rename go-tag go-mode godoctor helm-gtags ace-jump-helm-line ace-link aggressive-indent auto-compile packed auto-highlight-symbol centered-cursor-mode clean-aindent-mode column-enforce-mode define-word devdocs dired-quick-sort drag-stuff dumb-jump editorconfig elisp-def elisp-slime-nav emr clang-format list-utils eval-sexp-fu evil-anzu anzu evil-args evil-cleverparens paredit evil-collection annalist evil-ediff evil-escape evil-exchange evil-goggles evil-iedit-state iedit evil-indent-plus evil-lion evil-lisp-state evil-matchit evil-mc evil-nerd-commenter evil-numbers evil-surround evil-textobj-line evil-tutor evil-unimpaired evil-visual-mark-mode evil-visualstar expand-region eyebrowse fancy-battery flx-ido flycheck-elsa flycheck-package package-lint flycheck golden-ratio google-translate helm-ag helm-descbinds helm-flx flx helm-make helm-mode-manager helm-org helm-projectile helm-purpose helm-swoop helm-themes helm-xref helm helm-core help-fns+ hide-comnt highlight-indentation highlight-numbers parent-mode highlight-parentheses hl-todo compat hungry-delete indent-guide info+ inspector link-hint lorem-ipsum macrostep multi-line shut-up nameless open-junk-file org-superstar overseer f pkg-info epl paradox spinner password-generator popup popwin quickrun rainbow-delimiters request restart-emacs smartparens space-doc spaceline-all-the-icons memoize spaceline all-the-icons powerline spacemacs-purpose-popwin spacemacs-whitespace-cleanup string-edit string-inflection symbol-overlay symon term-cursor toc-org treemacs-icons-dired treemacs-persp persp-mode treemacs-projectile treemacs projectile cfrs ht pfuture ace-window avy posframe s undo-tree queue uuidgen vi-tilde-fringe vim-powerline volatile-highlights window-purpose imenu-list winum dash writeroom-mode visual-fill-column ws-butler async bind-map diminish dotenv-mode evil-evilified-state font-lock+ holy-mode hybrid-mode evil goto-chg hydra lv pcre2el use-package bind-key which-key))
  '(safe-local-variable-values
-   '((Syntax . ANSI-COMMON-LISP)
-     (Package . COLD\.MOP)
-     (Package . COLD\.CLOS)
-     (Lowercase . Yes)
-     (Base . 10)
-     (Package . CL-USER)
-     (Syntax . ANSI-Common-Lisp)
+   '((auto-fill . t)
+     (flycheck-clang-include-path . "c_src/")
+     (flycheck-gcc-include-path . "c_src/")
      (Syntax . LFE)
      (Lexical-Binding . t)))
  '(template-use-package t nil (template))
- '(tool-bar-mode nil))
+ '(tool-bar-mode nil)
+ '(warning-suppress-types '((:warning))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(highlight-parentheses-highlight ((nil (:weight ultra-bold))) t))
+ '(highlight-parentheses-highlight ((nil (:weight ultra-bold))) t)
+ '(org-done ((t (:foreground "PaleGreen1" :background "dark slate gray" :inherit bold))))
+ '(org-level-1 ((t (:inherit bold :extend t :background "#9475d4" :foreground "#fffaff" :height 1.3))))
+ '(org-level-2 ((t (:inherit bold :extend t :background "#5e4890" :foreground "#eee1ff" :height 1.2))))
+ '(org-level-3 ((t (:inherit bold :background "#3b2b61" :foreground "#ddd1ee" :extend nil :height 1.1))))
+ '(org-level-4 ((t (:background "#2d214a" :foreground "#ccc1dd" :extend nil :weight normal))))
+ '(org-level-5 ((t (:background "#2d214a" :foreground "#ccc1dd" :extend nil :weight normal))))
+ '(org-level-6 ((t (:background "#2d214a" :foreground "#ccc1dd" :extend nil :weight normal))))
+ '(org-level-7 ((t (:background "#2d214a" :foreground "#ccc1dd" :extend nil :weight normal))))
+ '(org-level-8 ((t (:background "#2d214a" :foreground "#ccc1dd" :extend nil :weight normal))))
+ '(org-todo ((t (:foreground "burlywood1" :background "chocolate4" :inherit bold)))))
 )

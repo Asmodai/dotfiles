@@ -46,6 +46,7 @@
     consult-org-roam
     citar
     org-roam-bibtex
+    org-bullets
     citar-org-roam))
 
 (defun org-extensions/init-ob-bitfield ()
@@ -77,7 +78,6 @@
     :init
     (progn
       (require 'consult-org-roam)
-      (require 'org-superstar)
       (consult-org-roam-mode 1))
     :custom
     (consult-org-roam-grep-func #'consult-ripgrep)
@@ -139,3 +139,16 @@
                                                    "${slug}.org"
                                                    "#+title: ${note-title}\n#+cite_key: ${citar-citekey}\n#+created: %U\n\n")
                                           :unnarrowed t))))))
+
+(defun org-extensions/init-org-bullets ()
+  (use-package org-bullets
+    :defer t
+    :config
+    (add-hook 'org-mode-hook (lambda ()
+                               (org-bullets-mode 1)))))
+
+(defun org-extensions/post-init-org-bullets ()
+  (add-hook 'org-mode-hook 'visual-line-mode)
+  (add-hook 'org-mode-hook (lambda ()
+                             (auto-fill-mode 1))))
+
