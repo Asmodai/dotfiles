@@ -65,8 +65,8 @@
     :config
     (progn
       (add-to-list 'org-src-lang-modes '("plantuml" . plantuml))
-      (setq-default plantuml-jar-path          "~/.emacs.d/.cache/java/plantuml.jar"
-                    org-plantuml-jar-path      "~/.emacs.d/.cache/java/plantuml.jar"
+      (setq-default plantuml-jar-path          "~/.emacs.d/private/local/java/plantuml.jar"
+                    org-plantuml-jar-path      "~/.emacs.d/private/local/java/plantuml.jar"
                     plantuml-default-exec-mode 'jar)
       (org-babel-do-load-languages 'org-babel-load-languages
                                    '((plantuml . t))))))
@@ -150,5 +150,6 @@
 (defun org-extensions/post-init-org-bullets ()
   (add-hook 'org-mode-hook 'visual-line-mode)
   (add-hook 'org-mode-hook (lambda ()
-                             (auto-fill-mode 1))))
+                             (auto-fill-mode 1)
+                             (org-num-mode 1))))
 
