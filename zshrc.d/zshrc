@@ -113,6 +113,7 @@ function getPaths() {
     test -d /bin                   && paths+='/bin'
     test -d /sbin                  && paths+='/sbin'
     test -d /usr/bin               && paths+='/usr/bin'
+    test -d /opt/homebrew/bin      && paths+='/opt/homebrew/bin'
     test -d /usr/local/bin         && paths+='/usr/local/bin'
     test -d /usr/sbin              && paths+='/usr/sbin'
     test -d /usr/local/sbin        && paths+='/usr/local/sbin'
