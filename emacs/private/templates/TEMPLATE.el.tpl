@@ -1,14 +1,16 @@
 ;;; -*- Mode: Emacs-Lisp -*-
 ;;;
-;;; bootstrap-template.el --- Load template library.
+;;; (>>>FILE<<<) --- (>>>TITLE<<<)
 ;;;
-;;; Copyright (c) 2017 Paul Ward <asmodai@gmail.com>
+;;; Copyright (c) (>>>YEAR<<<) (>>>USER_NAME<<<) (>>>LITERAL<<<)<(>>>/LITERAL<<<)(>>>AUTHOR<<<)(>>>LITERAL<<<)>(>>>/LITERAL<<<)
 ;;;
-;;; Author:     Paul Ward <asmodai@gmail.com>
-;;; Maintainer: Paul Ward <asmodai@gmail.com>
-;;; Created:    13 Feb 2017 15:46:27
-;;; Keywords:   
+;;; Author:     (>>>USER_NAME<<<) (>>>LITERAL<<<)<(>>>/LITERAL<<<)(>>>AUTHOR<<<)(>>>LITERAL<<<)>(>>>/LITERAL<<<)
+;;; Maintainer: (>>>USER_NAME<<<) (>>>LITERAL<<<)<(>>>/LITERAL<<<)(>>>AUTHOR<<<)(>>>LITERAL<<<)>(>>>/LITERAL<<<)
+;;; Created:    (>>>DATE<<<) (>>>TIME<<<)
+;;; Keywords:   (>>>1<<<)
 ;;; URL:        not distributed yet
+;;;
+;;; This file is not part of GNU Emacs.
 ;;;
 ;;;{{{ License:
 ;;;
@@ -33,19 +35,13 @@
 ;;;
 ;;;}}}
 
-(require 'template)
-(template-initialize)
+(eval-when-compile
+  (require 'cl))
 
-(setq template-default-directories
-      (append (list (concat user-home-directory
-                            ".emacs.d/private/templates/"))
-              template-default-directories))
+(>>>POINT<<<)
 
-;; custom.el isn't overriding this.
-(setf template-subdirectories
-      (list
-            (expand-file-name (concat user-home-directory "templates/"))))
+(provide '(>>>FILE_SANS<<<))
 
-(provide 'custom-template)
-
-;;; bootstrap-template.el ends here.
+;;; (>>>FILE<<<) ends here.
+>>>TEMPLATE-DEFINITION-SECTION<<<
+("TITLE" "Enter a description for this file: " "" "" "")
