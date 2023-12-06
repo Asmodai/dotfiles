@@ -176,10 +176,18 @@
 (defun org/post-init-org ()
   (require 'org-inlinetask)
   (require 'org-tempo)
+  ;;
+  ;; Set TODO keywords.
+  (setq org-todo-keywords
+        '((sequence "TODO" "FEEDBACK" "VERIFY" "|" "DONE" "DELEGATED")))
+  ;;
+  ;; Set various `org-mode' defaults.
   (setq-default org-tags-column 60
                 org-fontify-whole-heading-line t
                 org-fontify-quote-and-verse-blocks t
                 org-enforce-todo-checkbox-dependencies t)
+  ;;
+  ;; Hooks glorious hooks!
   (add-hook 'org-mode-hook 'visual-line-mode)
   (add-hook 'org-mode-hook (lambda ()
                              (org-num-mode 1)
