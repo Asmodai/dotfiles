@@ -31,6 +31,13 @@
 ;;;
 ;;;}}}
 
+(defun org-extensions--summary-todo (n-done n-not-done)
+  "Switch entry to DONE when all subentries are done, to TODO otherwise."
+  (let (org-log-done org-todo-log-states) ; turn off logging.
+    (org-todo (if (= n-not-done 0)
+                  "DONE"
+                "TODO"))))
+
 (defun org-extensions--align-tags-here (to-col)
   "Align tags on the current headline to TO-COL.
 Since TO-COL is derived from `org-tags-column', a negative value is

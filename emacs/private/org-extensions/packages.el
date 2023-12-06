@@ -176,9 +176,10 @@
 (defun org/post-init-org ()
   (require 'org-inlinetask)
   (require 'org-tempo)
-  (setq-default org-tags-column 60)
-  (setq-default org-fontify-whole-heading-line t)
-  (setq-default org-fontify-quote-and-verse-blocks t)
+  (setq-default org-tags-column 60
+                org-fontify-whole-heading-line t
+                org-fontify-quote-and-verse-blocks t
+                org-enforce-todo-checkbox-dependencies t)
   (add-hook 'org-mode-hook 'visual-line-mode)
   (add-hook 'org-mode-hook (lambda ()
                              (org-num-mode 1)
@@ -186,5 +187,6 @@
                              (org-table-header-line-mode 1)
                              (variable-pitch-mode 1)
                              (visual-line-mode 1)))
-  (add-hook 'org-mode-hook #'org-extensions/fix-tag-alignment))
+  (add-hook 'org-mode-hook #'org-extensions/fix-tag-alignment)
+  (add-hook 'org-after-todo-statistics-hook #'org-extensions--summary-todo))
 
