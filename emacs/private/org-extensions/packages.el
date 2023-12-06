@@ -47,7 +47,9 @@
     citar
     org-roam-bibtex
     org-bullets
-    citar-org-roam))
+    org-remark
+    citar-org-roam
+    ox-pandoc))
 
 (defun org-extensions/init-ob-bitfield ()
   (use-package ob-bitfield
@@ -109,6 +111,11 @@
     (progn
       (require 'org-ref))))
 
+(defun org-extensions/init-ox-pandoc ()
+  (use-package ox-pandoc
+    :defer t
+    :init (require 'ox-pandoc)))
+
 (defun org-extensions/init-citar-org-roam ()
   (use-package citar-org-roam
     :defer t
@@ -147,7 +154,27 @@
     (add-hook 'org-mode-hook (lambda ()
                                (org-bullets-mode 1)))))
 
-(defun org-extensions/post-init-org-bullets ()
+(defun org-extensions/init-org-remark ()
+  (use-package org-remark
+    :defer t
+    :bind
+    (("C-c n m" . org-remark-mark)
+     ("C-c n l" . org-remark-mark-line)
+     :map org-remark-mode-map
+     ("C-c n o" . org-remark-open)
+     ("C-c n ]" . org-remark-view-next)
+     ("C-c n [" . org-remark-view-prev)
+     ("C-c n r" . org-remark-remove)
+     ("C-c n d" . org-remark-delete))
+    :init
+    (org-remark-global-tracking-mode +1)
+    :config
+    (use-package org-remark-info :after info :config (org-remark-info-mode +1))
+    (use-package org-remark-eww  :after eww  :config (org-remark-eww-mode +1))
+    (use-package org-remark-nov  :after nov  :config (org-remark-nov-mode +1))))
+
+(defun org/post-init-org ()
+  (require 'org-inlinetask)
   (add-hook 'org-mode-hook 'visual-line-mode)
   (add-hook 'org-mode-hook (lambda ()
                              (auto-fill-mode 1)
