@@ -175,8 +175,16 @@
 
 (defun org/post-init-org ()
   (require 'org-inlinetask)
+  (require 'org-tempo)
+  (setq-default org-tags-column 60)
+  (setq-default org-fontify-whole-heading-line t)
+  (setq-default org-fontify-quote-and-verse-blocks t)
   (add-hook 'org-mode-hook 'visual-line-mode)
   (add-hook 'org-mode-hook (lambda ()
-                             (auto-fill-mode 1)
-                             (org-num-mode 1))))
+                             (org-num-mode 1)
+                             (org-indent-mode 1)
+                             (org-table-header-line-mode 1)
+                             (variable-pitch-mode 1)
+                             (visual-line-mode 1)))
+  (add-hook 'org-mode-hook #'org-extensions/fix-tag-alignment))
 
