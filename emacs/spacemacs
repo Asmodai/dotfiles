@@ -61,13 +61,14 @@ This function should only modify configuration layer settings."
           org-roam-ui-follow          t
           org-roam-ui-update-on-save  t
           org-roam-ui-open-on-start   t)
-     ;; (shell :variables
-     ;;        shell-default-height 30
-     ;;        shell-default-position 'bottom)
+     (shell :variables
+            shell-default-height 30
+            shell-default-position 'bottom)
      spell-checking
-     ;; syntax-checking
-     ;; version-control
-     treemacs
+     syntax-checking
+     version-control
+     (treemacs :variables
+               treemacs-use-all-the-icons-theme t)
      (c-c++ :variables
             c-c++-enable-google-style           t
             c-c++-adopt-subprojects             t
@@ -76,7 +77,10 @@ This function should only modify configuration layer settings."
             c-c++-dap-adapters                  '(dap-lldb dap-cpptools)
             c-c++-enable-google-style           t
             c-c++-enable-clang-format-on-save   nil)
-     go
+     (go :variables
+         go-format-before-save t
+         go-tab-width          2
+         go-use-golangci-lint  t)
      sql
      common-lisp
      org-extensions)
@@ -319,7 +323,9 @@ It should only modify the values of Spacemacs settings."
    ;; refer to the DOCUMENTATION.org for more info on how to create your own
    ;; spaceline theme. Value can be a symbol or list with additional properties.
    ;; (default '(spacemacs :separator wave :separator-scale 1.5))
-   dotspacemacs-mode-line-theme '(spacemacs :separator wave :separator-scale 1.5)
+   dotspacemacs-mode-line-theme '(spacemacs
+                                  :separator arrow
+                                  :separator-scale 1.0)
 
    ;; If non-nil the cursor color matches the state color in GUI Emacs.
    ;; (default t)
@@ -479,7 +485,8 @@ It should only modify the values of Spacemacs settings."
    ;;   :size-limit-kb 1000)
    ;; When used in a plist, `visual' takes precedence over `relative'.
    ;; (default nil)
-   dotspacemacs-line-numbers '(:visual nil
+   dotspacemacs-line-numbers '(:relative nil
+                               :visual nil
                                :disabled-for-modes dired-mode
                                                    doc-view-mode
                                                    pdf-view-mode
@@ -488,7 +495,7 @@ It should only modify the values of Spacemacs settings."
 
    ;; Code folding method. Possible values are `evil', `origami' and `vimish'.
    ;; (default 'evil)
-   dotspacemacs-folding-method 'evil
+   dotspacemacs-folding-method 'origami
 
    ;; If non-nil and `dotspacemacs-activate-smartparens-mode' is also non-nil,
    ;; `smartparens-strict-mode' will be enabled in programming modes.
