@@ -86,8 +86,8 @@ installPowerLine() {
     then
         echo "Installing PowerLine..."
 
-        pip install powerline-gitstatus
-        pip install powerline-status
+        pip install --break-system-packages powerline-gitstatus
+        pip install --break-system-packages powerline-status
 
         echo "Installing PowerLine config..."
 
