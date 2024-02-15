@@ -1,0 +1,19 @@
+[Desktop Entry]
+Comment=MySplash
+
+Encoding=UTF-8
+Keywords=Desktop;Workspace;Appearance;Look and Feel;Logout;Lock;Suspend;Shutdown;Hibernate;
+Name=MySplash
+
+Type=Service
+
+X-KDE-ServiceTypes=Plasma/LookAndFeel
+X-KDE-ParentApp=
+X-KDE-PluginInfo-Author=Asmodai
+X-KDE-PluginInfo-Category=
+X-KDE-PluginInfo-Email=asmodai@gmail.com
+X-KDE-PluginInfo-License=GPLv3
+X-KDE-PluginInfo-Name=MySplash
+X-KDE-PluginInfo-Version=1.0
+X-Plasma-MainScript=defaults
+
