@@ -65,7 +65,6 @@ __eza() {
 
 if [[ -f /usr/bin/eza ]];
 then
-
   alias ls="eza -g --color=always --group-directories-first --icons=auto"
   alias la="eza -gah --color=always --group-directories-first --icons=auto"
   alias ll="eza -glh --color=always --group-directories-first --icons=auto"
@@ -74,4 +73,16 @@ then
 
   unset '_comps[ls]'
   compdef __eza eza ls la ll lt lsa
+fi
+
+if [[ -f /usr/bin/exa ]];
+then
+  alias ls="exa -g --color=always --group-directories-first --icons"
+  alias la="exa -gah --color=always --group-directories-first --icons"
+  alias ll="exa -glh --color=always --group-directories-first --icons"
+  alias lt="exa -gaTh --color=always --group-directories-first --icons"
+  alias lsa="exa -glah --color=always --group-directories-first --icons"
+
+  unset '_comps[ls]'
+  compdef __eza exa ls la ll lt lsa
 fi
