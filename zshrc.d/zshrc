@@ -123,6 +123,9 @@ function getPaths() {
     test -d "${HOME}/bin"          && paths+="${HOME}/bin"
     test -d "${HOME}/.zshrc.d/bin" && paths+="${HOME}/.zshrc.d/bin"
 
+    # This is a thing on Garuda (maybe Arch too?)
+    test -d /usr/bin/vendor_perl   && paths+="/usr/bin/vendor_perl" 
+
     export PATH=${(j;:;)paths}
 }
 

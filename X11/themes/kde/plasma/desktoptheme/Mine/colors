@@ -1,5 +1,5 @@
 [Colors:Button]
-BackgroundNormal=48,47,47
+BackgroundNormal=#2b2a33
 DecorationFocus=d96fff
 DecorationHover=#5c4371
 ForegroundNormal=224,222,219
