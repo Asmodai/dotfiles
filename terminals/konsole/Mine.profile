@@ -9,6 +9,8 @@ UseCustomCursorColor=true
 
 [General]
 Command=/bin/zsh
+DimWhenInactive=false
+InvertSelectionColors=false
 Name=Mine
 Parent=FALLBACK/
 TerminalColumns=80
