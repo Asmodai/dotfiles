@@ -1,7 +1,7 @@
 !! Xdefaults dotfile
 
 #define fgcolor  #d8d8d8
-#define bgcolor  #343434
+#define bgcolor  #2b2a33
 #define hlcolor  #693876
 #define termbg   #121212
 #define termfg   #B2B2B2
