@@ -3,7 +3,7 @@ ColorScheme=Mine
 Font=Source Code Pro for Powerline,10,-1,5,50,0,0,0,0,0
 
 [Cursor Options]
-CursorShape=2
+CursorShape=0
 CustomCursorColor=162,63,254
 UseCustomCursorColor=true
 
