@@ -122,9 +122,10 @@ then
   alias ll="eza -gl --color=always --group-directories-first --icons=auto"
   alias lt="eza -gaT --color=always --group-directories-first --icons=auto"
   alias lsa="eza -gla --color=always --group-directories-first --icons=auto"
+  alias l="eza -gla --color=always --group-directories-first --icons=auto"
 
   unset '_comps[ls]'
-  compdef __eza eza ls la ll lt lsa
+  compdef __eza eza ls la ll lt lsa l
 fi
 
 if [[ -f /usr/bin/exa ]];
@@ -134,7 +135,8 @@ then
   alias ll="exa -gl --color=always --group-directories-first --icons"
   alias lt="exa -gaT --color=always --group-directories-first --icons"
   alias lsa="exa -gla --color=always --group-directories-first --icons"
+  alias l="exa -gla --color=always --group-directories-first --icons"
 
   unset '_comps[ls]'
-  compdef __exa exa ls la ll lt lsa
+  compdef __exa exa ls la ll lt lsa l
 fi
