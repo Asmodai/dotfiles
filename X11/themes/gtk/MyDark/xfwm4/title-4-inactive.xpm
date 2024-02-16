@@ -4,7 +4,7 @@ static char * title_4_inactive_xpm[] = {
 " 	c None",
 <<<<<<< HEAD
 ".	c #d8d8d8",
-"+	c #343434",
+"+	c #2b2a33",
 =======
 ".	c #393939",
 "+	c #444444",
