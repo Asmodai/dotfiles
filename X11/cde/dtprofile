@@ -20,6 +20,9 @@ export QT_QPA_PLATFORMTHEME=qt5ct
 # Undo nefarious crap
 export EDITOR=/bin/vi
 
+# Pull in Xdefaults
+xrdb -merge ${HOME}/.Xdefaults
+
 # Can we set the wallpaper?
 if [ -f /bin/xsetbg ]
 then
