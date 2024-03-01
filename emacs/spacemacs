@@ -115,6 +115,11 @@ This function should only modify configuration layer settings."
 (defun dotspacemacs/setup-dynamic-settings ()
   "This function is called by DOTSPACEMACS/INIT and is responsible for
 initialising various 'dynamic' settings, such as fonts."
+  ;; Console doesn't have `x-list-fonts' or `x-family-fonts'.
+  (when (not (fboundp 'x-list-fonts))
+    (defun x-list-fonts (x) nil))
+  (when (not (fboundp 'x-family-fonts))
+    (defun x-family-fonts (x) nil))
   (let* ((fixed-font-size
           (if (eq window-system 'ns)
               12.0
