@@ -641,7 +641,6 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
         user-work-mail-address    "pward@alertlogic.com"
         url-personal-mail-address "asmodai@gmail.com"))
 
-
 (defun dotspacemacs/user-load ()
   "Library to load while dumping.
 This function is called only while dumping Spacemacs configuration. You can
@@ -649,6 +648,24 @@ This function is called only while dumping Spacemacs configuration. You can
 dump."
 )
 
+(defun untabify-buffer ()
+  "Untabify the current buffer."
+  (interactive)
+  (unless (string= (substring mode-name 0 8) "Makefile")
+    (save-excursion
+      (untabify (point-min) (point-max)))))
+
+(defun progmodes-hooks ()
+  "Hooks for programming modes."
+  (yas/minor-mode-on)
+  (add-hook 'before-save-hook 'progmodes-write-hooks))
+
+(defun progmodes-write-hooks ()
+  "Hooks which run on file write for programming modes."
+  (prog1 nil
+    (set-buffer-file-coding-system 'utf-8-unix)
+    (untabify-buffer)
+    (copyright-update)))
 
 (defun dotspacemacs/user-config ()
   "Configuration for user code:
@@ -658,15 +675,22 @@ Put your configuration code here, except for variables that should be set
 before packages are loaded."
   (require 'template)
   (require 'custom-template)
-  (require 'sunrise)
   (menu-bar-mode t)
   (scroll-bar-mode t)
+  (setf lsp-enable-on-type-formatting nil)
   (add-hook 'web-hook-mode
             (lambda ()
               (setq web-mode-attr-indent-offset nil)))
   (add-hook 'editorconfig-custom-hooks
             (lambda (hash)
-              (setq web-mode-block-padding 0))))
+              (setq web-mode-block-padding 0)))
+  ;;
+  ;; Add hooks for programming modes.
+  (add-hook 'php-mode-hook    'progmodes-hooks)
+  (add-hook 'python-mode-hook 'progmodes-hooks)
+  (add-hook 'js2-mode-hook    'progmodes-hooks)
+  (add-hook 'c-mode-hook      'progmodes-hooks)
+  (add-hook 'c-c++-mode-hooks 'progmodes-hooks))
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
@@ -686,6 +710,7 @@ This function is called at the very end of Spacemacs initialization."
    '("8875a97fb7b972df3ec9d08d8e77ce15b1cb95a4e0b81bbb22bb8c4fdc086f01" default))
  '(evil-want-Y-yank-to-eol nil)
  '(global-display-line-numbers-mode t)
+ '(lsp-enable-on-type-formatting nil)
  '(ns-right-alternate-modifier nil)
  '(org-fontify-quote-and-verse-blocks t)
  '(org-fontify-whole-heading-line t)
@@ -698,7 +723,7 @@ This function is called at the very end of Spacemacs initialization."
      (Syntax . LFE)
      (Lexical-Binding . t)))
  '(scroll-bar-mode t)
- '(template-use-package t)
+ '(template-use-package t nil (template))
  '(tool-bar-mode nil)
  '(warning-suppress-types '((:warning))))
 (custom-set-faces
