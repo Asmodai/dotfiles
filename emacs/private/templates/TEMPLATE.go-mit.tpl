@@ -1,3 +1,5 @@
+// -*- Mode: Go; auto-fill: t; fill-column: 78; -*-
+//
 // (>>>FILE<<<) --- (>>>TITLE<<<)
 //
 // Copyright (c) (>>>YEAR<<<) (>>>USER_NAME<<<) (>>>LITERAL<<<)<(>>>/LITERAL<<<)(>>>AUTHOR<<<)(>>>LITERAL<<<)>(>>>/LITERAL<<<)

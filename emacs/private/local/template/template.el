@@ -866,6 +866,10 @@ per-template definition section.  See `template-definition-start'."
 			  (and (fboundp 'user-mail-address)
 			       (user-mail-address))
 			  (concat (user-login-name) "@" (system-name)))))
+    ("WORK_AUTHOR" (insert (or user-work-mail-address
+                               (and (fboundp 'user-work-mail-address)
+                                    (user-work-mail-address))
+                               (concat (user-login-name) "@" (system-name)))))
     ("USER_NAME" (insert (or (and (boundp 'user-full-name) ; user name
 				  user-full-name)
 			     (user-full-name))))
@@ -1363,7 +1367,7 @@ argument SYNTAX, see `template-comment-syntax'."
       (setq str (car (pop alist)))
       (when str
 	(setq i (length str))
-	(while (>= (decf i) 0)
+	(while (>= (cl-decf i) 0)
 	  ;; (pushnew (aref str i) chars), but requires cl at runtime:
 	  (or (memq (setq c (aref str i)) chars) (push c chars)))))
     (concat "\\("

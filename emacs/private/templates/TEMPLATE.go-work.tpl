@@ -1,6 +1,8 @@
+// -*- Mode: Go; auto-fill: t; fill-column: 78; -*-
+//
 // (>>>FILE<<<) --- (>>>TITLE<<<)
 //
-// Copyright (c) (>>>YEAR<<<) Alert Logic, Inc.
+// Copyright (c) (>>>YEAR<<<) Fortra, LLC.
 //
 // Author:     (>>>USER_NAME<<<) (>>>LITERAL<<<)<(>>>/LITERAL<<<)(>>>WORK_AUTHOR<<<)(>>>LITERAL<<<)>(>>>/LITERAL<<<)
 // Maintainer: (>>>USER_NAME<<<) (>>>LITERAL<<<)<(>>>/LITERAL<<<)(>>>WORK_AUTHOR<<<)(>>>LITERAL<<<)>(>>>/LITERAL<<<)

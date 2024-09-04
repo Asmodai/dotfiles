@@ -7,10 +7,10 @@
 #define termfg   #B2B2B2
 
 #define uifont \
-    xft:Cantarell:pixelsize=12,style=regular
+    xft:Cantarell:pixelsize=12
 
 #define termfont \
-    xft:"Source Code Pro for Powerline":pixelsize=12,style=regular
+    xft:"Source Code Pro for Powerline":pixelsize=12
 
 ! --------------------------------------------------------------------
 ! Global settings.

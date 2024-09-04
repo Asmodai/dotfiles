@@ -77,9 +77,10 @@ This function should only modify configuration layer settings."
             c-c++-enable-google-style           t
             c-c++-enable-clang-format-on-save   nil)
      (go :variables
-         gofmt-args '("-s")
+         go-backend            'lsp
+         gofmt-args            '("-s")
          go-format-before-save t
-         go-tab-width          2
+         go-tab-width          8
          go-use-golangci-lint  t)
      sql
      common-lisp
@@ -493,12 +494,12 @@ It should only modify the values of Spacemacs settings."
    ;; When used in a plist, `visual' takes precedence over `relative'.
    ;; (default nil)
    dotspacemacs-line-numbers '(:relative nil
-                               :visual nil
-                               :disabled-for-modes dired-mode
-                                                   doc-view-mode
-                                                   pdf-view-mode
-                                                   org-mode
-                               :size-limit-kb 1000)
+                                         :visual nil
+                                         :disabled-for-modes dired-mode
+                                         doc-view-mode
+                                         pdf-view-mode
+                                         org-mode
+                                         :size-limit-kb 1000)
 
    ;; Code folding method. Possible values are `evil', `origami' and `vimish'.
    ;; (default 'evil)
@@ -572,7 +573,7 @@ It should only modify the values of Spacemacs settings."
    ;; Color highlight trailing whitespace in all prog-mode and text-mode derived
    ;; modes such as c++-mode, python-mode, emacs-lisp, html-mode, rst-mode etc.
    ;; (default t)
-   dotspacemacs-show-trailing-whitespace t 
+   dotspacemacs-show-trailing-whitespace t
 
    ;; Delete whitespace while saving buffer. Possible values are `all'
    ;; to aggressively delete empty line and long sequences of whitespace,
@@ -621,7 +622,7 @@ default it calls `spacemacs/load-spacemacs-env' which loads the environment
 variables declared in `~/.spacemacs.env' or `~/.spacemacs.d/.spacemacs.env'.
 See the header of this file for more information."
   (spacemacs/load-spacemacs-env)
-)
+  )
 
 (defun dotspacemacs/user-init ()
   "Initialization for user code:
@@ -648,7 +649,7 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
 This function is called only while dumping Spacemacs configuration. You can
 `require' or `load' the libraries of your choice that will be included in the
 dump."
-)
+  )
 
 (defun untabify-buffer ()
   "Untabify the current buffer."
@@ -660,7 +661,10 @@ dump."
 (defun progmodes-hooks ()
   "Hooks for programming modes."
   (yas/minor-mode-on)
-  (add-hook 'before-save-hook 'progmodes-write-hooks))
+  (add-hook 'before-save-hook 'progmodes-write-hooks)
+  (set (make-local-variable 'comment-auto-fill-only-comments) t)
+  (auto-fill-mode 1)
+  (display-fill-column-indicator-mode 1))
 
 (defun progmodes-write-hooks ()
   "Hooks which run on file write for programming modes."
@@ -675,6 +679,7 @@ This function is called at the very end of Spacemacs startup, after layer
 configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
+  (message "Loading user-config")
   (require 'template)
   (require 'custom-template)
   (menu-bar-mode t)
@@ -688,11 +693,14 @@ before packages are loaded."
               (setq web-mode-block-padding 0)))
   ;;
   ;; Add hooks for programming modes.
-  (add-hook 'php-mode-hook    'progmodes-hooks)
-  (add-hook 'python-mode-hook 'progmodes-hooks)
-  (add-hook 'js2-mode-hook    'progmodes-hooks)
-  (add-hook 'c-mode-hook      'progmodes-hooks)
-  (add-hook 'c-c++-mode-hooks 'progmodes-hooks))
+  (add-hook 'php-mode-hook           #'progmodes-hooks)
+  (add-hook 'python-mode-hook        #'progmodes-hooks)
+  (add-hook 'js2-mode-hook           #'progmodes-hooks)
+  (add-hook 'c-mode-hook             #'progmodes-hooks)
+  (add-hook 'c-c++-mode-hooks        #'progmodes-hooks)
+  (add-hook 'go-mode-hook            #'progmodes-hooks)
+  (add-hook 'go-mode-local-vars-hook #'progmodes-hooks)
+  (add-hook 'lsp-mode-hook           #'progmodes-hooks))
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
@@ -701,68 +709,69 @@ before packages are loaded."
 This is an auto-generated function, do not modify its content directly, use
 Emacs customize menu instead.
 This function is called at the very end of Spacemacs initialization."
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(blink-cursor-mode nil)
- '(column-number-mode t)
- '(custom-safe-themes
-   '("eab123a5ed21463c780e17fc44f9ffc3e501655b966729a2d5a2072832abd3ac" "bbb13492a15c3258f29c21d251da1e62f1abb8bbd492386a673dcfab474186af" "7fd8b914e340283c189980cd1883dbdef67080ad1a3a9cc3df864ca53bdc89cf" "8875a97fb7b972df3ec9d08d8e77ce15b1cb95a4e0b81bbb22bb8c4fdc086f01" default))
- '(evil-want-Y-yank-to-eol nil)
- '(global-display-line-numbers-mode t)
- '(lsp-enable-on-type-formatting nil)
- '(ns-right-alternate-modifier nil)
- '(org-fontify-quote-and-verse-blocks t)
- '(org-fontify-whole-heading-line t)
- '(package-selected-packages
-   '(rainbow-mode notmuch mu4easy emacsql-sqlite-builtin emacsql-sqlite-module yaml-mode company-web web-completion-data counsel-css emmet-mode helm-css-scss pug-mode sass-mode haml-mode scss-mode slim-mode tagedit web-mode company-php ac-php-core xcscope company-phpactor drupal-mode geben php-auto-yasnippets php-extras php-mode phpactor composer php-runtime phpcbf phpunit company erlang add-node-modules-path eldoc impatient-mode htmlize import-js grizzl js-doc js2-refactor multiple-cursors livid-mode nodejs-repl npm-mode prettier-js skewer-mode js2-mode simple-httpd tern web-beautify highlight-indent-guides sqlup-mode company-go counsel-gtags counsel swiper ivy dap-mode lsp-docker lsp-treemacs bui lsp-mode flycheck-golangci-lint ggtags go-eldoc go-fill-struct go-gen-test go-guru go-impl go-rename go-tag go-mode godoctor helm-gtags ace-jump-helm-line ace-link aggressive-indent auto-compile packed auto-highlight-symbol centered-cursor-mode clean-aindent-mode column-enforce-mode define-word devdocs dired-quick-sort drag-stuff dumb-jump editorconfig elisp-def elisp-slime-nav emr clang-format list-utils eval-sexp-fu evil-anzu anzu evil-args evil-cleverparens paredit evil-collection annalist evil-ediff evil-escape evil-exchange evil-goggles evil-iedit-state iedit evil-indent-plus evil-lion evil-lisp-state evil-matchit evil-mc evil-nerd-commenter evil-numbers evil-surround evil-textobj-line evil-tutor evil-unimpaired evil-visual-mark-mode evil-visualstar expand-region eyebrowse fancy-battery flx-ido flycheck-elsa flycheck-package package-lint flycheck golden-ratio google-translate helm-ag helm-descbinds helm-flx flx helm-make helm-mode-manager helm-org helm-projectile helm-purpose helm-swoop helm-themes helm-xref helm helm-core help-fns+ hide-comnt highlight-indentation highlight-numbers parent-mode highlight-parentheses hl-todo compat hungry-delete indent-guide info+ inspector link-hint lorem-ipsum macrostep multi-line shut-up nameless open-junk-file org-superstar overseer f pkg-info epl paradox spinner password-generator popup popwin quickrun rainbow-delimiters request restart-emacs smartparens space-doc spaceline-all-the-icons memoize spaceline all-the-icons powerline spacemacs-purpose-popwin spacemacs-whitespace-cleanup string-edit string-inflection symbol-overlay symon term-cursor toc-org treemacs-icons-dired treemacs-persp persp-mode treemacs-projectile treemacs projectile cfrs ht pfuture ace-window avy posframe s undo-tree queue uuidgen vi-tilde-fringe vim-powerline volatile-highlights window-purpose imenu-list winum dash writeroom-mode visual-fill-column ws-butler async bind-map diminish dotenv-mode evil-evilified-state font-lock+ holy-mode hybrid-mode evil goto-chg hydra lv pcre2el use-package bind-key which-key))
- '(safe-local-variable-values
-   '((auto-fill . t)
-     (flycheck-clang-include-path . "c_src/")
-     (flycheck-gcc-include-path . "c_src/")
-     (Syntax . LFE)
-     (Lexical-Binding . t)))
- '(scroll-bar-mode t)
- '(template-use-package t nil (template))
- '(tool-bar-mode nil)
- '(warning-suppress-types '((:warning))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(fixed-pitch ((t (:font "Sauce Code Powerline" :size 10.0))))
- '(highlight-parentheses-highlight ((nil (:weight ultra-bold))) t)
- '(org-block ((t (:inherit fixed-pitch :background "#1d1f21"))))
- '(org-block-begin-line ((t (:inherit fixed-pitch :extend t :background "#292041" :foreground "SeaGreen3"))))
- '(org-block-end-line ((t (:inherit fixed-pitch :extend t :background "#292041" :foreground "salmon1"))))
- '(org-checkbox ((t (:inherit fixed-pitch :weight bold :foreground "white"))))
- '(org-code ((t (:inherit (font-lock-function-name-face shadow fixed-pitch)))))
- '(org-document-info ((t (:foreground "dark orange"))))
- '(org-document-info-keyword ((t (:inherit (shadow fixed-pitch)))))
- '(org-document-title ((t (:inherit variable-pitch :weight bold :underline nil :foreground "#f1ebff" :height 1.4))))
- '(org-done ((t (:foreground "PaleGreen1" :background "dark slate gray" :inherit variable-pitch :weight bold))))
- '(org-drawer ((t (:inherit fixed-pitch :foreground "LightSkyBlue"))))
- '(org-indent ((t (:inherit (org-hide fixed-pitch)))))
- '(org-level-1 ((t (:inherit variable-pitch :extend t :background "#8c70ca" :foreground "#f1ebff" :weight bold :height 1.3))))
- '(org-level-2 ((t (:inherit variable-pitch :extend t :background "#755dac" :foreground "#f1ebff" :weight bold :height 1.2))))
- '(org-level-3 ((t (:inherit variable-pitch :extend t :background "#5e4a8e" :foreground "#f1ebff" :weight bold :height 1.1))))
- '(org-level-4 ((t (:inherit variable-pitch :extend t :background "#493872" :foreground "#f1ebff" :weight bold))))
- '(org-level-5 ((t (:inherit variable-pitch :extend t :background "#342757" :foreground "#f1ebff" :weight bold))))
- '(org-level-6 ((t (:inherit variable-pitch :extend t :background "#342757" :foreground "#f1ebff" :weight bold))))
- '(org-level-7 ((t (:inherit variable-pitch :extend t :background "#342757" :foreground "#f1ebff" :weight bold))))
- '(org-level-8 ((t (:inherit variable-pitch :extend t :background "#342757" :foreground "#f1ebff" :weight bold))))
- '(org-link ((t (:foreground "dodger blue" :underline t))))
- '(org-meta-line ((t (:inherit (font-lock-comment-face fixed-pitch)))))
- '(org-property-value ((t (:inherit fixed-pitch))))
- '(org-quote ((t (:inherit (variable-pitch org-block) :slant italic :foreground "#f3e7ff"))))
- '(org-special-keyword ((t (:inherit (font-lock-comment-face fixed-pitch)))))
- '(org-table ((t (:inherit fixed-pitch :foreground "#d1bdff" :background "#28203c"))))
- '(org-tag ((t (:inherit (shadow fixed-pitch) :foreground "light pink" :weight bold :height 0.9))))
- '(org-todo ((t (:foreground "burlywood1" :background "chocolate4" :inherit variable-pitch :weight bold))))
- '(org-verbatim ((t (:inherit (font-lock-variable-name-face shadow fixed-pitch)))))
- '(org-verse ((t (:inherit (variable-pitch org-block) :slant italic :foreground "#f3e7ff"))))
- '(variable-pitch ((t (:font "DejaVu Sans" :size 12.0)))))
-)
+  (custom-set-variables
+   ;; custom-set-variables was added by Custom.
+   ;; If you edit it by hand, you could mess it up, so be careful.
+   ;; Your init file should contain only one such instance.
+   ;; If there is more than one, they won't work right.
+   '(blink-cursor-mode nil)
+   '(column-number-mode t)
+   '(custom-safe-themes
+     '("eab123a5ed21463c780e17fc44f9ffc3e501655b966729a2d5a2072832abd3ac" "bbb13492a15c3258f29c21d251da1e62f1abb8bbd492386a673dcfab474186af" "7fd8b914e340283c189980cd1883dbdef67080ad1a3a9cc3df864ca53bdc89cf" "8875a97fb7b972df3ec9d08d8e77ce15b1cb95a4e0b81bbb22bb8c4fdc086f01" default))
+   '(evil-want-Y-yank-to-eol nil)
+   '(global-display-line-numbers-mode t)
+   '(lsp-enable-on-type-formatting nil)
+   '(ns-right-alternate-modifier nil)
+   '(org-fontify-quote-and-verse-blocks t)
+   '(org-fontify-whole-heading-line t)
+   '(package-selected-packages
+     '(rainbow-mode notmuch mu4easy emacsql-sqlite-builtin emacsql-sqlite-module yaml-mode company-web web-completion-data counsel-css emmet-mode helm-css-scss pug-mode sass-mode haml-mode scss-mode slim-mode tagedit web-mode company-php ac-php-core xcscope company-phpactor drupal-mode geben php-auto-yasnippets php-extras php-mode phpactor composer php-runtime phpcbf phpunit company erlang add-node-modules-path eldoc impatient-mode htmlize import-js grizzl js-doc js2-refactor multiple-cursors livid-mode nodejs-repl npm-mode prettier-js skewer-mode js2-mode simple-httpd tern web-beautify highlight-indent-guides sqlup-mode company-go counsel-gtags counsel swiper ivy dap-mode lsp-docker lsp-treemacs bui lsp-mode flycheck-golangci-lint ggtags go-eldoc go-fill-struct go-gen-test go-guru go-impl go-rename go-tag go-mode godoctor helm-gtags ace-jump-helm-line ace-link aggressive-indent auto-compile packed auto-highlight-symbol centered-cursor-mode clean-aindent-mode column-enforce-mode define-word devdocs dired-quick-sort drag-stuff dumb-jump editorconfig elisp-def elisp-slime-nav emr clang-format list-utils eval-sexp-fu evil-anzu anzu evil-args evil-cleverparens paredit evil-collection annalist evil-ediff evil-escape evil-exchange evil-goggles evil-iedit-state iedit evil-indent-plus evil-lion evil-lisp-state evil-matchit evil-mc evil-nerd-commenter evil-numbers evil-surround evil-textobj-line evil-tutor evil-unimpaired evil-visual-mark-mode evil-visualstar expand-region eyebrowse fancy-battery flx-ido flycheck-elsa flycheck-package package-lint flycheck golden-ratio google-translate helm-ag helm-descbinds helm-flx flx helm-make helm-mode-manager helm-org helm-projectile helm-purpose helm-swoop helm-themes helm-xref helm helm-core help-fns+ hide-comnt highlight-indentation highlight-numbers parent-mode highlight-parentheses hl-todo compat hungry-delete indent-guide info+ inspector link-hint lorem-ipsum macrostep multi-line shut-up nameless open-junk-file org-superstar overseer f pkg-info epl paradox spinner password-generator popup popwin quickrun rainbow-delimiters request restart-emacs smartparens space-doc spaceline-all-the-icons memoize spaceline all-the-icons powerline spacemacs-purpose-popwin spacemacs-whitespace-cleanup string-edit string-inflection symbol-overlay symon term-cursor toc-org treemacs-icons-dired treemacs-persp persp-mode treemacs-projectile treemacs projectile cfrs ht pfuture ace-window avy posframe s undo-tree queue uuidgen vi-tilde-fringe vim-powerline volatile-highlights window-purpose imenu-list winum dash writeroom-mode visual-fill-column ws-butler async bind-map diminish dotenv-mode evil-evilified-state font-lock+ holy-mode hybrid-mode evil goto-chg hydra lv pcre2el use-package bind-key which-key))
+   '(safe-local-variable-values
+     '((auto-fill . t)
+       (fill-column . 78)
+       (flycheck-clang-include-path . "c_src/")
+       (flycheck-gcc-include-path . "c_src/")
+       (Syntax . LFE)
+       (Lexical-Binding . t)))
+   '(scroll-bar-mode t)
+   '(template-use-package t nil (template))
+   '(tool-bar-mode nil)
+   '(warning-suppress-types '((:warning))))
+  (custom-set-faces
+   ;; custom-set-faces was added by Custom.
+   ;; If you edit it by hand, you could mess it up, so be careful.
+   ;; Your init file should contain only one such instance.
+   ;; If there is more than one, they won't work right.
+   '(fixed-pitch ((t (:font "Sauce Code Powerline" :size 10.0))))
+   '(highlight-parentheses-highlight ((nil (:weight ultra-bold))) t)
+   '(org-block ((t (:inherit fixed-pitch :background "#1d1f21"))))
+   '(org-block-begin-line ((t (:inherit fixed-pitch :extend t :background "#292041" :foreground "SeaGreen3"))))
+   '(org-block-end-line ((t (:inherit fixed-pitch :extend t :background "#292041" :foreground "salmon1"))))
+   '(org-checkbox ((t (:inherit fixed-pitch :weight bold :foreground "white"))))
+   '(org-code ((t (:inherit (font-lock-function-name-face shadow fixed-pitch)))))
+   '(org-document-info ((t (:foreground "dark orange"))))
+   '(org-document-info-keyword ((t (:inherit (shadow fixed-pitch)))))
+   '(org-document-title ((t (:inherit variable-pitch :weight bold :underline nil :foreground "#f1ebff" :height 1.4))))
+   '(org-done ((t (:foreground "PaleGreen1" :background "dark slate gray" :inherit variable-pitch :weight bold))))
+   '(org-drawer ((t (:inherit fixed-pitch :foreground "LightSkyBlue"))))
+   '(org-indent ((t (:inherit (org-hide fixed-pitch)))))
+   '(org-level-1 ((t (:inherit variable-pitch :extend t :background "#8c70ca" :foreground "#f1ebff" :weight bold :height 1.3))))
+   '(org-level-2 ((t (:inherit variable-pitch :extend t :background "#755dac" :foreground "#f1ebff" :weight bold :height 1.2))))
+   '(org-level-3 ((t (:inherit variable-pitch :extend t :background "#5e4a8e" :foreground "#f1ebff" :weight bold :height 1.1))))
+   '(org-level-4 ((t (:inherit variable-pitch :extend t :background "#493872" :foreground "#f1ebff" :weight bold))))
+   '(org-level-5 ((t (:inherit variable-pitch :extend t :background "#342757" :foreground "#f1ebff" :weight bold))))
+   '(org-level-6 ((t (:inherit variable-pitch :extend t :background "#342757" :foreground "#f1ebff" :weight bold))))
+   '(org-level-7 ((t (:inherit variable-pitch :extend t :background "#342757" :foreground "#f1ebff" :weight bold))))
+   '(org-level-8 ((t (:inherit variable-pitch :extend t :background "#342757" :foreground "#f1ebff" :weight bold))))
+   '(org-link ((t (:foreground "dodger blue" :underline t))))
+   '(org-meta-line ((t (:inherit (font-lock-comment-face fixed-pitch)))))
+   '(org-property-value ((t (:inherit fixed-pitch))))
+   '(org-quote ((t (:inherit (variable-pitch org-block) :slant italic :foreground "#f3e7ff"))))
+   '(org-special-keyword ((t (:inherit (font-lock-comment-face fixed-pitch)))))
+   '(org-table ((t (:inherit fixed-pitch :foreground "#d1bdff" :background "#28203c"))))
+   '(org-tag ((t (:inherit (shadow fixed-pitch) :foreground "light pink" :weight bold :height 0.9))))
+   '(org-todo ((t (:foreground "burlywood1" :background "chocolate4" :inherit variable-pitch :weight bold))))
+   '(org-verbatim ((t (:inherit (font-lock-variable-name-face shadow fixed-pitch)))))
+   '(org-verse ((t (:inherit (variable-pitch org-block) :slant italic :foreground "#f3e7ff"))))
+   '(variable-pitch ((t (:font "DejaVu Sans" :size 12.0)))))
+  )

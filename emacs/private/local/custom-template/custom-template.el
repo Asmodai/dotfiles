@@ -36,6 +36,10 @@
 (require 'template)
 (template-initialize)
 
+(defconst user-home-directory
+  (expand-file-name "~/")
+  "User home directory.")
+
 (setq template-default-directories
       (append (list (concat user-home-directory
                             ".emacs.d/private/templates/"))
