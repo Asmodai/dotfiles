@@ -641,7 +641,7 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
   (setq user-url-address          "http://lisphacker.uk"
         user-full-name            "Paul Ward"
         user-mail-address         "asmodai@gmail.com"
-        user-work-mail-address    "pward@alertlogic.com"
+        user-work-mail-address    "paul.ward@fortra.com"
         url-personal-mail-address "asmodai@gmail.com"))
 
 (defun dotspacemacs/user-load ()
