@@ -1,6 +1,7 @@
 *.bak
 *~
 *.tmp
+.DS_Store
 zshrc.d/cache
 X11/themes/gtk/MyDark/.sass-cache
 X11/fvwm/.XDGMenu
