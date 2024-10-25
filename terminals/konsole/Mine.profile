@@ -17,5 +17,5 @@ TerminalColumns=80
 TerminalRows=25
 
 [Scrolling]
-HistoryMode=1
-HistorySize=1000
+HistoryMode=2
+HistorySize=2000
