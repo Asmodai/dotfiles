@@ -8,3 +8,10 @@ X11/fvwm/.XDGMenu
 X11/fvwm/icons
 X11/fvwm/.FvwmConsole-History
 X11/fvwm/fvwm_mfl_:0.pid
+
+# Emacs trash
+emacs/cache/
+emacs/eln-cache/
+emacs/elpa/
+emacs/var/
+emacs/custom.el
