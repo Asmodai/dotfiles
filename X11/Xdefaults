@@ -10,7 +10,7 @@
     xft:Cantarell:pixelsize=12
 
 #define termfont \
-    xft:"Source Code Pro for Powerline":pixelsize=12
+    xft:"Sauce Code Pro Powerline":pixelsize=11
 
 ! --------------------------------------------------------------------
 ! Global settings.
@@ -540,22 +540,22 @@ URxvt.preeditType:  OverTheSpot
 ! VT100 widget settings.
 !
 
-#define base0   #181818
-#define base1   #CC0000
-#define base2   #4E9A06
-#define base3   #C4A000
-#define base4   #3465A4
-#define base5   #75507B
-#define base6   #06989A
-#define base7   #D3D7CF
-#define base8   #555753
-#define base9   #EF2929
-#define base10  #8AE234
-#define base11  #FCE94F
-#define base12  #729FCF
-#define base13  #AD7FA8
-#define base14  #34E2E2
-#define base15  #EEEEEC
+#define ansiblack    #1c1b22
+#define ansired      #d40131
+#define ansigreen    #819501
+#define ansiyellow   #ac8300
+#define ansiblue     #2b90d8
+#define ansimagenta  #8c5bd4
+#define ansicyan     #259d94
+#define ansiwhite    #a5a3a9
+#define ansibblack   #121212
+#define ansibred     #fe4453
+#define ansibgreen   #e4fc84
+#define ansibyellow  #ffd36e
+#define ansibblue    #54b4ff
+#define ansibmagenta #b181fe
+#define ansibcyan    #94fff4
+#define ansibwhite   #f8f5ff
 
 *VT100*colorMode:             on
 *VT100*boldColors:            on
@@ -583,29 +583,29 @@ URxvt.preeditType:  OverTheSpot
 vt340*decTerminalID:          340
 vt420*decTerminalID:          420
 
-*.color0:           base0
-*.color1:           base1
-*.color2:           base2
-*.color3:           base3
-*.color4:           base4
-*.color5:           base5
-*.color6:           base6
-*.color7:           base7
-*.color8:           base8
-*.color9:           base9
-*.color10:          base10
-*.color11:          base11
-*.color12:          base12
-*.color13:          base13
-*.color14:          base14
-*.color15:          base15
+*.color0:           ansiblack
+*.color1:           ansired
+*.color2:           ansigreen
+*.color3:           ansiyellow
+*.color4:           ansiblue
+*.color5:           ansimagenta
+*.color6:           ansicyan
+*.color7:           ansiwhite
+*.color8:           ansibblack
+*.color9:           ansibred
+*.color10:          ansibgreen
+*.color11:          ansibyellow
+*.color12:          ansibblue
+*.color13:          ansibmagenta
+*.color14:          ansibcyan
+*.color15:          ansibwhite
 
 ! --------------------------------------------------------------------
 ! XScreenSaver settings.
 !
 *passwd.heading.label:    Look, either go away
 *passwd.body.label:       or guess my password
-*passwd.unlock.label:     Guess 
+*passwd.unlock.label:     Guess
 *passwd.login.label:      Give Up
 *passwd.asterisks:        True
 *passwd.uname:            False
