@@ -34,11 +34,6 @@
 #
 # }}}
 
-if [ "${DISABLE_AUTO_UPDATE}" != 'true' ];
-then
-    /usr/bin/env ZSH=$ZSH DISABLE_UPDATE_PROMPT=${DISABLE_UPDATE_PROMPT} zsh -f ${ZSH}/tools/check_for_update.zsh
-fi
-
 # Check if there's a ${HOME}/.local/bin
 if [ -d "${HOME}/.local/bin" ]
 then
@@ -55,12 +50,6 @@ autoload -U compaudit compinit
 if [[ -z "${ZSH_CACHE_DIR}" ]];
 then
     ZSH_CACHE_DIR="${ZSH}/cache"
-fi
-
-# Custom overrides
-if [[ -z "${ZSH_CUSTOM}" ]];
-then
-    ZSH_CUSTOM="${ZSH}/custom"
 fi
 
 # Load all config files

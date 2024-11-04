@@ -28,8 +28,6 @@ set_default_erlang()
         if (( $+erlcmds[${ERLANG_VERSION}] ))
         then
             source $erlcmds[${ERLANG_VERSION}]
-        else
-            echo "Could not find kerl install for Erlang ${ERLANG_VERSION}"
         fi
     fi
 }
