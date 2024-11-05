@@ -115,28 +115,35 @@ __eza() {
         --stdin"[When piping to eza. Read file names from stdin]"
 }
 
-if [[ -f /usr/bin/eza ]];
+_eza=$(which eza)
+_exa=$(which exa)
+
+if [[ -f "${_eza}" ]];
 then
-  alias ls="eza -g --color=always --group-directories-first --icons=auto"
-  alias la="eza -ga --color=always --group-directories-first --icons=auto"
-  alias ll="eza -gl --color=always --group-directories-first --icons=auto"
-  alias lt="eza -gaT --color=always --group-directories-first --icons=auto"
-  alias lsa="eza -gla --color=always --group-directories-first --icons=auto"
-  alias l="eza -gla --color=always --group-directories-first --icons=auto"
+  alias ls="${_eza} -g --color=always --group-directories-first --icons=auto"
+  alias la="${_eza} -ga --color=always --group-directories-first --icons=auto"
+  alias ll="${_eza} -gl --color=always --group-directories-first --icons=auto"
+  alias lt="${_eza} -gaT --color=always --group-directories-first --icons=auto"
+  alias lsa="${_eza} -gla --color=always --group-directories-first --icons=auto"
+  alias l="${_eza} -gla --color=always --group-directories-first --icons=auto"
 
   unset '_comps[ls]'
   compdef __eza eza ls la ll lt lsa l
 fi
 
-if [[ -f /usr/bin/exa ]];
+if [[ -f "${_exa}" ]];
 then
-  alias ls="exa -g --color=always --group-directories-first --icons"
-  alias la="exa -ga --color=always --group-directories-first --icons"
-  alias ll="exa -gl --color=always --group-directories-first --icons"
-  alias lt="exa -gaT --color=always --group-directories-first --icons"
-  alias lsa="exa -gla --color=always --group-directories-first --icons"
-  alias l="exa -gla --color=always --group-directories-first --icons"
+  alias ls="${_exa} -g --color=always --group-directories-first --icons"
+  alias la="${_exa} -ga --color=always --group-directories-first --icons"
+  alias ll="${_exa} -gl --color=always --group-directories-first --icons"
+  alias lt="${_exa} -gaT --color=always --group-directories-first --icons"
+  alias lsa="${_exa} -gla --color=always --group-directories-first --icons"
+  alias l="${_exa} -gla --color=always --group-directories-first --icons"
 
   unset '_comps[ls]'
   compdef __exa exa ls la ll lt lsa l
 fi
+
+unset _eza
+unset _exa
+
