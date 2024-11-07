@@ -33,6 +33,6 @@
 # }}}
 
 # Simply invoke git.
-git checkout origin master
+git pull origin master
 
 # update.sh ends here.
