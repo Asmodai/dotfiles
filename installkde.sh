@@ -3,10 +3,10 @@
 #
 # installkde.sh --- Install script for KDE goodness.
 #
-# Copyright (c) 2022 Paul Ward <asmodai@gmail.com>
+# Copyright (c) 2022-2024 Paul Ward <asmodai@gmail.com>
 #
-# Author:     Paul Ward <asmodai@gmail.com>
-# Maintainer: Paul Ward <asmodai@gmail.com>
+# Author:     Paul Ward <paul@lisphacker.uk>
+# Maintainer: Paul Ward <paul@lisphacker.uk>
 # Created:    04 Sep 2022 22:57:14
 #
 # {{{ License:

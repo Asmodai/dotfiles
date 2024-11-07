@@ -3,10 +3,10 @@
 #
 # install.sh --- Dot files installer.
 #
-# Copyright (c) 2016 Paul Ward <asmodai@gmail.com>
+# Copyright (c) 2016-2024 Paul Ward <asmodai@gmail.com>
 #
-# Author:     Paul Ward <asmodai@gmail.com>
-# Maintainer: Paul Ward <asmodai@gmail.com>
+# Author:     Paul Ward <paul@lisphacker.uk>
+# Maintainer: Paul Ward <paul@lisphacker.uk>
 # Created:    16 Aug 2016 21:31:24
 # Keywords:
 # URL:        not distributed yet
