@@ -1,0 +1,10 @@
+!! -*- mode: xrdb -*-
+!! ---------------------------------------------------------------- !!
+!!                                                                  !!
+!! Resources for the X clock application.                           !!
+!!                                                                  !!
+!! ---------------------------------------------------------------- !!
+
+XClock*hands: default_highlight
+
+!! XClock ends here.

@@ -1,0 +1,11 @@
+!! -*- mode: xrdb -*-
+!! ---------------------------------------------------------------- !!
+!!                                                                  !!
+!! Terminal type for X terminal emulators and derivatives that are  !!
+!! capable of handling 256 colours.                                 !!
+!!                                                                  !!
+!! ---------------------------------------------------------------- !!
+
+#define terminal_name  xterm256color
+
+!! xterm256color ends here.

@@ -1,0 +1,13 @@
+!! -*- mode: xrdb -*-
+!! ---------------------------------------------------------------- !!
+!!                                                                  !!
+!! Resources for the X font selector client.                        !!
+!!                                                                  !!
+!! ---------------------------------------------------------------- !!
+
+XFontSel*sampleText.background: terminal_background
+XFontSel*sampleText.foreground: terminal_foreground
+XFontSel*quitButton.shapeStyle: roundedRectangle
+ XFontSel*ownButton.shapeStyle: roundedRectangle
+
+!! XFontSel ends here.

@@ -1,0 +1,11 @@
+!! -*- mode: xrdb -*-
+!! ---------------------------------------------------------------- !!
+!!                                                                  !!
+!! Resources for the X 'eyes' demonstration client.                 !!
+!!                                                                  !!
+!! ---------------------------------------------------------------- !!
+
+*eyes*outline: scoForeground
+ *eyes*center: scoBackground
+
+!! XEyes ends here.

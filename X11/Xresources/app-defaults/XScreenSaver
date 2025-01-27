@@ -1,0 +1,15 @@
+!! -*- mode: xrdb -*-
+!! ---------------------------------------------------------------- !!
+!!                                                                  !!
+!! Resources for JWZ's X screen saver.                              !!
+!!                                                                  !!
+!! ---------------------------------------------------------------- !!
+
+*passwd.heading.label: Look, either go away
+   *passwd.body.label: or guess my password
+ *passwd.unlock.label: Guess 
+  *passwd.login.label: Give Up
+    *passwd.asterisks: True
+        *passwd.uname: False
+
+!! XScreenSaver ends here.

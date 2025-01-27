@@ -1,0 +1,10 @@
+!! -*- mode: xrdb -*-
+!! ---------------------------------------------------------------- !!
+!!                                                                  !!
+!! Terminal type for plain X terminal emulator and derivatives.     !!
+!!                                                                  !!
+!! ---------------------------------------------------------------- !!
+
+#define terminal_name  xterm
+
+!! xterm ends here.

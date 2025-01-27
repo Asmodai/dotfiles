@@ -1,0 +1,15 @@
+!! -*- mode: xrdb -*-
+!! ---------------------------------------------------------------- !!
+!!                                                                  !!
+!! Resources for the X editor application.                          !!
+!!                                                                  !!
+!! ---------------------------------------------------------------- !!
+
+   Xedit*editWindow*background: editor_background
+   Xedit*editWindow*foreground: editor_foreground
+Xedit*messageWindow*background: dark_background
+Xedit*messageWindow*foreground: dark_foreground
+     Xedit*filename*background: editor_background
+     Xedit*filename*foreground: editor_foreground
+
+!! Xedit ends here.

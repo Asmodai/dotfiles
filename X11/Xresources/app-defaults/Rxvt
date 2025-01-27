@@ -1,0 +1,22 @@
+!! -*- mode: xrdb -*-
+!! ---------------------------------------------------------------- !!
+!!                                                                  !!
+!! Resources for the 'rxvt' terminal emulator.                      !!
+!!                                                                  !!
+!! ---------------------------------------------------------------- !!
+
+!!
+!! Plain old 'rxvt'
+   Rxvt*termName: rxvt
+ Rxvt*renderFont: true
+   Rxvt*faceName: terminal_font
+Rxvt.preeditType: OverTheSpot
+
+!!
+!! Unicode-capable 'urxvt'
+   URxvt*termName: rxvt
+ URxvt*renderFont: true
+   URxvt*faceName: terminal_font
+URxvt.preeditType: OverTheSpot
+
+!! Rxvt ends here.

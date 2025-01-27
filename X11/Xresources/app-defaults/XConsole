@@ -1,0 +1,11 @@
+!! -*- mode: xrdb -*-
+!! ---------------------------------------------------------------- !!
+!!                                                                  !!
+!! Resources for the X console log viewer.                          !!
+!!                                                                  !!
+!! ---------------------------------------------------------------- !!
+
+XConsole*background: dark_background
+XConsole*foreground: dark_foreground
+
+!! XConsole ends here.

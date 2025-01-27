@@ -1,0 +1,40 @@
+!! -*- mode: xrdb -*-
+!! ---------------------------------------------------------------- !!
+!!                                                                  !!
+!! X resource macros that define the colours and fonts used by the  !!
+!! Common Desktop Environment.                                      !!
+!!                                                                  !!
+!! ---------------------------------------------------------------- !!
+
+!!
+!! Default foreground, background, and highlight colours.
+#define default_foreground    #000000
+#define default_background    #b6b1b1
+#define default_highlight     #614e6d
+
+!!
+!! Terminal foreground and background.
+#define terminal_background   #1b0724
+#define terminal_foreground   #eae1fe
+
+!!
+!! Editor pane foreground and background.
+#define editor_background     #614e6d
+#define editor_foreground     white
+
+!!
+!! 'Dark' view foreground and background, e.g. file manager.
+#define dark_background       #9b9797
+#define dark_foreground       black
+
+!!
+!! 'Utility' view colours, e.g. for XLoad
+#define utility_background    #41284c
+#define utility_foreground    #eae1fe
+
+!!
+!! Xt scrollbar colours
+#define xt_scrollbar_bg       #696969
+#define xt_scrollbar_fg       #b6b1b1
+
+!! colours.cde ends here.

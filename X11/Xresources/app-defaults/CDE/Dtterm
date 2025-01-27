@@ -1,0 +1,11 @@
+!! -*- mode: xrdb -*-
+!! ---------------------------------------------------------------- !!
+!!                                                                  !!
+!! Resources for the CDE terminal emulator.                         !!
+!!                                                                  !!
+!! ---------------------------------------------------------------- !!
+
+Dtterm*dtTerm.background: terminal_background
+Dtterm*dtTerm.foreground: terminal_foreground
+
+!! Dtterm ends here.

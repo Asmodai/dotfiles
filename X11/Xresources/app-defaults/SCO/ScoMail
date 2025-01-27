@@ -1,0 +1,11 @@
+!! -*- mode: xrdb -*-
+!! ---------------------------------------------------------------- !!
+!!                                                                  !!
+!! X resources for SCO's mail program.                              !!
+!!                                                                  !!
+!! ---------------------------------------------------------------- !!
+
+*msgUrgentSelectedForeground: scoBackground
+        *msgDeleteForeground: scoForeground
+
+!! ScoMail ends here.

@@ -1,0 +1,12 @@
+!! -*- mode: xrdb -*-
+!! ---------------------------------------------------------------- !!
+!!                                                                  !!
+!! Resources for the X manual page viewer.                          !!
+!!                                                                  !!
+!! ---------------------------------------------------------------- !!
+
+Xman*manualPage.background: editor_background
+Xman*manualPage.foreground: editor_foreground
+      Xman*manualPage*font: interface_font
+
+!! Xman ends here.

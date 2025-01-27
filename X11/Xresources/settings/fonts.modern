@@ -1,0 +1,28 @@
+!! -*- mode: xrdb -*-
+!! ---------------------------------------------------------------- !!
+!!                                                                  !!
+!! X resource macros that define the fonts used by X11.             !!
+!!                                                                  !!
+!! ---------------------------------------------------------------- !!
+
+!!
+!! User interface font.
+#define interface_font \
+    xft:Cantarell:pixelsize=12,style=regular
+
+!!
+!! Terminal font.
+#define terminal_font \
+    xft:"Source Code Pro for Powerline":pixelsize=12,style=regular
+
+!!
+!! Terminal "large" font.
+#define terminal_large_font \
+    xft:"Source Code Pro for Powerline":pixelsize=18,style=regular
+
+!!
+!! Terminal graphical set font, used by DECterm.
+#define terminal_gs_font \
+    -dec-terminal-*-*-*--14-*-*-*-*-*-*-*
+
+!! fonts ends here.

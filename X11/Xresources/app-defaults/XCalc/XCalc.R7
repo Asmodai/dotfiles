@@ -1,0 +1,340 @@
+!! -*- mode: xrdb -*-
+!! ---------------------------------------------------------------- !!
+!!                                                                  !!
+!! X resource file for the version of 'xcalc' that ships with the   !!
+!! X11R6 release.                                                   !!
+!!                                                                  !!
+!! ---------------------------------------------------------------- !!
+
+!!
+!! "AC" and "Power" button colours
+#define clearkeybg  #a23535
+#define clearkeyfg  white
+
+!!
+!! "grey" keys -- e.g. STO, INV etc.
+#define greykeybg   #7d7681
+#define greykeyfg   white
+
+!!
+!! Operator keys -- *, + et al.
+#define operkeybg   #6a5278
+#define operkeyfg   white
+
+!!
+!! Numeric keys
+#define numkeybg    #e5e1e8
+#define numkeyfg    #1f2323
+
+!!
+!! Hexadecimal keys
+#define hexkeybg    #ab94b8
+#define hexkeyfg    #1f2323
+
+!!
+!! LCD
+#define lcdbg       #606255
+#define lcdfg       #181b0d
+#define bevelbg     #334340
+
+!!
+!! Background
+#define calcbg      #2e2034
+
+!!
+!! Basic styles.
+        XCalc.Title: Calculator
+     XCalc.IconName: Calc
+   XCalc.IconPixmap: calculator
+       XCalc*Cursor: hand2
+   XCalc*ShapeStyle: rectangle
+     XCalc*fontFace: terminal_font
+     XCalc*fontName: terminal_font
+         XCalc*font: terminal_font
+     XCalc*LCD.font: terminal_large_font
+XCalc*ti.background: calcbg
+XCalc*hp.background: calcbg
+
+!!
+!! Basic command button.
+XCalc*Command.horizDistance: 2
+ XCalc*Command.vertDistance: 2
+        XCalc*Command.width: 40
+       XCalc*Command.height: 26
+XCalc*Command.internalWidth: 1
+   XCalc*Command.shapeStyle: roundedRectangle
+  XCalc*Command.borderColor: greykeybg
+   XCalc*Command.foreground: greykeyfg
+   XCalc*Command.background: greykeybg
+
+!!
+!! Bevel settings.
+XCalc*bevel.screen.Label.internalHeight: 1
+ XCalc*bevel.screen.Label.internalWidth: 1
+                 XCalc*bevel.background: bevelbg
+                XCalc*bevel.borderColor: black
+         XCalc*bevel.screen.borderColor: black
+          XCalc*bevel.screen.*.fontFace: terminal_font
+        XCalc*bevel.screen.*.background: lcdbg
+        XCalc*bevel.screen.*.foreground: lcdfg
+
+!!
+!! LCD settings
+XCalc*bevel.screen.LCD.label: 88888888888
+XCalc*bevel.screen.LCD.width: 145
+
+!!
+!! 'INV' notice.
+    XCalc*bevel.screen.INV.fromVert: LCD
+XCalc*bevel.screen*INV.vertDistance: 2
+
+!!
+!! 'DEG' notice
+    XCalc*bevel.screen.DEG.fromHoriz: INV
+     XCalc*bevel.screen.DEG.fromVert: LCD
+XCalc*bevel.screen.DEG.horizDistance: 1
+
+!!
+!! 'RAD' notice.
+XCalc*bevel.screen.RAD.fromHoriz: DEG
+ XCalc*bevel.screen.RAD.fromVert: LCD
+
+!!
+!! 'GRAD' notice.
+XCalc*bevel.screen.GRAD.fromHoriz: RAD
+ XCalc*bevel.screen.GRAD.fromVert: LCD
+
+!!
+!! 'P' notice.
+        XCalc*bevel.screen.P.label: ()
+    XCalc*bevel.screen.P.fromHoriz: GRAD
+     XCalc*bevel.screen.P.fromVert: LCD
+XCalc*bevel.screen.P.horizDistance: 2
+
+!! -------------------------------------------------------------------
+!! TI-30 button colours.
+!!
+
+!! TI button 3 -- 'SQRT'
+XCalc*ti.button3.label: SQRT
+
+!! TI button 5 -- 'AC'
+ XCalc*ti.button5.background: clearkeybg
+XCalc*ti.button5.borderColor: clearkeybg
+ XCalc*ti.button5.foreground: clearkeyfg
+
+!! TI button 20 -- 'Truncate'
+XCalc*ti.button20.label: TRNC
+
+!! TI button 35 -- '/'
+ XCalc.ti.button35.background: operkeybg
+XCalc.ti.button35.borderColor: operkeybg
+ XCalc.ti.button35.foreground: operkeyfg
+       Calc.ti.button35.label: /
+
+!! TI button 27 -- 'D'
+ XCalc.ti.button27.background: hexkeybg
+XCalc.ti.button27.borderColor: hexkeybg
+ XCalc.ti.button27.foreground: hexkeyfg
+
+!! TI button 28 -- 'E'
+ XCalc.ti.button28.background: hexkeybg
+XCalc.ti.button28.borderColor: hexkeybg
+ XCalc.ti.button28.foreground: hexkeyfg
+
+!! TI button 29 -- 'F'
+ XCalc.ti.button29.background: hexkeybg
+XCalc.ti.button29.borderColor: hexkeybg
+ XCalc.ti.button29.foreground: hexkeyfg
+
+!! TI button 32 -- 'A'
+ XCalc.ti.button32.background: hexkeybg
+XCalc.ti.button32.borderColor: hexkeybg
+ XCalc.ti.button32.foreground: hexkeyfg
+
+!! TI button 33 -- 'B'
+ XCalc.ti.button33.background: hexkeybg
+XCalc.ti.button33.borderColor: hexkeybg
+ XCalc.ti.button33.foreground: hexkeyfg
+
+!! TI button 34 -- 'C'
+ XCalc.ti.button34.background: hexkeybg
+XCalc.ti.button34.borderColor: hexkeybg
+ XCalc.ti.button34.foreground: hexkeyfg
+
+!! TI button 37 -- '7'
+ XCalc.ti.button37.background: numkeybg
+XCalc.ti.button37.borderColor: numkeybg
+ XCalc.ti.button37.foreground: numkeyfg
+
+!! TI button 38 -- '8'
+ XCalc.ti.button38.background: numkeybg
+XCalc.ti.button38.borderColor: numkeybg
+ XCalc.ti.button38.foreground: numkeyfg
+
+!! TI button 39 -- '9'
+ XCalc.ti.button39.background: numkeybg
+XCalc.ti.button39.borderColor: numkeybg
+ XCalc.ti.button39.foreground: numkeyfg
+
+!! TI button 40 -- '*'
+ XCalc.ti.button40.background: operkeybg
+XCalc.ti.button40.borderColor: operkeybg
+ XCalc.ti.button40.foreground: operkeyfg
+
+!! TI button 42 -- '4'
+ XCalc.ti.button42.background: numkeybg
+XCalc.ti.button42.borderColor: numkeybg
+ XCalc.ti.button42.foreground: numkeyfg
+
+!! TI button 43 -- '5'
+XCalc.ti.button43.background: numkeybg
+XCalc.ti.button43.boderColor: numkeybg
+XCalc.ti.button43.foreground: numkeyfg
+
+!! TI button 44 -- '6'
+ XCalc.ti.button44.background: numkeybg
+XCalc.ti.button44.borderColor: numkeybg
+ XCalc.ti.button44.foreground: numkeyfg
+
+!! TI button 45 -- '-'
+ XCalc.ti.button45.background: operkeybg
+XCalc.ti.button45.borderColor: operkeybg
+ XCalc.ti.button45.foreground: operkeyfg
+
+!! TI button 47 -- '1'
+ XCalc.ti.button47.background: numkeybg
+XCalc.ti.button47.borderColor: numkeybg
+ XCalc.ti.button47.foreground: numkeyfg
+
+!! TI button 48 -- '2'
+ XCalc.ti.button48.background: numkeybg
+XCalc.ti.button48.borderColor: numkeybg
+ XCalc.ti.button48.foreground: numkeyfg
+
+!! TI button 49 -- '3'
+ XCalc.ti.button49.background: numkeybg
+XCalc.ti.button49.borderColor: numkeybg
+ XCalc.ti.button49.foreground: numkeyfg
+
+!! TI button 50 -- '+'
+ XCalc.ti.button50.background: operkeybg
+XCalc.ti.button50.borderColor: operkeybg
+ XCalc.ti.button50.foreground: operkeyfg
+
+!! TI button 52 -- '0'
+ XCalc.ti.button52.background: numkeybg
+XCalc.ti.button52.borderColor: numkeybg
+ XCalc.ti.button52.foreground: numkeyfg
+
+!! TI button 53 -- '.'
+ XCalc.ti.button53.background: numkeybg
+XCalc.ti.button53.borderColor: numkeybg
+ XCalc.ti.button53.foreground: numkeyfg
+
+!! TI button 55 -- '='
+ XCalc.ti.button55.background: operkeybg
+XCalc.ti.button55.borderColor: operkeybg
+ XCalc.ti.button55.foreground: operkeyfg
+
+
+!! -------------------------------------------------------------------
+!! HP-11 button colours.
+!!
+
+!! HP button 7 -- '7'
+ XCalc.hp.button7.background: numkeybg
+XCalc.hp.button7.borderColor: numkeybg
+ XCalc.hp.button7.foreground: numkeyfg
+
+!! HP button 8 -- '8'
+ XCalc.hp.button8.background: numkeybg
+XCalc.hp.button8.borderColor: numkeybg
+ XCalc.hp.button8.foreground: numkeyfg
+
+!! HP button 9 -- '9'
+ XCalc.hp.button9.background: numkeybg
+XCalc.hp.button9.borderColor: numkeybg
+ XCalc.hp.button9.foreground: numkeyfg
+
+!! HP button 10 -- '/'
+ XCalc.hp.button10.background: operkeybg
+XCalc.hp.button10.borderColor: operkeybg
+ XCalc.hp.button10.foreground: operkeyfg
+
+!! HP button 17 -- '4'
+ XCalc.hp.button17.background: numkeybg
+XCalc.hp.button17.borderColor: numkeybg
+ XCalc.hp.button17.foreground: numkeyfg
+
+!! HP button 18 -- '5'
+ XCalc.hp.button18.background: numkeybg
+XCalc.hp.button18.borderColor: numkeybg
+ XCalc.hp.button18.foreground: numkeyfg
+
+!! HP button 19 -- '6'
+ XCalc.hp.button19.background: numkeybg
+XCalc.hp.button19.borderColor: numkeybg
+ XCalc.hp.button19.foreground: numkeyfg
+
+!! HP button 20 -- '*'
+ XCalc.hp.button20.background: operkeybg
+XCalc.hp.button20.borderColor: operkeybg
+ XCalc.hp.button20.foreground: operkeyfg
+
+!! HP button 21 -- unused
+ XCalc.hp.button21.background: calcbg
+XCalc.hp.button21.borderColor: calcbg
+ XCalc.hp.button21.foreground: calcbg
+
+!! HP button 22 -- unused
+ XCalc.hp.button22.background: calcbg
+XCalc.hp.button22.borderColor: calcbg
+ XCalc.hp.button22.foreground: calcbg
+
+!! HP button 26 -- 'ENTR'
+ XCalc.hp.button26.background: clearkeybg
+XCalc.hp.button26.borderColor: clearkeybg
+ XCalc.hp.button26.foreground: clearkeyfg
+
+!! HP button 27 -- '1'
+ XCalc.hp.button27.background: numkeybg
+XCalc.hp.button27.borderColor: numkeybg
+ XCalc.hp.button27.foreground: numkeyfg
+
+!! HP button 28 -- '2'
+ XCalc.hp.button28.background: numkeybg
+XCalc.hp.button28.borderColor: numkeybg
+ XCalc.hp.button28.foreground: numkeyfg
+
+!! HP button 29 -- '3'
+ XCalc.hp.button29.background: numkeybg
+XCalc.hp.button29.borderColor: numkeybg
+ XCalc.hp.button29.foreground: numkeyfg
+
+!! HP button 30 -- '-'
+ XCalc.hp.button30.background: operkeybg
+XCalc.hp.button30.borderColor: operkeybg
+ XCalc.hp.button30.foreground: operkeyfg
+
+!! HP button 31 -- 'ON'
+ XCalc*hp.button31.background: clearkeybg
+XCalc*hp.button31.borderColor: clearkeybg
+ XCalc*hp.button31.foreground: clearkeyfg
+
+!! HP button 36 -- '0'
+ XCalc.hp.button36.background: numkeybg
+XCalc.hp.button36.borderColor: numkeybg
+ XCalc.hp.button36.foreground: numkeyfg
+
+!! HP button 37 -- '.'
+ XCalc.hp.button37.background: numkeybg
+XCalc.hp.button37.borderColor: numkeybg
+ XCalc.hp.button37.foreground: numkeyfg
+
+!! HP button 39 -- '-'
+ XCalc.hp.button39.background: operkeybg
+XCalc.hp.button39.borderColor: operkeybg
+ XCalc.hp.button39.foreground: operkeyfg
+
+!! XCalc.R6 ends here.

@@ -1,0 +1,11 @@
+!! -*- mode: xrdb -*-
+!! ---------------------------------------------------------------- !!
+!!                                                                  !!
+!! Resources for the X mail notification tool.                      !!
+!!                                                                  !!
+!! ---------------------------------------------------------------- !!
+
+XBiff*background: default_background
+XBiff*foreground: utility_background
+
+!! XBiff ends here.

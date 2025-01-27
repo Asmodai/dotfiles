@@ -1,0 +1,12 @@
+!! -*- mode: xrdb -*-
+!! ---------------------------------------------------------------- !!
+!!                                                                  !!
+!! Resources for the X clipboard viewer.                            !!
+!!                                                                  !!
+!! ---------------------------------------------------------------- !!
+
+XClipboard*Text*background: editor_background
+XClipboard*Text*foreground: editor_foreground
+           XClipboard*Font: interface_font
+
+!! XClipboard ends here.

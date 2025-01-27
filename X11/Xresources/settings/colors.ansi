@@ -1,0 +1,25 @@
+!! -*- mode: xrdb -*-
+!! ---------------------------------------------------------------- !!
+!!                                                                  !!
+!! ANSI colours to be used by various colour-capable terminals.     !!
+!!                                                                  !!
+!! ---------------------------------------------------------------- !!
+
+#define ansi_color_0   #131217
+#define ansi_color_1   #d40131
+#define ansi_color_2   #20b237
+#define ansi_color_3   #b2911f
+#define ansi_color_4   #1e67b2
+#define ansi_color_5   #8c5bd4
+#define ansi_color_6   #209eb2
+#define ansi_color_7   #eae1fe
+#define ansi_color_8   #4d4c4f
+#define ansi_color_9   #fe4453
+#define ansi_color_10  #3ffe5e
+#define ansi_color_11  #fed53f
+#define ansi_color_12  #3f9efe
+#define ansi_color_13  #b181fe
+#define ansi_color_14  #3fe4fe
+#define ansi_color_15  #f8f5ff
+
+!! colours.ansi ends here

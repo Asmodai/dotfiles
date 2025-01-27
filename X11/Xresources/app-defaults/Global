@@ -1,0 +1,14 @@
+!! -*- mode: xrdb -*-
+!! ---------------------------------------------------------------- !!
+!!                                                                  !!
+!! Global configurations that will affect all X cliets.             !!
+!!                                                                  !!
+!! ---------------------------------------------------------------- !!
+
+*Scrollbar*foreground: xt_scrollbar_fg
+*Scrollbar*background: xt_scrollbar_bg
+          *foreground: default_foreground
+          *background: default_background
+            *fontFace: interface_font
+
+!! Global ends here.

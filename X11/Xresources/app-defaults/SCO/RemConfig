@@ -1,0 +1,11 @@
+!! -*- mode: xrdb -*-
+!! ---------------------------------------------------------------- !!
+!!                                                                  !!
+!! X resources for SCO's reminder configuration program.            !!
+!!                                                                  !!
+!! ---------------------------------------------------------------- !!
+
+RemConfig*background: scoBackground
+RemConfig*foreground: scoForeground
+
+!! RemConfig ends here.

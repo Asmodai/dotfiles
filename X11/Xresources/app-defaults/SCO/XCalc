@@ -1,0 +1,442 @@
+!! -*- mode: xrdb -*-
+!! ---------------------------------------------------------------- !!
+!!                                                                  !!
+!! X resource file for the version of 'xcalc' that ships with SCO   !!
+!! OpenServer 5.                                                    !!
+!!                                                                  !!
+!! ---------------------------------------------------------------- !!
+
+!!
+!! colors  
+XCalc*background: scoBackground
+XCalc*foreground: scoForeground
+
+*ti.Command.background: gray50
+*ti.Command.foreground: white
+
+*ti.button20.background: black
+*ti.button20.foreground: white
+*ti.button25.background: black
+*ti.button25.foreground: white
+*ti.button30.background: black
+*ti.button30.foreground: white
+*ti.button35.background: black
+*ti.button35.foreground: white
+*ti.button40.background: black
+*ti.button40.foreground: white
+
+*ti.button22.background: white
+*ti.button22.foreground: black
+*ti.button23.background: white
+*ti.button23.foreground: black
+*ti.button24.background: white
+*ti.button24.foreground: black
+*ti.button27.background: white
+*ti.button27.foreground: black
+*ti.button28.background: white
+*ti.button28.foreground: black
+*ti.button29.background: white
+*ti.button29.foreground: black
+*ti.button32.background: white
+*ti.button32.foreground: black
+*ti.button33.background: white
+*ti.button33.foreground: black
+*ti.button34.background: white
+*ti.button34.foreground: black
+*ti.button37.background: white
+*ti.button37.foreground: black
+*ti.button38.background: white
+*ti.button38.foreground: black
+*ti.button39.background: white
+*ti.button39.foreground: black
+
+!!
+!! bevel layout
+  XCalc*bevel.topAttachment: XmATTACH_FORM
+      XCalc*bevel.topOffset: 4
+ XCalc*bevel.leftAttachment: XmATTACH_POSITION
+   XCalc*bevel.leftPosition: 12
+XCalc*bevel.rightAttachment: XmATTACH_POSITION
+  XCalc*bevel.rightPosition: 88
+
+!!
+!! bevel.screen layout
+   XCalc*bevel.screen.M.labelString: M
+ XCalc*bevel.screen.M.topAttachment: XmATTACH_POSITION
+   XCalc*bevel.screen.M.topPosition: 3
+XCalc*bevel.screen.M.leftAttachment: XmATTACH_POSITION
+  XCalc*bevel.screen.M.leftPosition: 5
+
+  XCalc*bevel.screen.LCD.topAttachment: XmATTACH_POSITION
+    XCalc*bevel.screen.LCD.topPosition: 0
+XCalc*bevel.screen.LCD.rightAttachment: XmATTACH_FORM
+    XCalc*bevel.screen.LCD.rightOffset: 0
+  XCalc*bevel.screen.LCD.recomputeSize: False
+      XCalc*bevel.screen.LCD.alignment: XmALIGNMENT_END
+    XCalc*bevel.screen.LCD.indicatorOn: False   
+
+ XCalc*bevel.screen.INV.topAttachment: XmATTACH_POSITION
+   XCalc*bevel.screen.INV.topPosition: 55
+XCalc*bevel.screen.INV.leftAttachment: XmATTACH_POSITION
+  XCalc*bevel.screen.INV.leftPosition: 0
+
+ XCalc*bevel.screen.DEG.topAttachment: XmATTACH_POSITION
+   XCalc*bevel.screen.DEG.topPosition: 55
+XCalc*bevel.screen.DEG.leftAttachment: XmATTACH_POSITION
+  XCalc*bevel.screen.DEG.leftPosition: 20
+
+ XCalc*bevel.screen.RAD.topAttachment: XmATTACH_POSITION
+   XCalc*bevel.screen.RAD.topPosition: 55
+XCalc*bevel.screen.RAD.leftAttachment: XmATTACH_POSITION
+  XCalc*bevel.screen.RAD.leftPosition: 40
+
+ XCalc*bevel.screen.GRAD.topAttachment: XmATTACH_POSITION
+   XCalc*bevel.screen.GRAD.topPosition: 55
+XCalc*bevel.screen.GRAD.leftAttachment: XmATTACH_POSITION
+  XCalc*bevel.screen.GRAD.leftPosition: 60
+
+ XCalc*bevel.screen.P.topAttachment: XmATTACH_POSITION
+   XCalc*bevel.screen.P.topPosition: 55
+XCalc*bevel.screen.P.leftAttachment: XmATTACH_POSITION
+  XCalc*bevel.screen.P.leftPosition: 80
+   XCalc*bevel.screen.P.labelString: ()
+
+!!
+!! misc stuff
+                   XCalc*Cursor: hand2
+                    XCalc*title: Calculator
+                 XCalc*iconName: Calculator
+               XCalc*iconPixmap: calculator
+                 XCalc*fontList: *-helvetica-medium-r-normal--*-100-*-*-*-*-*-*
+XCalc*bevel.screen.LCD.fontList: *-helvetica-bold-r-normal--*-120-*-*-*-*-*-*
+
+XCalc*screen.height: 60
+
+!! both have same display width
+ XCalc*screen.LCD.width: 135
+XCalc*screen.LCD.height: 30
+
+!! provide a reasonable min size for all the push buttons, and dont let
+!! them size themselves to their label width...
+!! NOTE: This size is coded to match the font in XCalc*fontList 
+        XCalc*pad.XmPushButton.width: 39 
+XCalc*pad.XmPushButton.recomputeSize: False
+
+!! Begin individual layouts
+!! TI layout 
+XCalc.ti.pad.layout: "button1 0 0; \n\
+              button2 1 0; button3 2 0; button4 3 0; button5 4 0; \n\
+ button6 0 1; button7 1 1; button8 2 1; button9 3 1; button10 4 1; \n\
+button11 0 2; button12 1 2; button13 2 2; button14 3 2; button15 4 2; \n\
+button16 0 3; button17 1 3; button18 2 3; button19 3 3; button20 4 3; \n\
+button21 0 4; button22 1 4; button23 2 4; button24 3 4; button25 4 4; \n\
+button26 0 5; button27 1 5; button28 2 5; button29 3 5; button30 4 5; \n\
+button31 0 6; button32 1 6; button33 2 6; button34 3 6; button35 4 6; \n\
+button36 0 7; button37 1 7; button38 2 7; button39 3 7; button40 4 7;"
+
+! TI translations
+XCalc.ti.bevel.screen.LCD.Translations: #override\n\
+                            Ctrl<Key>c:quit()\n\
+                            Ctrl<Key>h:clear()\n\
+                            None<Key>0:digit(0)\n\
+                            None<Key>1:digit(1)\n\
+                            None<Key>2:digit(2)\n\
+                            None<Key>3:digit(3)\n\
+                            None<Key>4:digit(4)\n\
+                            None<Key>5:digit(5)\n\
+                            None<Key>6:digit(6)\n\
+                            None<Key>7:digit(7)\n\
+                            None<Key>8:digit(8)\n\
+                            None<Key>9:digit(9)\n\
+                             <Key>KP_0:digit(0)\n\
+                             <Key>KP_1:digit(1)\n\
+                             <Key>KP_2:digit(2)\n\
+                             <Key>KP_3:digit(3)\n\
+                             <Key>KP_4:digit(4)\n\
+                             <Key>KP_5:digit(5)\n\
+                             <Key>KP_6:digit(6)\n\
+                             <Key>KP_7:digit(7)\n\
+                             <Key>KP_8:digit(8)\n\
+                             <Key>KP_9:digit(9)\n\
+                         <Key>KP_Enter:equal()\n\
+                         <Key>KP_Equal:equal()\n\
+                      <Key>KP_Multiply:multiply()\n\
+                           <Key>KP_Add:add()\n\
+                      <Key>KP_Subtract:subtract()\n\
+                       <Key>KP_Decimal:decimal()\n\
+                        <Key>KP_Divide:divide()\n\
+                           <Key>KP_Tab:equal()\n\
+                            <Key>Clear:clear()\n\
+                                <Key>.:decimal()\n\
+                                <Key>+:add()\n\
+                                <Key>-:subtract()\n\
+                                <Key>*:multiply()\n\
+                                <Key>/:divide()\n\
+                                <Key>(:leftParen()\n\
+                                <Key>):rightParen()\n\
+                                <Key>!:factorial()\n\
+                                <Key>e:e()\n\
+                                <Key>^:power()\n\
+                                <Key>p:pi()\n\
+                                <Key>i:inverse()\n\
+                                <Key>s:sine()\n\
+                                <Key>c:cosine()\n\
+                                <Key>t:tangent()\n\
+                                <Key>d:degree()\n\
+                                <Key>l:naturalLog()\n\
+                                <Key>=:equal()\n\
+                                <Key>n:negate()\n\
+                                <Key>r:squareRoot()\n\
+                            <Key>space:clear()\n\
+                                <Key>q:quit()\n\
+                           <Key>Delete:clear()\n\
+                        <Key>BackSpace:clear()\n\
+                   <Btn1Down>,<Btn1Up>:toggle()selection()\n
+
+ XCalc.ti.pad.button1.labelString: 1/x
+XCalc.ti.pad.button1.Translations: #replace<Btn1Up>:ArmAndActivate()reciprocal()unset()
+ XCalc.ti.pad.button2.labelString: x^2
+XCalc.ti.pad.button2.Translations: #replace<Btn1Up>:ArmAndActivate()square()unset()
+ XCalc.ti.pad.button3.labelString: SQRT
+XCalc.ti.pad.button3.Translations: #replace<Btn1Up>:ArmAndActivate()squareRoot()unset()
+ XCalc.ti.pad.button4.labelString: CE/C
+XCalc.ti.pad.button4.Translations: #replace<Btn1Up>:ArmAndActivate()clear()unset()
+ XCalc.ti.pad.button5.labelString: AC 
+XCalc.ti.pad.button5.Translations: #replace<Btn1Up>:ArmAndActivate()off()unset()\n\
+                         <Btn3Up>:quit()
+
+  XCalc.ti.pad.button6.labelString: INV
+ XCalc.ti.pad.button6.Translations: #replace<Btn1Up>:ArmAndActivate()inverse()unset()
+  XCalc.ti.pad.button7.labelString: sin
+ XCalc.ti.pad.button7.Translations: #replace<Btn1Up>:ArmAndActivate()sine()unset()
+  XCalc.ti.pad.button8.labelString: cos
+ XCalc.ti.pad.button8.Translations: #replace<Btn1Up>:ArmAndActivate()cosine()unset()
+  XCalc.ti.pad.button9.labelString: tan
+ XCalc.ti.pad.button9.Translations: #replace<Btn1Up>:ArmAndActivate()tangent()unset()
+ XCalc.ti.pad.button10.labelString: DRG
+XCalc.ti.pad.button10.Translations: #replace<Btn1Up>:ArmAndActivate()degree()unset()
+
+ XCalc.ti.pad.button11.labelString: e
+XCalc.ti.pad.button11.Translations: #replace<Btn1Up>:ArmAndActivate()e()unset()
+ XCalc.ti.pad.button12.labelString: EE
+XCalc.ti.pad.button12.Translations: #replace<Btn1Up>:ArmAndActivate()scientific()unset()
+ XCalc.ti.pad.button13.labelString: log
+XCalc.ti.pad.button13.Translations: #replace<Btn1Up>:ArmAndActivate()logarithm()unset()
+ XCalc.ti.pad.button14.labelString: ln
+XCalc.ti.pad.button14.Translations: #replace<Btn1Up>:ArmAndActivate()naturalLog()unset()
+ XCalc.ti.pad.button15.labelString: y^x
+XCalc.ti.pad.button15.Translations: #replace<Btn1Up>:ArmAndActivate()power()unset()
+
+ XCalc.ti.pad.button16.labelString: PI
+XCalc.ti.pad.button16.Translations: #replace<Btn1Up>:ArmAndActivate()pi()unset()
+ XCalc.ti.pad.button17.labelString: x!
+XCalc.ti.pad.button17.Translations: #replace<Btn1Up>:ArmAndActivate()factorial()unset()
+ XCalc.ti.pad.button18.labelString: (
+XCalc.ti.pad.button18.Translations: #replace<Btn1Up>:ArmAndActivate()leftParen()unset()
+ XCalc.ti.pad.button19.labelString: )
+XCalc.ti.pad.button19.Translations: #replace<Btn1Up>:ArmAndActivate()rightParen()unset()
+ XCalc.ti.pad.button20.labelString: /
+XCalc.ti.pad.button20.Translations: #replace<Btn1Up>:ArmAndActivate()divide()unset()
+
+ XCalc.ti.pad.button21.labelString: STO
+XCalc.ti.pad.button21.Translations: #replace<Btn1Up>:ArmAndActivate()store()unset()
+ XCalc.ti.pad.button22.labelString: 7
+XCalc.ti.pad.button22.Translations: #replace<Btn1Up>:ArmAndActivate()digit(7)unset()
+ XCalc.ti.pad.button23.labelString: 8
+XCalc.ti.pad.button23.Translations: #replace<Btn1Up>:ArmAndActivate()digit(8)unset()
+ XCalc.ti.pad.button24.labelString: 9
+XCalc.ti.pad.button24.Translations: #replace<Btn1Up>:ArmAndActivate()digit(9)unset()
+ XCalc.ti.pad.button25.labelString: *
+XCalc.ti.pad.button25.Translations: #replace<Btn1Up>:ArmAndActivate()multiply()unset()
+
+ XCalc.ti.pad.button26.labelString: RCL
+XCalc.ti.pad.button26.Translations: #replace<Btn1Up>:ArmAndActivate()recall()unset()
+ XCalc.ti.pad.button27.labelString: 4
+XCalc.ti.pad.button27.Translations: #replace<Btn1Up>:ArmAndActivate()digit(4)unset()
+ XCalc.ti.pad.button28.labelString: 5
+XCalc.ti.pad.button28.Translations: #replace<Btn1Up>:ArmAndActivate()digit(5)unset()
+ XCalc.ti.pad.button29.labelString: 6
+XCalc.ti.pad.button29.Translations: #replace<Btn1Up>:ArmAndActivate()digit(6)unset()
+ XCalc.ti.pad.button30.labelString: -
+XCalc.ti.pad.button30.Translations: #replace<Btn1Up>:ArmAndActivate()subtract()unset()
+
+ XCalc.ti.pad.button31.labelString: SUM
+XCalc.ti.pad.button31.Translations: #replace<Btn1Up>:ArmAndActivate()sum()unset()
+ XCalc.ti.pad.button32.labelString: 1
+XCalc.ti.pad.button32.Translations: #replace<Btn1Up>:ArmAndActivate()digit(1)unset()
+ XCalc.ti.pad.button33.labelString: 2
+XCalc.ti.pad.button33.Translations: #replace<Btn1Up>:ArmAndActivate()digit(2)unset()
+ XCalc.ti.pad.button34.labelString: 3
+XCalc.ti.pad.button34.Translations: #replace<Btn1Up>:ArmAndActivate()digit(3)unset()
+ XCalc.ti.pad.button35.labelString: +
+XCalc.ti.pad.button35.Translations: #replace<Btn1Up>:ArmAndActivate()add()unset()
+
+ XCalc.ti.pad.button36.labelString: EXC
+XCalc.ti.pad.button36.Translations: #replace<Btn1Up>:ArmAndActivate()exchange()unset()
+ XCalc.ti.pad.button37.labelString: 0
+XCalc.ti.pad.button37.Translations: #replace<Btn1Up>:ArmAndActivate()digit(0)unset()
+ XCalc.ti.pad.button38.labelString: .
+XCalc.ti.pad.button38.Translations: #replace<Btn1Up>:ArmAndActivate()decimal()unset()
+ XCalc.ti.pad.button39.labelString: +/-
+XCalc.ti.pad.button39.Translations: #replace<Btn1Up>:ArmAndActivate()negate()unset()
+ XCalc.ti.pad.button40.labelString: =
+XCalc.ti.pad.button40.Translations: #replace<Btn1Up>:ArmAndActivate()equal()unset()
+
+
+! HP layout 
+  XCalc.hp.Geometry: 336x164
+XCalc.hp.pad.layout: "button1 0 0; \n\
+              button2 1 0; button3 2 0; button4 3 0; button5 4 0; \n\
+ button6 5 0; button7 6 0; button8 7 0; button9 8 0; button10 9 0; \n\
+button11 0 1; button12 1 1; button13 2 1; button14 3 1; button15 4 1; \n\
+button16 5 1; button17 6 1; button18 7 1; button19 8 1; button20 9 1; \n\
+button21 0 2; button22 1 2; button23 2 2; button24 3 2; button25 4 2; \n\
+button26 5 2 1 2; button27 6 2; button28 7 2; button29 8 2; button30 9 2; \n\
+button31 0 3; button32 1 3; button33 2 3; button34 3 3; button35 4 3; \n\
+button36 6 3; button37 7 3; button38 8 3; button39 9 3;"
+
+XCalc.hp.bevel.screen.LCD.Translations: #override\n\
+                            Ctrl<Key>c:quit()\n\
+                            Ctrl<Key>h:back()\n\
+                            None<Key>0:digit(0)\n\
+                            None<Key>1:digit(1)\n\
+                            None<Key>2:digit(2)\n\
+                            None<Key>3:digit(3)\n\
+                            None<Key>4:digit(4)\n\
+                            None<Key>5:digit(5)\n\
+                            None<Key>6:digit(6)\n\
+                            None<Key>7:digit(7)\n\
+                            None<Key>8:digit(8)\n\
+                            None<Key>9:digit(9)\n\
+                             <Key>KP_0:digit(0)\n\
+                             <Key>KP_1:digit(1)\n\
+                             <Key>KP_2:digit(2)\n\
+                             <Key>KP_3:digit(3)\n\
+                             <Key>KP_4:digit(4)\n\
+                             <Key>KP_5:digit(5)\n\
+                             <Key>KP_6:digit(6)\n\
+                             <Key>KP_7:digit(7)\n\
+                             <Key>KP_8:digit(8)\n\
+                             <Key>KP_9:digit(9)\n\
+                         <Key>KP_Enter:enter()\n\
+                      <Key>KP_Multiply:multiply()\n\
+                           <Key>KP_Add:add()\n\
+                      <Key>KP_Subtract:subtract()\n\
+                       <Key>KP_Decimal:decimal()\n\
+                        <Key>KP_Divide:divide()\n\
+                                <Key>.:decimal()\n\
+                                <Key>+:add()\n\
+                                <Key>-:subtract()\n\
+                                <Key>*:multiply()\n\
+                                <Key>/:divide()\n\
+                                <Key>!:factorial()\n\
+                                <Key>e:e()\n\
+                                <Key>^:power()\n\
+                                <Key>p:pi()\n\
+                                <Key>i:inverse()\n\
+                                <Key>s:sine()\n\
+                                <Key>c:cosine()\n\
+                                <Key>t:tangent()\n\
+                                <Key>d:degree()\n\
+                                <Key>l:naturalLog()\n\
+                                <Key>n:negate()\n\
+                                <Key>r:squareRoot()\n\
+                            <Key>space:clear()\n\
+                                <Key>q:quit()\n\
+                           <Key>Delete:back()\n\
+                           <Key>Return:enter()\n\
+                         <Key>Linefeed:enter()\n\
+                                <Key>x:XexchangeY()\n\
+                        <Key>BackSpace:back()\n\
+                   <Btn1Down>,<Btn1Up>:toggle()selection()\n
+
+  XCalc.hp.pad.button1.labelString: SQRT
+ XCalc.hp.pad.button1.Translations: #replace<Btn1Up>:ArmAndActivate()squareRoot()unset()
+  XCalc.hp.pad.button2.labelString: e^x
+ XCalc.hp.pad.button2.Translations: #replace<Btn1Up>:ArmAndActivate()epower()unset()
+  XCalc.hp.pad.button3.labelString: 10^x
+ XCalc.hp.pad.button3.Translations: #replace<Btn1Up>:ArmAndActivate()tenpower()unset()
+  XCalc.hp.pad.button4.labelString: y^x
+ XCalc.hp.pad.button4.Translations: #replace<Btn1Up>:ArmAndActivate()power()unset()
+  XCalc.hp.pad.button5.labelString: 1/x
+ XCalc.hp.pad.button5.Translations: #replace<Btn1Up>:ArmAndActivate()reciprocal()unset()
+  XCalc.hp.pad.button6.labelString: CHS
+ XCalc.hp.pad.button6.Translations: #replace<Btn1Up>:ArmAndActivate()negate()unset()
+  XCalc.hp.pad.button7.labelString: 7
+ XCalc.hp.pad.button7.Translations: #replace<Btn1Up>:ArmAndActivate()digit(7)unset()
+  XCalc.hp.pad.button8.labelString: 8
+ XCalc.hp.pad.button8.Translations: #replace<Btn1Up>:ArmAndActivate()digit(8)unset()
+  XCalc.hp.pad.button9.labelString: 9
+ XCalc.hp.pad.button9.Translations: #replace<Btn1Up>:ArmAndActivate()digit(9)unset()
+ XCalc.hp.pad.button10.labelString: /
+XCalc.hp.pad.button10.Translations: #replace<Btn1Up>:ArmAndActivate()divide()unset()
+
+ XCalc.hp.pad.button11.labelString: x!
+XCalc.hp.pad.button11.Translations: #replace<Btn1Up>:ArmAndActivate()factorial()unset()
+ XCalc.hp.pad.button12.labelString: PI
+XCalc.hp.pad.button12.Translations: #replace<Btn1Up>:ArmAndActivate()pi()unset()
+ XCalc.hp.pad.button13.labelString: sin
+XCalc.hp.pad.button13.Translations: #replace<Btn1Up>:ArmAndActivate()sine()unset()
+ XCalc.hp.pad.button14.labelString: cos
+XCalc.hp.pad.button14.Translations: #replace<Btn1Up>:ArmAndActivate()cosine()unset()
+ XCalc.hp.pad.button15.labelString: tan
+XCalc.hp.pad.button15.Translations: #replace<Btn1Up>:ArmAndActivate()tangent()unset()
+ XCalc.hp.pad.button16.labelString: EEX
+XCalc.hp.pad.button16.Translations: #replace<Btn1Up>:ArmAndActivate()scientific()unset()
+ XCalc.hp.pad.button17.labelString: 4
+XCalc.hp.pad.button17.Translations: #replace<Btn1Up>:ArmAndActivate()digit(4)unset()
+ XCalc.hp.pad.button18.labelString: 5
+XCalc.hp.pad.button18.Translations: #replace<Btn1Up>:ArmAndActivate()digit(5)unset()
+ XCalc.hp.pad.button19.labelString: 6
+XCalc.hp.pad.button19.Translations: #replace<Btn1Up>:ArmAndActivate()digit(6)unset()
+ XCalc.hp.pad.button20.labelString: *
+XCalc.hp.pad.button20.Translations: #replace<Btn1Up>:ArmAndActivate()multiply()unset()
+
+!! make these a no op
+ XCalc.hp.pad.button21.labelString:
+XCalc.hp.pad.button21.Translations: #replace<Btn1Up>:unset()
+ XCalc.hp.pad.button22.labelString:
+XCalc.hp.pad.button22.Translations: #replace<Btn1Up>:unset()
+
+ XCalc.hp.pad.button23.labelString: Rv
+XCalc.hp.pad.button23.Translations: #replace<Btn1Up>:ArmAndActivate()roll()unset()
+ XCalc.hp.pad.button24.labelString: x:y
+XCalc.hp.pad.button24.Translations: #replace<Btn1Up>:ArmAndActivate()XexchangeY()unset()
+ XCalc.hp.pad.button25.labelString: <-
+XCalc.hp.pad.button25.Translations: #replace<Btn1Up>:ArmAndActivate()back()unset()
+ XCalc.hp.pad.button26.labelString: ENTR
+XCalc.hp.pad.button26.Translations: #replace<Btn1Up>:ArmAndActivate()enter()unset()
+ XCalc.hp.pad.button27.labelString: 1
+XCalc.hp.pad.button27.Translations: #replace<Btn1Up>:ArmAndActivate()digit(1)unset()
+ XCalc.hp.pad.button28.labelString: 2
+XCalc.hp.pad.button28.Translations: #replace<Btn1Up>:ArmAndActivate()digit(2)unset()
+ XCalc.hp.pad.button29.labelString: 3
+XCalc.hp.pad.button29.Translations: #replace<Btn1Up>:ArmAndActivate()digit(3)unset()
+ XCalc.hp.pad.button30.labelString: -
+XCalc.hp.pad.button30.Translations: #replace<Btn1Up>:ArmAndActivate()subtract()unset()
+
+ XCalc.hp.pad.button31.labelString: ON
+XCalc.hp.pad.button31.Translations: #replace<Btn1Up>:ArmAndActivate()off()unset()\n\
+                          <Btn3Up>:quit()
+ XCalc.hp.pad.button32.labelString: DRG
+XCalc.hp.pad.button32.Translations: #replace<Btn1Up>:ArmAndActivate()degree()unset()
+ XCalc.hp.pad.button33.labelString: INV
+XCalc.hp.pad.button33.Translations: #replace<Btn1Up>:ArmAndActivate()inverse()unset()
+ XCalc.hp.pad.button34.labelString: STO
+XCalc.hp.pad.button34.Translations: #replace<Btn1Up>:ArmAndActivate()store()unset()
+ XCalc.hp.pad.button35.labelString: RCL
+XCalc.hp.pad.button35.Translations: #replace<Btn1Up>:ArmAndActivate()recall()unset()
+ XCalc.hp.pad.button36.labelString: 0
+XCalc.hp.pad.button36.Translations: #replace<Btn1Up>:ArmAndActivate()digit(0)unset()
+ XCalc.hp.pad.button37.labelString: .
+XCalc.hp.pad.button37.Translations: #replace<Btn1Up>:ArmAndActivate()decimal()unset()
+ XCalc.hp.pad.button38.labelString: SUM
+XCalc.hp.pad.button38.Translations: #replace<Btn1Up>:ArmAndActivate()sum()unset()
+ XCalc.hp.pad.button39.labelString: +
+XCalc.hp.pad.button39.Translations: #replace<Btn1Up>:ArmAndActivate()add()unset()
+
+  XCalc.errorString: error
+XCalc.illegalString: illegal operand
+  XCalc.stackString: stack error
+
+!! SCO/XCalc ends here.

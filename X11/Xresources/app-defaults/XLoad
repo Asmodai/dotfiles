@@ -1,0 +1,14 @@
+!! -*- mode: xrdb -*-
+!! ---------------------------------------------------------------- !!
+!!                                                                  !!
+!! Resources for the X system load client.                          !!
+!!                                                                  !!
+!! ---------------------------------------------------------------- !!
+
+      XLoad*background: default_background
+XLoad*label*foreground: default_foreground
+ XLoad*load*foreground: utility_background
+         XLoad*justify: center
+        XLoad*showGrip: false
+
+!! XLoad ends here.

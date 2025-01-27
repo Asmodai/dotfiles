@@ -1,0 +1,575 @@
+#!/bin/bash
+# -*- Mode: Shell-script -*-
+#
+# generate --- Generate a nice Xdefaults.
+#
+# Copyright (c) 2024 Paul Ward <asmodai@gmail.com>
+#
+# Author:     Paul Ward <asmodai@gmail.com>
+# Maintainer: Paul Ward <asmodai@gmail.com>
+# Created:    08 Mar 2024 12:44:44
+#
+# {{{ License:
+#
+# This program is free software: you can redistribute it
+# and/or modify it under the terms of the GNU General Public
+# License as published by the Free Software Foundation,
+# either version 3 of the License, or (at your option) any
+# later version.
+#
+# This program is distributed in the hope that it will be
+# useful, but WITHOUT ANY  WARRANTY; without even the implied
+# warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
+# PURPOSE.  See the GNU General Public License for more
+# details.
+#
+# You should have received a copy of the GNU General Public
+# License along with this program.  If not, see
+# <http://www.gnu.org/licenses/>.
+#
+# }}}
+# {{{ Commentary:
+#
+# }}}
+
+# Various anciliary settings
+xterm_256color=0
+xcalc_extended=0
+xcalc_motif=0
+os_pretty="Microsoft Xenix"
+x11=4
+xorg=0
+xdm=0
+cde=0
+scodt=0
+decw=0
+solaris=0
+modern=0
+
+# Character attributes
+BOLD=`tput bold`
+ULNE=`tput smul`
+NORM=`tput sgr0`
+
+# Output file
+OUTP="Xdefaults.tmp"
+
+# Print enboldened text.
+function print_bold() {
+    echo "${BOLD}${*}${NORM}"
+}
+
+# Print underlined text.
+function print_uline() {
+    echo "${ULNE}${*}${NORM}"
+}
+
+# Print n leading spaces.
+function indent() {
+    printf "%${1}s" " "
+}
+
+# Pretty-print a boolean value.
+function yesno() {
+    if [ $1 -eq 1 ]
+    then
+        echo "Yes"
+    else
+        echo "No"
+    fi
+}
+
+# Obtain either a 'yes' or a 'no' from our user.
+#
+# Returns 1 if the user selected 'yes', otherwise 0.
+function yes_or_no_p() {
+    local yn=""
+
+    while true
+    do
+        read -p "${*} (y/n) " yn
+
+        case "${yn}" in
+            [yY]*) return 1                 ;;
+            [nN]*) return 0                 ;;
+            *)     echo "Invalid response." ;;
+        esac
+    done
+}
+
+# Is the given process listed in the process tree?
+#
+# Returns 1 if there are 1 or more processes, otherwise return 0.
+function procgrep() {
+    local proc="$1"
+
+    res=$(ps -elf | grep ${proc} | grep -v grep)
+    if [ -z "${res}" ]
+    then
+        return 0
+    fi
+
+    return 1
+}
+
+# Are we using XDM?
+#
+# Returns 1 if XDM is running, otherwise 0.
+function have_xdm() {
+    procgrep "xdm"
+    return $?
+}
+
+# Are we running CDE?
+#
+# If `dtlogin' is currently running, then we consider the system
+# to be primarily based on CDE.
+#
+# Returns 1 if CDE is running, otherwise 0.
+function have_cde() {
+    procgrep "dtlogin"
+    return $?
+}
+
+# Are we running SCO Desktop?
+#
+# If `scologin' is currently running, then we consider the system to
+# be primarily based on SCO Desktop.
+#
+# Returns 1 if SCO Desktop is running, otherwise 0.
+function have_sco_desktop() {
+    procgrep "scologin"
+    return $?
+}
+
+# Are we running Xorg?
+#
+# As Xorg's latest releases have slightly different versions of the
+# basic X programs (e.g. xcalc), we need a function to determine if
+# it is in use or not.
+#
+# Returns 1 if Xorg is running, otherwise 0.
+function have_xorg() {
+    procgrep "Xorg"
+    return $?
+}
+
+# Are we running DECwindows?
+#
+# This is a bit of a misnomer.  DECwindows shipped with Ultrix,
+# but not OSF/1.  But, OSF/1 ships with DECterm, which was the
+# default terminal emulator on DECwindows.
+#
+# Returns 1 if either DECwindows or DECterm is installed, otherwise 0.
+function have_decwindows() {
+    procgrep "dxsession"
+
+    if [ $? -eq 1 ]
+    then
+        return 1
+    else
+        test -f /usr/bin/X11/dxterm && return 1
+    fi
+
+    return 0
+}
+
+# Compute the version of X11 that is running on OSF/1 systems.
+function get_osf_x11() {
+    case "$1" in
+        V4.*) return 6 ;;
+        *)    return 4 ;;
+    esac
+}
+
+# Compute the version of X11 that is running on SunOS systems.
+function get_sunos_x11() {
+    case "$1" in
+        5.11) return 6 ;;
+        5.10) return 6 ;;
+        5.9)  return 6 ;;
+        5.8)  return 6 ;;
+        5.7)  return 6 ;;
+        *)    return 4 ;;
+    esac
+}
+
+# Compute the version of X11 that is running on UnixWare systems.
+function get_unixware_x11() {
+    case "$1" in
+        7.1.*) return 6 ;;
+        *)     return 4 ;;
+    esac
+}
+
+# Compute the version of X11 that is running on SCO Unix systems.
+function get_sco_x11() {
+  case "$1" in
+    6.*) return 6 ;;
+    5.*) return 6 ;;
+    *)   return 4 ;;
+  esac
+}
+
+# Compute the version of X11 that is running on Linux systems.
+function get_linux_x11() {
+    case "$1" in
+        6*)
+          modern=1
+          return 7
+          ;;
+
+        5*)
+          modern=1
+          return 7
+          ;;
+
+        4*)
+          modern=1
+          return 7
+          ;;
+        3*)
+          modern=1
+          return 7
+          ;;
+
+        2.6*) return 6 ;;
+        2.4*) return 6 ;;
+        2.3*) return 6 ;;
+        2.2*) return 6 ;;
+        *)    return 4 ;;
+    esac
+}
+
+# Detect the operating system
+function detect_os() {
+    local systype=$(uname -s)
+    local sysrel=$(uname -r)
+    local sysver=$(uname -v)
+
+    case "$systype:$sysrel" in
+        OSF1:*)
+            os_pretty="Digital UNIX ${sysrel}"
+            get_osf_x11 "$sysrel"; x11=$?
+            have_cde;              cde=$?
+            have_decwindows;       decw=$?
+            ;;
+
+        SunOS:5.*)
+            os_pretty="Sun Solaris ${sysrel}"
+            solaris=1
+            get_sunos_x11 "$sysrel"; x11=$?
+            have_cde;                cde=$?
+            ;;
+
+        SunOS:*)
+            os_pretty="Sun SunOS ${sysrel}"
+            get_sunos_x11 "$sysrel"; x11=$?
+            have_xdm;                xdm=$?
+            have_cde;                cde=$?
+            ;;
+
+        UnixWare:5)
+            os_pretty="SCO UnixWare ${sysver}"
+            get_unixware_x11 "$sysver"; x11=$?
+            have_cde;                   cde=$?
+            ;;
+
+        SCO_SV:*)
+            os_pretty="SCO OpenServer ${sysver}"
+            get_sco_x11 "$sysver"; x11=$?
+            have_sco_desktop;      scodt=$?
+            case "${sysver}" in
+                6.*.*)
+                    xterm_256color=1
+                    ;;
+                *)
+                    xterm_256color=0
+                    ;;
+            esac
+            ;;
+
+        Linux:*)
+            os_pretty="GNU/Linux $(echo "$sysrel" | cut -d- -f1)"
+            get_linux_x11 "$sysrel"; x11=$?
+            have_xorg;               xorg=$?
+            have_xdm;                xdm=$?
+            have_cde;                cde=$?
+            xterm_256color=1
+            xcalc_extended=1
+            ;;
+
+        *)
+            os_pretty="${systype} ${sysver} ${sysrel}"
+            x11=4
+            have_xorg;        xorg=$?
+            have_xdm;         xdm=$?
+            have_sco_desktop; scodt=$?
+            have_cde;         cde=$?
+            have_decwindows;  decw=$?
+            ;;
+    esac
+}
+
+# Print out some nice info.
+function printinfo() {
+    clear
+    echo
+    echo "$(print_bold $(print_uline 'X Resources Generation'))"
+    echo
+    echo "$(print_uline 'Information:')"
+    echo
+    echo "  Platform:               $(print_bold ${os_pretty})"
+    echo "  X Window System:        $(print_bold Release 11 Version ${x11})"
+    echo "  Uses Xorg?              $(print_bold $(yesno ${xorg}))"
+    echo "  Uses CDE?               $(print_bold $(yesno ${cde}))"
+    echo "  Uses SCO Desktop?       $(print_bold $(yesno ${scodt}))"
+    echo "  Uses DECwindows?        $(print_bold $(yesno ${decw}))"
+    echo "  Uses XDM?               $(print_bold ${BOLD}$(yesno ${xdm}))"
+    echo
+    echo "$(print_uline 'Quirks:')"
+    echo
+    echo "  Modern fonts?           $(print_bold $(yesno ${modern}))"
+    echo "  'xterm' is 256 colours? $(print_bold $(yesno ${xterm_256color}))"
+    echo "  'xcalc' is Motif?       $(print_bold $(yesno ${xcalc_motif}))"
+    echo "  Extended 'xcalc'?       $(print_bold $(yesno ${xcalc_extended}))"
+    echo
+}
+
+# Install an X resource database file.
+function install() {
+    local desc="$1"
+    local file="$2"
+
+    echo "$(indent 4)${desc}"
+    cat "${file}" >>"$OUTP"
+}
+
+# Install an X resource database file if its corresponding program
+# is found.
+function maybeinstall() {
+    local what="$1"
+    local desc="$2"
+    local file="$3"
+    local inst=0
+
+    test -f /usr/bin/"$what"         && inst=1
+    test -f /usr/local/bin/"$what"   && inst=1
+    test -f /usr/dt/bin/"$what"      && inst=1
+    test -f /usr/openwin/bin/"$what" && inst=1
+    test -f /usr/bin/X11/"$what"     && inst=1
+    test -f /usr/X11/bin/"$what"     && inst=1
+    test -f /usr/X11R4/bin/"$what"   && inst=1
+    test -f /usr/X11R5/bin/"$what"   && inst=1
+    test -f /usr/X11R6/bin/"$what"   && inst=1
+    test -f /usr/X11R6.1/bin/"$what" && inst=1
+    test -f /usr/X11R7/bin/"$what"   && inst=1
+
+    if [ $inst -eq 1 ]
+    then
+        install "$desc" "$file"
+    fi
+}
+
+# Write an entry to the database file.
+#
+# arg 1:  Comment
+# arg 2:  Resource
+# arg 3:  Value
+function write_entry() {
+    echo          >>"$OUTP"
+    echo "!!"     >>"$OUTP"
+    echo "!! $1"  >>"$OUTP"
+    echo "$2: $3" >>"$OUTP"
+    echo          >>"$OUTP"
+}
+
+# Write a comment to the database file.
+function comment() {
+     echo "!! $1" >>"$OUTP"
+}
+
+# Write an empty line to the database file.
+function emptyline() {
+     echo >>"$OUTP"
+}
+
+# Generate basic configuration.
+#
+# This should include base settings, colours, and anything
+# non-specific to any X clients.
+function generate_basic() {
+    echo "$(indent 2)Basic settings:"
+
+    if [ ${cde} -eq 1 ]
+    then
+        install "CDE colour scheme" settings/colors.cde
+        install "Global settings" app-defaults/Global
+    elif [ ${scodt} -eq 1 ]
+    then
+        install "SCO/IXI Desktop colour scheme" settings/colors.scodt
+        install "SCO/IXI Global settings" app-defaults/SCO/Global
+    elif [ ${xdm} -eq 1 ]
+    then
+        echo "$(indent 4)Basic X colour scheme"
+        install "Global settings" app-defaults/Global
+    else
+        echo "$(indent 4)Modern colour scheme"
+        install "Global settings" app-defaults/Global
+    fi
+
+    if [ ${modern} -eq 1 ]
+    then
+        install "Fonts (modern)"  settings/fonts.modern
+    else
+        install "Fonts"           settings/fonts
+    fi
+    install "ANSI colours"    settings/colors.ansi
+}
+
+# Generate CDE-specific configuration.
+#
+# This is mostly for CDE clients.
+function generate_cde() {
+    echo "$(indent 2)CDE resources:"
+
+    install "Terminal emulator"     app-defaults/CDE/Dtterm
+}
+
+# Generate DECwindows-specific configuration.
+function generate_decw() {
+    echo "$(indent 2)DECwindows resources:"
+
+    install "Terminal emulator" app-defaults/DEC/DXterm
+}
+
+# Generate IXI/SCO Desktop configuration.
+function generate_scodt() {
+    echo "$(indent 2)SCO Desktop resources:"
+
+    install "clock"     app-defaults/SCO/Clock
+    install "pmwm"      app-defaults/SCO/Pmwm
+    install "remconfig" app-defaults/SCO/RemConfig
+    install "scomail"   app-defaults/SCO/ScoMail
+    install "scoremind" app-defaults/SCO/ScoRemind
+    install "xcalc"     app-defaults/SCO/XCalc
+    install "XDeskware" app-defaults/SCO/XDeskware
+    install "xeyes"     app-defaults/SCO/Xeyes
+}
+
+# Generate resources for main X11 distribution.
+function generate_x11() {
+    echo "$(indent 2)X resources:"
+
+    if [ ${xterm_256color} -eq 1 ]
+    then
+        install "X terminal 256-color settings" settings/xterm256color
+    else
+        install "X terminal settings" settings/xterm
+    fi
+
+    install "editres" app-defaults/Editres
+    install "oclock"  app-defaults/Oclock
+    install "rxvt"    app-defaults/Rxvt
+    install "viewres" app-defaults/Viewres
+    install "xbiff"   app-defaults/XBiff
+
+    if [ ${xcalc_motif} -eq 1 ]
+    then
+        if [ ${scodt} -eq 0 ]
+        then
+            echo "$(indent 4) xcalc (motif)"
+        fi
+    else
+        if [ ${xcalc_extended} -eq 1 ]
+        then
+            install "xcalc (extended)" app-defaults/XCalc/XCalc.R7
+        else
+            install "xcalc" app-defaults/XCalc/XCalc.R6
+        fi
+    fi
+
+    install "xclipboard" app-defaults/XClipboard
+    install "xclock"     app-defaults/XClock
+    install "xconsole"   app-defaults/XConsole
+    install "xfontsel"   app-defaults/XFontSel
+    install "xload"      app-defaults/XLoad
+    install "xterm"      app-defaults/XTerm
+    install "xedit"      app-defaults/Xedit
+    install "xman"       app-defaults/Xman
+
+    # Install optionals.
+    maybeinstall xscreensaver "xscreensaver" app-defaults/XScreenSaver
+
+    if [ ${modern} -eq 1 ]
+    then
+        install "xft" app-defaults/Xft
+    fi
+}
+
+function generate_info() {
+    comment ""
+    comment "Versions:"
+    comment ""
+    comment "  Platform:  ${os_pretty}"
+    comment "  X release: 11R${x11}"
+    comment ""
+    comment "Features:"
+    comment "  Xorg?            $(yesno ${xorg})"
+    comment "  CDE?             $(yesno ${cde})"
+    comment "  DECwindows?      $(yesno ${decw})"
+    comment "  IXI/SCO Desktop? $(yesno ${scodt})"
+    comment "  XDM?             $(yesno ${xdm})"
+    comment ""
+    comment "Quirks:"
+    comment "  Modern fonts?      $(yesno ${modern})"
+    comment "  256-color xterm?   $(yesno ${xterm_256color})"
+    comment "  xcalc is Motif?    $(yesno ${xcalc_motif})"
+    comment "  xcalc is extended? $(yesno ${xcalc_extended})"
+    comment ""
+    emptyline
+    emptyline
+}
+
+# Generate the X resources database.
+function generate() {
+    echo "$(print_bold 'Generating')"
+
+    # Clear any existing file.
+    cat settings/banner >"$OUTP"
+
+    generate_info
+    generate_basic
+    test ${decw} -eq 1  && generate_decw
+    test ${cde} -eq 1   && generate_cde
+    test ${scodt} -eq 1 && generate_scodt
+    generate_x11
+
+    if [ ${solaris} -eq 1 ]
+    then
+        # Solaris started the CDE deprecation in, I think, Solaris 9.
+        # Write this out so that the deprecation notice doesn't totally
+        # break ~/.Xdefaults
+        write_entry "Stop deprecation notice on Solaris 9 and above." \
+                    "dt.obsolete"                                     \
+                    "true"
+    fi
+
+    comment "Xdefaults ends here."
+    echo "$(print_bold 'Done.')"
+}
+
+detect_os
+printinfo
+
+yes_or_no_p "Continue with installation?"
+if [ $? -eq 0 ]
+then
+    echo "Aborting."
+    exit 1
+fi
+echo
+
+generate
+
+# generate ends here.

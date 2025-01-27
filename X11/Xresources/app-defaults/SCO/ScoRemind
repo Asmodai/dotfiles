@@ -1,0 +1,11 @@
+!! -*- mode: xrdb -*-
+!! ---------------------------------------------------------------- !!
+!!                                                                  !!
+!! X resources for SCO's Reminder program.                          !!
+!!                                                                  !!
+!! ---------------------------------------------------------------- !!
+
+ScoRemind*Foreground: scoForeground
+ScoRemind*Background: scoBackground
+
+!! ScoRemind ends here.

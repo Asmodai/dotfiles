@@ -1,0 +1,21 @@
+!! -*- mode: xrdb -*-
+!! ---------------------------------------------------------------- !!
+!!                                                                  !!
+!! Resources for the X resource editor.                             !!
+!!                                                                  !!
+!! ---------------------------------------------------------------- !!
+
+     Editres*Porthole.Background: dark_background
+     Editres*Porthole.Foreground: default_highlight
+Editres*Porthole.tree.background: dark_background
+Editres*Porthole.tree.foreground: dark_foreground
+       Editres*Panner.foreground: default_highlight
+       Editres*Panner.background: dark_background
+  Editres*Tree.Toggle.Background: default_background
+  Editres*Tree.Toggle.Foreground: default_foreground
+    Editres*valueText*background: editor_background
+    Editres*valueText*foreground: editor_foreground
+ Editres*resourceText*background: editor_background
+ Editres*resourceText*foreground: editor_foreground
+
+!! Editres ends here.

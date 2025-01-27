@@ -1,0 +1,17 @@
+!! -*- mode: xrdb -*-
+!! ---------------------------------------------------------------- !!
+!!                                                                  !!
+!! X resources for SCO's clock program.                             !!
+!!                                                                  !!
+!! ---------------------------------------------------------------- !!
+
+ Clock*Background: scoBackground
+ Clock*foreground: scoForeground
+     Clock*minute: scoForeground
+       Clock*hour: scoForeground
+      Clock*jewel: scoForeground
+Clock*BorderColor: scoForeground
+      Clock*title: Clock
+   Clock*iconName: Clock
+
+!! SCO/Clock ends here.

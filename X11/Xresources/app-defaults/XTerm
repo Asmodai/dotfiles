@@ -1,0 +1,99 @@
+!! -*- mode: xrdb -*-
+!! ---------------------------------------------------------------- !!
+!!                                                                  !!
+!! Resources for the X terminal emulator.                           !!
+!!                                                                  !!
+!! ---------------------------------------------------------------- !!
+
+!!
+!! Settings.
+       XTerm*termName: terminal_name
+     XTerm*renderFont: true
+       XTerm*faceName: terminal_font
+ XTerm*rightScrollBar: true
+      XTerm*ScrollBar: true
+        XTerm*toolBar: false
+      XTerm*saveLines: 1024
+XTerm*ptyInitialErase: true
+       XTerm.iconHint: none
+     XTerm*loginShell: true
+     XTerm*utmpEnable: true
+
+!!
+!! Colours.
+   XTerm*scrollbar.foreground: xt_scrollbar_fg
+   XTerm*scrollbar.background: xt_scrollbar_bg
+ XTerm*simpleMenu*borderColor: default_background
+  XTerm*simpleMenu*background: default_background
+  XTerm*simpleMenu*foreground: default_foreground
+XTerm*Form.menubar*background: default_background
+XTerm*Form.menubar.background: default_background
+        XTerm*Form.background: default_background
+    XTerm*mainMenu*background: default_background
+      XTerm*vtMenu*background: default_background
+    XTerm*fontMenu*background: default_background
+     XTerm*tekMenu*background: default_background
+XTerm*Form.menubar*foreground: default_foreground
+XTerm*Form.menubar.foreground: default_foreground
+        XTerm*Form.foreground: default_foreground
+    XTerm*mainMenu*foreground: default_foreground
+      XTerm*vtMenu*foreground: default_foreground
+    XTerm*fontMenu*foreground: default_foreground
+     XTerm*tekMenu*foreground: default_foreground
+            XTerm*cursorColor: default_highlight
+
+!!
+!! Unicode-capable 'uxterm'.
+  UXTerm*termName: terminal_name
+UXTerm*renderFont: true
+  UXTerm*faceName: terminal_font
+
+!!
+!! Custom builds of xterm.
+vt340*decTerminalID: 340
+vt420*decTerminalID: 420
+
+!!
+!! VT100 widget.
+            *VT100*colorMode: on
+           *VT100*boldColors: on
+        *VT100*dynamicColors: on
+            *VT100*wideChars: on
+        *VT100*decTerminalID: 420
+       *VT100*maxGraphicSize: auto
+*VT100*privateColorRegisters: true
+     *VT100*regisDefaultFont: terminal_font
+           *VT100*renderFont: true
+          *VT100*colorULMode: off
+         *VT100*italicULMode: off
+          *VT100*colorBDMode: off
+         *VT100*bellIsUrgent: true
+           *VT100*foreground: terminal_foreground
+           *VT100*background: terminal_background
+      *VT100*scrollbar.thumb: black
+      *VT100*scrollbar.width: 10
+     *VT100*.scrollBarBorder: 0
+          *VT100*borderWidth: 0
+ *VT100*scrollbar.background: default_background
+ *VT100*scrollbar.foreground: default_highlight
+
+!!
+!! ANSI colours.
+ *.color0: ansi_color_0
+ *.color1: ansi_color_1
+ *.color2: ansi_color_2
+ *.color3: ansi_color_3
+ *.color4: ansi_color_4
+ *.color5: ansi_color_5
+ *.color6: ansi_color_6
+ *.color7: ansi_color_7
+ *.color8: ansi_color_8
+ *.color9: ansi_color_9
+*.color10: ansi_color_10
+*.color11: ansi_color_11
+*.color12: ansi_color_12
+*.color13: ansi_color_13
+*.color14: ansi_color_14
+*.color15: ansi_color_15
+
+!! XTerm ends here.

@@ -1,0 +1,37 @@
+!! -*- mode: xrdb -*-
+!! ---------------------------------------------------------------- !!
+!!                                                                  !!
+!! Global configurations that will affect all X cliets.             !!
+!!                                                                  !!
+!! ---------------------------------------------------------------- !!
+
+        *foreground: scoForeground
+        *background: scoBackground
+   *foregroundColor: scoForeground
+   *backgroundColor: scoBackground
+*altBackgroundColor: scoAltBackground
+    *topShadowColor: scoTopShadow
+ *bottomShadowColor: Black
+       *troughColor: scoBackground
+          *armColor: scoHighlight
+    *highlightColor: scoForeground
+       *urgentColor: scoActiveForeground
+       *selectColor: scoForeground
+       *borderColor: Black
+          *fontFace: interface_font
+
+       *activeBackground: scoActiveBackground
+       *activeForeground: scoActiveForeground
+   *activeTopShadowColor: scoActiveTopShadow
+*activeBottomShadowColor: Black
+
+   *matteTopShadowColor: scoBackground
+*matteBottomShadowColor: Black
+
+     *XmText.topShadowColor: scoTopShadow
+     *XmList.topShadowColor: scoTopShadow
+*XmTextField.topShadowColor: scoTopShadow
+        *menuBar*background: scoBackground
+    *menuBar*topShadowColor: scoTopShadow
+
+!! SCO/Global ends here.

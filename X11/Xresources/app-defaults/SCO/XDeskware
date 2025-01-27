@@ -1,0 +1,10 @@
+!! -*- mode: xrdb -*-
+!! ---------------------------------------------------------------- !!
+!!                                                                  !!
+!! Resources for IXI's XDeskware.                                   !!
+!!                                                                  !!
+!! ---------------------------------------------------------------- !!
+
+xdt3info*background: scoAltBackground
+
+!! XDeskware ends here.

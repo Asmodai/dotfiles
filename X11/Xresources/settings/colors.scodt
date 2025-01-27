@@ -1,0 +1,55 @@
+!! -*- mode: xrdb -*-
+!! ---------------------------------------------------------------- !!
+!!                                                                  !!
+!! X resource macros that define the colours and fonts used by the  !!
+!! IXI/SCO Desktop environment.                                     !!
+!!                                                                  !!
+!! ---------------------------------------------------------------- !!
+
+!!
+!! This is pretty hilarious.  SCO define various colours in rgb.txt
+!! for for use with UI elements.  This can result in remote displays
+!! showing black for various things rather than the colour that
+!! SCO intended.
+!!
+#define scoBackground         #CBCBC0
+#define scoForeground         #0b0071
+#define scoTopShadow          #fff0f8
+#define scoActiveBackground   #ffce89
+#define scoActiveForeground   #2b2d31
+#define scoActiveTopShadow    #fedeff
+#define scoAltBackground      #acbacc
+#define scoHighlight          #0000ff
+
+!!
+!! Default foreground, background, and highlight colours.
+#define default_foreground    #0b0071
+#define default_background    #CBCBC0
+#define default_highlight     #0000ff
+
+!!
+!! Terminal foreground and background.
+#define terminal_background   #1b0724
+#define terminal_foreground   #eae1fe
+
+!!
+!! Editor pane foreground and background.
+#define editor_background     #614e6d
+#define editor_foreground     white
+
+!!
+!! 'Dark' view foreground and background, e.g. CDE's file manager.
+#define dark_background       #9b9797
+#define dark_foreground       black
+
+!!
+!! 'Utility' view colours, e.g. for XLoad
+#define utility_background    #41284c
+#define utility_foreground    #eae1fe
+
+!!
+!! Xt scrollbar colours
+#define xt_scrollbar_bg       #696969
+#define xt_scrollbar_fg       #CBCBC0
+
+!! colors.scodt ends here.

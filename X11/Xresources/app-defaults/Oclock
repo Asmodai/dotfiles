@@ -1,0 +1,11 @@
+!! -*- mode: xrdb -*-
+!! ---------------------------------------------------------------- !!
+!!                                                                  !!
+!! Resources for the X 'round' clock application.                   !!
+!!                                                                  !!
+!! ---------------------------------------------------------------- !!
+
+Clock*background: #ffffff
+     Clock*jewel: default_highlight
+
+!! Oclock ends here.

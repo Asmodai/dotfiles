@@ -1,0 +1,49 @@
+!! -*- mode: xrdb -*-
+!! ---------------------------------------------------------------- !!
+!!                                                                  !!
+!! X resources for SCO's Panner window manager.                     !!
+!!                                                                  !!
+!! ---------------------------------------------------------------- !!
+
+        *panner*activeWindowBorder: scoActiveBackground
+                *panner*background: scoBackground
+               *panner*borderColor: scoForeground
+                *panner*foreground: scoForeground
+                 *activeBackground: scoActiveBackground
+                 *activeForeground: scoActiveForeground
+             *activeTopShadowColor: scoActiveTopShadow
+          *activeBottomShadowColor: black
+              *matteTopShadowColor: scoBackground
+           *matteBottomShadowColor: black
+                       *Background: scoBackground
+                       *Foreground: scoForeground
+                   *topShadowColor: scoTopShadow
+                *bottomShadowColor: black
+                      *troughColor: scoBackground
+                         *armColor: scoHighlight
+                   *highlightColor: scoForeground
+                      *selectColor: scoForeground
+                      *borderColor: black
+                 *pannerBackground: scoBackground
+                 *pannerForeground: scoForeground
+                *BottomShadowColor: scoBackground
+                   *TopShadowColor: scoTopShadow
+             *pannerTopShadowColor: scoBackground
+       *activeScreenTopShadowColor: scoTopShadow
+    *activeScreenBottomShadowColor: scoForeground
+      *virtualWindowTopShadowColor: scoTopShadow
+   *virtualWindowBottomShadowColor: scoTopShadow
+                       *background: scoBackground
+                 *activeBackground: scoForeground
+                       *foreground: scoForeground
+                 *activeForeground: scoActiveForeground
+Pmwm*client*title*activeBackground: scoActiveBackground
+Pmwm*client*title*activeForeground: scoActiveForeground
+      Pmwm*client*title*background: scoBackground
+      Pmwm*client*title*foreground: scoForeground
+      Pmwm*client*activeBackground: scoActiveBackground
+      Pmwm*client*activeForeground: scoActiveForeground
+            Pmwm*client*background: scoBackground
+            Pmwm*client*foreground: scoForeground
+
+!! Pmwm ends here.

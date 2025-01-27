@@ -1,0 +1,14 @@
+!! -*- mode: xrdb -*-
+!! ---------------------------------------------------------------- !!
+!!                                                                  !!
+!! Resources for the X resource viewer.                             !!
+!!                                                                  !!
+!! ---------------------------------------------------------------- !!
+
+             Viewres*font: interface_font
+Viewres*Panner.background: terminal_background
+Viewres*Panner.foreground: default_highlight
+  Viewres*Tree.Foreground: terminal_foreground
+  Viewres*Tree.background: terminal_background
+
+!! Viewres ends here.

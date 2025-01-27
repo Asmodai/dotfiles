@@ -1,0 +1,42 @@
+!! -*- mode: xrdb -*-
+!! ---------------------------------------------------------------- !!
+!!                                                                  !!
+!! X resource macros that define the fonts used by X11.             !!
+!!                                                                  !!
+!! ---------------------------------------------------------------- !!
+
+!!
+!! User interface font.
+#define interface_font \
+    -dt-interface user-medium-r-*-*-14-*-*-*-*-*-*-*
+
+!!
+!! Terminal font.
+#define terminal_font \
+    -dec-terminal-medium-r-normal--14-140-75-75-c-80-iso8859-1
+
+!!
+!! Terminal "little" font, used by DECterm.
+#define terminal_little_font \
+    -dec-terminal-medium-r-normal--14-140-75-75-c-80-iso8859-1
+
+!!
+!! Terminal "big" font, used by DECterm.
+#define terminal_big_font \
+    -dec-terminal-medium-r-normal--18-180-75-75-c-*-iso8859-1
+
+!!
+!! Terminal "large" font.
+#define terminal_large_font \
+    -dec-terminal-medium-r-normal--18-*-*-*-c-*-iso8859-1
+
+!!
+!! Terminal graphical set font, used by DECterm.
+#define terminal_gs_font \
+    -dec-terminal-*-*-*--14-*-*-*-*-*-*-*
+
+!! Terminal "fine" font, used by DECterm.
+#define terminal_fine_font \
+    -adecw-screen-medium-r-normal--14-*-*-*-*-*-*-*
+
+!! fonts ends here.
