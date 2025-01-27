@@ -12,6 +12,12 @@ echo "To enable logging, edit $HOME/.dtprofile and"  >> $dtstart_sessionlogfile
 echo "remove dtstart_sessionlogfile=/dev/null line." >> $dtstart_sessionlogfile
 export dtstart_sessionlogfile="/dev/null"
 
+# Add custom font path.
+if [ -d "${HOME}/.local/share/fonts/" ]
+then
+    xset +fp "${HOME}/.local/share/fonts/"
+fi
+
 # Settings for various things
 export GTK2_RC_FILES=/home/asmodai/.themes/MyDark/gtk-2.0/gtkrc
 export GTK_THEME=MyDark
@@ -26,9 +32,16 @@ xrdb -merge ${HOME}/.Xdefaults
 # Can we set the wallpaper?
 if [ -f /bin/xsetbg ]
 then
-    if [ -f ${HOME}/Pictures/wallpaper.jpg ]
+    # Is there a PNG wallpaper we can use?
+    if [ -f ${HOME}/Pictures/wallpaper.png ]
     then
-        /bin/xsetbg ${HOME}/Pictures/wallpaper.jpg
+        /bin/xsetbg ${HOME}/Pictures/wallpaper.png
+    else
+        # If we get here, then check if there's a JPEG version.
+        if [ -f ${HOME}/Pictures/wallpaper.jpg ]
+        then
+            /bin/xsetbg ${HOME}/Pictures/wallpaper.jpg
+        fi
     fi
 fi
 

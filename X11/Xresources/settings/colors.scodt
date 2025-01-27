@@ -35,7 +35,7 @@
 !!
 !! Editor pane foreground and background.
 #define editor_background     #614e6d
-#define editor_foreground     white
+#define editor_foreground     #eae1fe
 
 !!
 !! 'Dark' view foreground and background, e.g. CDE's file manager.

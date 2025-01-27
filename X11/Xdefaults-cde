@@ -1,0 +1,786 @@
+!! Xdefaults dotfile
+
+#define fgcolor  #000000
+#define bgdcolor #6a6a6a
+#define bgcolor  #b6b1b1
+#define bglcolor #c2c2c2
+#define hlcolor  #614e6d
+#define termbg   #121212
+#define termfg   #B2B2B2
+
+#define uifont \
+    xft:Cantarell:pixelsize=12,style=regular
+
+#define termfont \
+    xft:"Source Code Pro for Powerline":pixelsize=12,style=regular
+
+! --------------------------------------------------------------------
+! Global settings.
+!
+*Scrollbar*foreground:  hlcolor
+*Scrollbar*background:  bgcolor
+*Scrollbar*thumb:       black
+*foreground:            fgcolor
+*background:            bgcolor
+*fontFace:              uifont
+
+! --------------------------------------------------------------------
+! Xft settings.
+!
+Xft.lcdfilter:          lcddefault
+Xft.dpi:                96
+Xft.antialias:          true
+Xft.rgba:               rgb
+Xft.hinting:            true
+Xft.hintStyle:          hintslight
+
+! --------------------------------------------------------------------
+! XCalc settings.
+!
+#define calcfn   #203ea7
+#define calcfnh  #4968D2
+#define calcoph  #E9C41E
+#define calcop   #b99909
+#define buttonbg #7a7a7a
+
+!!
+!! Basic styles.
+XCalc.Title:         Calculator
+XCalc.IconName:      Calc
+XCalc.IconPixmap:    calculator
+XCalc*Cursor:        hand2
+XCalc*faceName:      termfont
+XCalc*ShapeStyle:    rectangle
+XCalc*ti.background: bgcolor
+
+!!
+!! Basic command button.
+XCalc*Command.horizDistance: 2
+XCalc*Command.vertDistance:  2
+XCalc*Command.width:         40
+XCalc*Command.height:        26
+XCalc*Command.internalWidth: 1
+XCalc*Command.shapeStyle:    roundedRectangle
+XCalc*Command.displayList:   foreground rgb:a/b/c;\
+                             segments 8,-4,-9,-4,-4,-9,-4,8;\
+                             draw-arc -14,-14,-4,-4,270,90
+XCalc*Command.borderColor:   bgcolor
+XCalc*Command.foreground:    fgcolor
+XCalc*Command.background:    buttonbg
+
+!!
+!! Bevel settings.
+XCalc*bevel.screen.Label.horizDistance:  4
+XCalc*bevel.screen.Label.vertDistance:   2
+XCalc*bevel.screen.Label.internalHeight: 1
+XCalc*bevel.screen.Label.internalWidth:  1
+XCalc*bevel.background:                  bgcolor
+XCalc*bevel.borderColor:                 bgdcolor
+XCalc*bevel.screen.borderColor:          bgdcolor
+XCalc*bevel.screen.*.background:         termbg
+
+!!
+!! LCD settings
+XCalc*bevel.screen.LCD.label:         88888888888
+XCalc*bevel.screen.LCD.fromHoriz:     M
+XCalc*bevel.screen.LCD.horizDistance: 4
+XCalc*bevel.screen.LCD.vertDistance:  2
+XCalc*bevel.screen.LCD.width:         186
+XCalc*bevel.screen.LCD.foreground:    termfg
+XCalc*bevel.screen.LCD.background:    termbg
+
+!!
+!! 'INV' notice.
+XCalc*bevel.screen.INV.fromVert:     LCD
+XCalc*bevel.screen*INV.vertDistance: 2
+
+!!
+!! 'DEG' notice
+XCalc*bevel.screen.DEG.fromHoriz:     INV
+XCalc*bevel.screen.DEG.fromVert:      LCD
+XCalc*bevel.screen.DEG.horizDistance: 1
+
+!!
+!! 'RAD' notice.
+XCalc*bevel.screen.RAD.fromHoriz: DEG
+XCalc*bevel.screen.RAD.fromVert:  LCD
+
+!!
+!! 'GRAD' notice.
+XCalc*bevel.screen.GRAD.fromHoriz: RAD
+XCalc*bevel.screen.GRAD.fromVert:  LCD
+
+!!
+!! 'P' notice.
+XCalc*bevel.screen.P.label:         ()
+XCalc*bevel.screen.P.fromHoriz:     GRAD
+XCalc*bevel.screen.P.fromVert:      LCD
+XCalc*bevel.screen.P.horizDistance: 2
+
+XCalc*ti.bevel.screen.LCD.translations: #replace\n\
+        Ctrl<Key>c:quit()\n\
+        Ctrl<Key>h:clear()\n\
+        None<Key>0:digit(0)\n\
+        None<Key>1:digit(1)\n\
+        None<Key>2:digit(2)\n\
+        None<Key>3:digit(3)\n\
+        None<Key>4:digit(4)\n\
+        None<Key>5:digit(5)\n\
+        None<Key>6:digit(6)\n\
+        None<Key>7:digit(7)\n\
+        None<Key>8:digit(8)\n\
+        None<Key>9:digit(9)\n\
+        <Key>KP_0:digit(0)\n\
+        <Key>KP_1:digit(1)\n\
+        <Key>KP_2:digit(2)\n\
+        <Key>KP_3:digit(3)\n\
+        <Key>KP_4:digit(4)\n\
+        <Key>KP_5:digit(5)\n\
+        <Key>KP_6:digit(6)\n\
+        <Key>KP_7:digit(7)\n\
+        <Key>KP_8:digit(8)\n\
+        <Key>KP_9:digit(9)\n\
+        <Key>KP_Enter:equal()\n\
+        <Key>KP_Equal:equal()\n\
+        <Key>KP_Multiply:multiply()\n\
+        <Key>KP_Add:add()\n\
+        <Key>KP_Subtract:subtract()\n\
+        <Key>KP_Decimal:decimal()\n\
+        <Key>KP_Separator:decimal()\n\
+        <Key>KP_Divide:divide()\n\
+        <Key>KP_Tab:equal()\n\
+        <Key>Clear:clear()\n\
+        :<Key>.:decimal()\n\
+        :<Key>+:add()\n\
+        :<Key>-:subtract()\n\
+        :<Key>*:multiply()\n\
+        :<Key>/:divide()\n\
+        :<Key>(:leftParen()\n\
+        :<Key>):rightParen()\n\
+        :<Key>!:factorial()\n\
+        <Key>e:e()\n\
+        :<Key>^:power()\n\
+        <Key>p:pi()\n\
+        <Key>i:inverse()\n\
+        <Key>s:sine()\n\
+        <Key>c:cosine()\n\
+        <Key>t:tangent()\n\
+        <Key>d:degree()\n\
+        <Key>l:naturalLog()\n\
+        :<Key>=:equal()\n\
+        <Key>n:negate()\n\
+        <Key>r:squareRoot()\n\
+        <Key>space:clear()\n\
+        <Key>q:quit()\n\
+        <Key>Delete:clear()\n\
+        <Key>BackSpace:clear()\n\
+        <Btn1Down>,<Btn1Up>:toggle()selection()\n
+
+!!
+!! Button 1.
+XCalc*ti.button1.horizDistance: 4
+XCalc*ti.button1.vertDistance:  12
+XCalc*ti.button1.fromVert:      bevel
+XCalc*ti.button1.label:         1/x
+XCalc*ti.button1.translations:  #override<Btn1Down>,<Btn1Up>:reciprocal()unset()
+XCalc*ti.button1.background:    calcfn
+XCalc*ti.button1.foreground:    white
+XCalc*ti.button1.displayList:   foreground calcfnh;\
+                                segments 8,-4,-9,-4,-4,-9,-4,8;\
+                                draw-arc -14,-14,-4,-4,270,90
+
+!!
+!! Button 2.
+XCalc*ti.button2.label:         x\262
+XCalc*ti.button2.translations:  #override<Btn1Down>,<Btn1Up>:square()unset()
+
+!!
+!! Button 3.
+XCalc*ti.button3.font:          -adobe-symbol-*-*-*-*-*-120-*-*-*-*-*-*
+XCalc*ti.button3.label:         \326\140
+XCalc*ti.button3.translations:  #override<Btn1Down>,<Btn1Up>:squareRoot()unset()
+
+!!
+!! Button 4.
+XCalc*ti.button4.label:         CE/C
+XCalc*ti.button4.translations:  #override<Btn1Down>,<Btn1Up>:clear()unset()
+
+!!
+!! Button 5.
+XCalc*ti.button5.label:         AC
+XCalc*ti.button5.translations:  #override<Btn1Down>,<Btn1Up>:off()unset()\n\
+                                <Btn3Down>,<Btn3Up>:quit()
+
+!!
+!! Button 6.
+XCalc*ti.button6.label:         INV
+XCalc*ti.button6.translations:  #override<Btn1Down>,<Btn1Up>:inverse()unset()
+
+!!
+!! Button 7.
+XCalc*ti.button7.label:         sin
+XCalc*ti.button7.translations:  #override<Btn1Down>,<Btn1Up>:sine()unset()
+
+!!
+!! Button 8.
+XCalc*ti.button8.label:         cos
+XCalc*ti.button8.translations:  #override<Btn1Down>,<Btn1Up>:cosine()unset()
+
+!!
+!! Button 9.
+XCalc*ti.button9.label:         tan
+XCalc*ti.button9.translations:  #override<Btn1Down>,<Btn1Up>:tangent()unset()
+
+!!
+!! Button 10.
+XCalc*ti.button10.label:        DRG
+XCalc*ti.button10.translations: #override<Btn1Down>,<Btn1Up>:degree()unset()
+
+!!
+!! Button 11.
+XCalc*ti.button11.label:        e
+XCalc*ti.button11.translations: #override<Btn1Down>,<Btn1Up>:e()unset()
+
+!!
+!! Button 12.
+XCalc*ti.button12.label:        EE
+XCalc*ti.button12.translations: #override<Btn1Down>,<Btn1Up>:scientific()unset()
+
+!!
+!! Button 13.
+XCalc*ti.button13.label:        log
+XCalc*ti.button13.translations: #override<Btn1Down>,<Btn1Up>:logarithm()unset()
+
+!!
+!! Button 14.
+XCalc*ti.button14.label:        ln
+XCalc*ti.button14.translations: #override<Btn1Down>,<Btn1Up>:naturalLog()unset()
+
+!!
+!! Button 15.
+XCalc*ti.button15.label:        y^x
+XCalc*ti.button15.translations: #override<Btn1Down>,<Btn1Up>:power()unset()
+
+!!
+!! Button 16.
+XCalc*ti.button16.font:         -adobe-symbol-*-*-*-*-*-120-*-*-*-*-*-*
+XCalc*ti.button16.label:        \160
+XCalc*ti.button16.translations: #override<Btn1Down>,<Btn1Up>:pi()unset()
+
+!!
+!! Button 17.
+XCalc*ti.button17.label:        x!
+XCalc*ti.button17.translations: #override<Btn1Down>,<Btn1Up>:factorial()unset()
+
+!!
+!! Button 18.
+XCalc*ti.button18.label:        (
+XCalc*ti.button18.translations: #override<Btn1Down>,<Btn1Up>:leftParen()unset()
+
+!!
+!! Button 19.
+XCalc*ti.button19.label:        )
+XCalc*ti.button19.translations: #override<Btn1Down>,<Btn1Up>:rightParen()unset()
+
+!!
+!! Button 20.
+XCalc*ti.button20.font:         -adobe-symbol-*-*-*-*-*-120-*-*-*-*-*-*
+XCalc*ti.button20.label:        \270
+XCalc*ti.button20.translations: #override<Btn1Down>,<Btn1Up>:divide()unset()
+
+!!
+!! Button 21.
+XCalc*ti.button21.label:        STO
+XCalc*ti.button21.translations: #override<Btn1Down>,<Btn1Up>:store()unset()
+
+!!
+!! Button 22.
+XCalc*ti.button22.label:        7
+XCalc*ti.button22.translations: #override<Btn1Down>,<Btn1Up>:digit(7)unset()
+
+!!
+!! Button 23.
+XCalc*ti.button23.label:        8
+XCalc*ti.button23.translations: #override<Btn1Down>,<Btn1Up>:digit(8)unset()
+
+!!
+!! Button 24.
+XCalc*ti.button24.label:        9
+XCalc*ti.button24.translations: #override<Btn1Down>,<Btn1Up>:digit(9)unset()
+
+!!
+!! Button 25.
+XCalc*ti.button25.label:        *
+XCalc*ti.button25.translations: #override<Btn1Down>,<Btn1Up>:multiply()unset()
+
+!!
+!! Button 26.
+!!XCalc*ti.button26.label:        RCL
+XCalc*ti.button26.translations: #override<Btn1Down>,<Btn1Up>:recall()unset()
+
+!!
+!! Button 27.
+XCalc*ti.button27.label:        4
+XCalc*ti.button27.translations: #override<Btn1Down>,<Btn1Up>:digit(4)unset()
+
+!!
+!! Button 28.
+XCalc*ti.button28.label:        5
+XCalc*ti.button28.translations: #override<Btn1Down>,<Btn1Up>:digit(5)unset()
+
+!!
+!! Button 29.
+XCalc*ti.button29.label:        6
+XCalc*ti.button29.translations: #override<Btn1Down>,<Btn1Up>:digit(6)unset()
+
+!!
+!! Button 30.
+XCalc*ti.button30.label:        -
+XCalc*ti.button30.translations: #override<Btn1Down>,<Btn1Up>:subtract()unset()
+
+!!
+!! Button 31.
+!!XCalc*ti.button31.label:        SUM
+XCalc*ti.button31.translations: #override<Btn1Down>,<Btn1Up>:sum()unset()
+
+!!
+!! Button 32.
+XCalc*ti.button32.label:        1
+XCalc*ti.button32.translations: #override<Btn1Down>,<Btn1Up>:digit(1)unset()
+
+!!
+!! Button 33.
+XCalc*ti.button33.label:        2
+XCalc*ti.button33.translations: #override<Btn1Down>,<Btn1Up>:digit(2)unset()
+
+!!
+!! Button 34.
+XCalc*ti.button34.label:        3
+XCalc*ti.button34.translations: #override<Btn1Down>,<Btn1Up>:digit(3)unset()
+
+!!
+!! Button 35.
+XCalc*ti.button35.label:        +
+XCalc*ti.button35.translations: #override<Btn1Down>,<Btn1Up>:add()unset()
+
+!!
+!! Button 36.
+!!XCalc*ti.button36.label:        EXC
+XCalc*ti.button36.translations: #override<Btn1Down>,<Btn1Up>:exchange()unset()
+
+!!
+!! Button 37.
+XCalc*ti.button37.label:        0
+XCalc*ti.button37.translations: #override<Btn1Down>,<Btn1Up>:digit(0)unset()
+
+!!
+!! Button 38.
+XCalc*ti.button38.label:        .
+XCalc*ti.button38.translations: #override<Btn1Down>,<Btn1Up>:decimal()unset()
+
+!!
+!! Button 39.
+XCalc*ti.button39.label:        +/-
+XCalc*ti.button39.translations: #override<Btn1Down>,<Btn1Up>:negate()unset()
+
+!!
+!! Button 40.
+XCalc*ti.button40.label:        =
+XCalc*ti.button40.translations: #override<Btn1Down>,<Btn1Up>:equal()unset()
+
+
+XCalc*ti.button2.fromHoriz:     button1
+XCalc*ti.button2.fromVert:      bevel
+XCalc*ti.button2.vertDistance:  12
+XCalc*ti.button3.fromHoriz:     button2
+XCalc*ti.button3.fromVert:      bevel
+XCalc*ti.button3.vertDistance:  12
+XCalc*ti.button4.fromHoriz:     button3
+XCalc*ti.button4.fromVert:      bevel
+XCalc*ti.button4.vertDistance:  12
+XCalc*ti.button5.fromHoriz:     button4
+XCalc*ti.button5.fromVert:      bevel
+XCalc*ti.button5.vertDistance:  12
+
+XCalc*ti.button6.horizDistance: 4
+XCalc*ti.button6.fromVert:      button1
+XCalc*ti.button7.fromHoriz:     button6
+XCalc*ti.button7.fromVert:      button2
+XCalc*ti.button8.fromHoriz:     button7
+XCalc*ti.button8.fromVert:      button3
+XCalc*ti.button9.fromHoriz:     button8
+XCalc*ti.button9.fromVert:      button4
+XCalc*ti.button10.fromHoriz:    button9
+XCalc*ti.button10.fromVert:     button5
+
+XCalc*ti.button11.horizDistance:        4
+XCalc*ti.button11.fromVert:             button6
+XCalc*ti.button12.fromHoriz:            button11
+XCalc*ti.button12.fromVert:             button7
+XCalc*ti.button13.fromHoriz:            button12
+XCalc*ti.button13.fromVert:             button8
+XCalc*ti.button14.fromHoriz:            button13
+XCalc*ti.button14.fromVert:             button9
+XCalc*ti.button15.fromHoriz:            button14
+XCalc*ti.button15.fromVert:             button10
+
+XCalc*ti.button16.horizDistance:        4
+XCalc*ti.button16.fromVert:             button11
+XCalc*ti.button17.fromHoriz:            button16
+XCalc*ti.button17.fromVert:             button12
+XCalc*ti.button18.fromHoriz:            button17
+XCalc*ti.button18.fromVert:             button13
+XCalc*ti.button19.fromHoriz:            button18
+XCalc*ti.button19.fromVert:             button14
+XCalc*ti.button20.fromHoriz:            button19
+XCalc*ti.button20.fromVert:             button15
+
+XCalc*ti.button21.horizDistance:        4
+XCalc*ti.button21.fromVert:             button16
+XCalc*ti.button22.fromHoriz:            button21
+XCalc*ti.button22.fromVert:             button17
+XCalc*ti.button23.fromHoriz:            button22
+XCalc*ti.button23.fromVert:             button18
+XCalc*ti.button24.fromHoriz:            button23
+XCalc*ti.button24.fromVert:             button19
+XCalc*ti.button25.fromHoriz:            button24
+XCalc*ti.button25.fromVert:             button20
+
+XCalc*ti.button26.horizDistance:        4
+XCalc*ti.button26.fromVert:             button21
+XCalc*ti.button27.fromHoriz:            button26
+XCalc*ti.button27.fromVert:             button22
+XCalc*ti.button28.fromHoriz:            button27
+XCalc*ti.button28.fromVert:             button23
+XCalc*ti.button29.fromHoriz:            button28
+XCalc*ti.button29.fromVert:             button24
+XCalc*ti.button30.fromHoriz:            button29
+XCalc*ti.button30.fromVert:             button25
+
+XCalc*ti.button31.horizDistance:        4
+XCalc*ti.button31.fromVert:             button26
+XCalc*ti.button32.fromHoriz:            button31
+XCalc*ti.button32.fromVert:             button27
+XCalc*ti.button33.fromHoriz:            button32
+XCalc*ti.button33.fromVert:             button28
+XCalc*ti.button34.fromHoriz:            button33
+XCalc*ti.button34.fromVert:             button29
+XCalc*ti.button35.fromHoriz:            button34
+XCalc*ti.button35.fromVert:             button30
+
+XCalc*ti.button36.horizDistance:        4
+XCalc*ti.button36.fromVert:             button31
+XCalc*ti.button37.fromHoriz:            button36
+XCalc*ti.button37.fromVert:             button32
+XCalc*ti.button38.fromHoriz:            button37
+XCalc*ti.button38.fromVert:             button33
+XCalc*ti.button39.fromHoriz:            button38
+XCalc*ti.button39.fromVert:             button34
+XCalc*ti.button40.fromHoriz:            button39
+XCalc*ti.button40.fromVert:             button35
+
+
+XCalc*.bevel.displayList:             foreground gray90;\
+                                      lines -1,0,0,0,0,-1;\
+                                      lines 3,-4,-4,-4,-4,3
+
+XCalc*.bevel.borderWidth:             1
+XCalc*.bevel.vertDistance:            4
+XCalc*.bevel.defaultDistance:         4
+XCalc*.bevel.screen.vertDistance:     4
+XCalc*.bevel.screen.horizDistance:    4
+XCalc*.bevel.screen*left:             chainLeft
+XCalc*.bevel.screen*right:            chainRight
+XCalc*.bevel.screen*top:              chainTop
+XCalc*.bevel.screen*bottom:           chainBottom
+
+
+
+
+XCalc*ti.button2.background:          calcfn
+XCalc*ti.button2.foreground:          white
+XCalc*ti.button2.displayList:         foreground calcfnh;\
+                                      segments 8,-4,-9,-4,-4,-9,-4,8;\
+                                      draw-arc -14,-14,-4,-4,270,90
+XCalc*ti.button3.background:          calcfn
+XCalc*ti.button3.foreground:          white
+XCalc*ti.button3.displayList:         foreground calcfnh;\
+                                      segments 8,-4,-9,-4,-4,-9,-4,8;\
+                                      draw-arc -14,-14,-4,-4,270,90
+XCalc*ti.button4.background:          calcop
+XCalc*ti.button4.foreground:          black
+XCalc*ti.button4.displayList:         foreground calcoph;\
+                                      segments 8,-4,-9,-4,-4,-9,-4,8;\
+                                      draw-arc -14,-14,-4,-4,270,90
+XCalc*ti.button5.background:          #E04A36
+XCalc*ti.button5.foreground:          white
+XCalc*ti.button5.displayList:         foreground #EF7969;\
+                                      segments 8,-4,-9,-4,-4,-9,-4,8;\
+                                      draw-arc -14,-14,-4,-4,270,90
+XCalc*ti.button6.background:          calcfn
+XCalc*ti.button6.foreground:          white
+XCalc*ti.button6.displayList:         foreground calcfnh;\
+                                      segments 8,-4,-9,-4,-4,-9,-4,8;\
+                                      draw-arc -14,-14,-4,-4,270,90
+XCalc*ti.button7.background:          calcfn
+XCalc*ti.button7.foreground:          white
+XCalc*ti.button7.displayList:         foreground calcfnh;\
+                                      segments 8,-4,-9,-4,-4,-9,-4,8;\
+                                      draw-arc -14,-14,-4,-4,270,90
+XCalc*ti.button8.background:          calcfn
+XCalc*ti.button8.foreground:          white
+XCalc*ti.button8.displayList:         foreground calcfnh;\
+                                      segments 8,-4,-9,-4,-4,-9,-4,8;\
+                                      draw-arc -14,-14,-4,-4,270,90
+XCalc*ti.button9.background:          calcfn
+XCalc*ti.button9.foreground:          white
+XCalc*ti.button9.displayList:         foreground calcfnh;\
+                                      segments 8,-4,-9,-4,-4,-9,-4,8;\
+                                      draw-arc -14,-14,-4,-4,270,90
+XCalc*ti.button10.background:         calcfn
+XCalc*ti.button10.foreground:         white
+XCalc*ti.button10.displayList:        foreground calcfnh;\
+                                      segments 8,-4,-9,-4,-4,-9,-4,8;\
+                                      draw-arc -14,-14,-4,-4,270,90
+XCalc*ti.button11.background:         calcfn
+XCalc*ti.button11.foreground:         white
+XCalc*ti.button11.displayList:        foreground calcfnh;\
+                                      segments 8,-4,-9,-4,-4,-9,-4,8;\
+                                      draw-arc -14,-14,-4,-4,270,90
+XCalc*ti.button12.background:         calcfn
+XCalc*ti.button12.foreground:         white
+XCalc*ti.button12.displayList:        foreground calcfnh;\
+                                      segments 8,-4,-9,-4,-4,-9,-4,8;\
+                                      draw-arc -14,-14,-4,-4,270,90
+XCalc*ti.button13.background:         calcfn
+XCalc*ti.button13.foreground:         white
+XCalc*ti.button13.displayList:        foreground calcfnh;\
+                                      segments 8,-4,-9,-4,-4,-9,-4,8;\
+                                      draw-arc -14,-14,-4,-4,270,90
+XCalc*ti.button14.background:         calcfn
+XCalc*ti.button14.foreground:         white
+XCalc*ti.button14.displayList:        foreground calcfnh;\
+                                      segments 8,-4,-9,-4,-4,-9,-4,8;\
+                                      draw-arc -14,-14,-4,-4,270,90
+XCalc*ti.button15.background:         calcfn
+XCalc*ti.button15.foreground:         white
+XCalc*ti.button15.displayList:        foreground calcfnh;\
+                                      segments 8,-4,-9,-4,-4,-9,-4,8;\
+                                      draw-arc -14,-14,-4,-4,270,90
+XCalc*ti.button16.background:         calcfn
+XCalc*ti.button16.foreground:         white
+XCalc*ti.button16.displayList:        foreground calcfnh;\
+                                      segments 8,-4,-9,-4,-4,-9,-4,8;\
+                                      draw-arc -14,-14,-4,-4,270,90
+XCalc*ti.button17.background:         calcfn
+XCalc*ti.button17.foreground:         white
+XCalc*ti.button17.displayList:        foreground calcfnh;\
+                                      segments 8,-4,-9,-4,-4,-9,-4,8;\
+                                      draw-arc -14,-14,-4,-4,270,90
+XCalc*ti.button18.background:         calcfn
+XCalc*ti.button18.foreground:         white
+XCalc*ti.button18.displayList:        foreground calcfnh;\
+                                      segments 8,-4,-9,-4,-4,-9,-4,8;\
+                                      draw-arc -14,-14,-4,-4,270,90
+XCalc*ti.button19.background:         calcfn
+XCalc*ti.button19.foreground:         white
+XCalc*ti.button19.displayList:        foreground calcfnh;\
+                                      segments 8,-4,-9,-4,-4,-9,-4,8;\
+                                      draw-arc -14,-14,-4,-4,270,90
+XCalc*ti.button20.background:         calcop
+XCalc*ti.button20.foreground:         black
+XCalc*ti.button20.displayList:        foreground calcoph;\
+                                      segments 8,-4,-9,-4,-4,-9,-4,8;\
+                                      draw-arc -14,-14,-4,-4,270,90
+XCalc*ti.button21.background:         calcfn
+XCalc*ti.button21.foreground:         white
+XCalc*ti.button21.displayList:        foreground calcfnh;\
+                                      segments 8,-4,-9,-4,-4,-9,-4,8;\
+                                      draw-arc -14,-14,-4,-4,270,90
+XCalc*ti.button25.background:         calcop
+XCalc*ti.button25.foreground:         black
+XCalc*ti.button25.displayList:        foreground calcoph;\
+                                      segments 8,-4,-9,-4,-4,-9,-4,8;\
+                                      draw-arc -14,-14,-4,-4,270,90
+XCalc*ti.button26.background:         calcfn
+XCalc*ti.button26.foreground:         white
+XCalc*ti.button26.displayList:        foreground calcfnh;\
+                                      segments 8,-4,-9,-4,-4,-9,-4,8;\
+                                      draw-arc -14,-14,-4,-4,270,90
+XCalc*ti.button30.background:         calcop
+XCalc*ti.button30.foreground:         black
+XCalc*ti.button30.displayList:        foreground calcoph;\
+                                      segments 8,-4,-9,-4,-4,-9,-4,8;\
+                                      draw-arc -14,-14,-4,-4,270,90
+XCalc*ti.button31.background:         calcfn
+XCalc*ti.button31.foreground:         white
+XCalc*ti.button31.displayList:        foreground calcfnh;\
+                                      segments 8,-4,-9,-4,-4,-9,-4,8;\
+                                      draw-arc -14,-14,-4,-4,270,90
+XCalc*ti.button35.background:         calcop
+XCalc*ti.button35.foreground:         black
+XCalc*ti.button35.displayList:        foreground calcoph;\
+                                      segments 8,-4,-9,-4,-4,-9,-4,8;\
+                                      draw-arc -14,-14,-4,-4,270,90
+XCalc*ti.button36.background:         calcfn
+XCalc*ti.button36.foreground:         white
+XCalc*ti.button36.displayList:        foreground calcfnh;\
+                                      segments 8,-4,-9,-4,-4,-9,-4,8;\
+                                      draw-arc -14,-14,-4,-4,270,90
+XCalc*ti.button40.background:         calcop
+XCalc*ti.button40.foreground:         black
+XCalc*ti.button40.displayList:        foreground calcoph;\
+                                      segments 8,-4,-9,-4,-4,-9,-4,8;\
+                                      draw-arc -14,-14,-4,-4,270,90
+
+! --------------------------------------------------------------------
+! XTerm settings.
+!
+XTerm*termName:        xterm-256color
+XTerm*renderFont:      true
+XTerm*faceName:        termfont
+XTerm*rightScrollBar:  true
+XTerm*ScrollBar:       true
+XTerm*toolBar:         false
+XTerm*saveLines:       1024
+XTerm*ptyInitialErase: true
+
+XTerm.iconHint:        none
+
+XTerm*scrollbar.foreground:     hlcolor
+XTerm*scrollbar.background:     bgcolor
+XTerm*simpleMenu*borderColor:   bgcolor
+XTerm*simpleMenu*background:    bgcolor
+XTerm*simpleMenu*foreground:    fgcolor
+XTerm*Form.menubar*background:  bgcolor
+XTerm*Form.menubar.background:  bgcolor
+XTerm*Form.background:          bgcolor
+XTerm*mainMenu*background:      bgcolor
+XTerm*vtMenu*background:        bgcolor
+XTerm*fontMenu*background:      bgcolor
+XTerm*tekMenu*background:       bgcolor
+XTerm*Form.menubar*foreground:  fgcolor
+XTerm*Form.menubar.foreground:  fgcolor
+XTerm*Form.foreground:          fgcolor
+XTerm*mainMenu*foreground:      fgcolor
+XTerm*vtMenu*foreground:        fgcolor
+XTerm*fontMenu*foreground:      fgcolor
+XTerm*tekMenu*foreground:       fgcolor
+
+! --------------------------------------------------------------------
+! UXTerm settings.
+!
+UXTerm*termName:    xterm-256color
+UXTerm*renderFont:  true
+UXTerm*faceName:    termfont
+
+! --------------------------------------------------------------------
+! URxvt settings.
+!
+URxvt*termName:     rxvt-256color
+URxvt*renderFont:   true
+URxvt*faceName:     termfont
+URxvt.preeditType:  OverTheSpot
+
+! --------------------------------------------------------------------
+! VT100 widget settings.
+!
+
+#define base0   #181818
+#define base1   #CC0000
+#define base2   #4E9A06
+#define base3   #C4A000
+#define base4   #3465A4
+#define base5   #75507B
+#define base6   #06989A
+#define base7   #D3D7CF
+#define base8   #555753
+#define base9   #EF2929
+#define base10  #8AE234
+#define base11  #FCE94F
+#define base12  #729FCF
+#define base13  #AD7FA8
+#define base14  #34E2E2
+#define base15  #EEEEEC
+
+*VT100*colorMode:             on
+*VT100*boldColors:            on
+*VT100*dynamicColors:         on
+*VT100*wideChars:             on
+*VT100*decTerminalID:         420
+*VT100*maxGraphicSize:        auto
+*VT100*privateColorRegisters: true
+*VT100*regisDefaultFont:      termfont
+*VT100*renderFont:            true
+*VT100*colorULMode:           off
+*VT100*italicULMode:          off
+*VT100*colorBDMode:           off
+*VT100*bellIsUrgent:          true
+*VT100*foreground:            termfg
+*VT100*background:            termbg
+*VT100*scrollbar.thumb:       black
+*VT100*scrollbar.width:       10
+*VT100*.scrollBarBorder:      0
+*VT100*borderWidth:           0
+*VT100*scrollbar.background:  bgcolor
+*VT100*scrollbar.foreground:  hlcolor
+
+! Specifics for custom builds of xterm.
+vt340*decTerminalID:          340
+vt420*decTerminalID:          420
+
+*.color0:           base0
+*.color1:           base1
+*.color2:           base2
+*.color3:           base3
+*.color4:           base4
+*.color5:           base5
+*.color6:           base6
+*.color7:           base7
+*.color8:           base8
+*.color9:           base9
+*.color10:          base10
+*.color11:          base11
+*.color12:          base12
+*.color13:          base13
+*.color14:          base14
+*.color15:          base15
+
+! --------------------------------------------------------------------
+! XScreenSaver settings.
+!
+*passwd.heading.label:    Look, either go away
+*passwd.body.label:       or guess my password
+*passwd.unlock.label:     Guess 
+*passwd.login.label:      Give Up
+*passwd.asterisks:        True
+*passwd.uname:            False
+
+! --------------------------------------------------------------------
+! XFontSel settings.
+!
+XFontSel*sampleText.background:   termbg
+XFontSel*sampleText.foreground:   termfg
+XFontSel*quitButton.shapeStyle:   roundedRectangle
+XFontSel*ownButton.shapeStyle:    roundedRectangle
+
+! --------------------------------------------------------------------
+! Editres settings.
+!
+Editres*Porthole.Background:      bgcolor
+Editres*Porthole.Foreground:      fgcolor
+Editres*Porthole.tree.background: bgcolor
+Editres*Porthole.tree.foreground: hlcolor
+Editres.Paned.Panner*Foreground:  fgcolor
+Editres.Paned.Panner*Background:  bgcolor
+Editres*Tree.Toggle.Background:   hlcolor
+Editres*Tree.Toggle.Foreground:   white
+
+! --------------------------------------------------------------------
+! Viewres settings.
+!
+Viewres*font:              -*-helvetica-medium-r-normal-*-14-*-*-*-*-*-*-*
+Viewres*Panner.background: termbg
+Viewres*Panner.foreground: hlcolor
+Viewres*Tree.Foreground:   termfg
+Viewres*Tree.background:   termbg

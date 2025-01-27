@@ -1,5 +1,10 @@
 # Hey, Emacs: -*- shell-script -*-
 
+if [ -d "${HOME}/.local/share/fonts/ ]
+then
+    xset +fp "${HOME}/.local/share/fonts"
+fi
+
 # Settings for various things
 export GTK2_RC_FILES=/home/asmodai/.themes/MyDark/gtk-2.0/gtkrc
 export GTK_THEME=MyDark
@@ -8,8 +13,15 @@ export QT_QPA_PLATFORMTHEME=qt5ct
 # Can we set the wallpaper?
 if [ -f /bin/xsetbg ]
 then
-    if [ -f ${HOME}/Pictures/wallpaper.jpg ]
+    # Is there a PNG wallpaper we can use?
+    if [ -f ${HOME}/Pictures/wallpaper.png ]
     then
-        /bin/xsetbg ${HOME}/Pictures/wallpaper.jpg
+        /bin/xsetbg ${HOME}/Pictures/wallpaper.png
+    else
+        # If we get here, then check if there's a JPEG version.
+        if [ -f ${HOME}/Pictures/wallpaper.jpg ]
+        then
+            /bin/xsetbg ${HOME}/Pictures/wallpaper.jpg
+        fi
     fi
 fi
