@@ -1,3 +1,7 @@
 # Theme override
-export QT_QPA_PLATFORMTHEME=qt5ct
+
+if [ -d "/usr/lib/qt5" ]
+then
+    export QT_QPA_PLATFORMTHEME=qt5ct
+fi
 

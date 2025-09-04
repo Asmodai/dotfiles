@@ -1,6 +1,6 @@
 [Appearance]
 ColorScheme=Mine
-Font=Source Code Pro for Powerline,10,-1,5,50,0,0,0,0,0
+Font=SauceCodePro Nerd Font Mono,10,-1,5,400,0,0,0,0,0,0,0,0,0,0,1
 
 [Cursor Options]
 CursorShape=0
