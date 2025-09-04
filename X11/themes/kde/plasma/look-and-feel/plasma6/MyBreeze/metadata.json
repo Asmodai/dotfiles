@@ -1,0 +1,17 @@
+{
+  "KPackageStructure": "Plasma/LookAndFeel",
+  "KPlugin": {
+    "Authors": [
+      {
+        "Email": "paul@lisphacker.uk",
+        "Name":  "Paul Ward"
+      }
+    ],
+    "Category": "",
+    "Description": "Breeze theme with my custom background image",
+    "Id": "MyBreeze",
+    "Name": "MyBreeze"
+  },
+  "Keywords": "Desktop;Workspace;Appearance;Look and Feel;Logout;Lock;Suspend;Shutdown;Hibernate;",
+  "X-Plasma-APIVersion": "2"
+}

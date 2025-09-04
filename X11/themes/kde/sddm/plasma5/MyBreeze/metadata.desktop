@@ -12,5 +12,5 @@ MainScript=Main.qml
 ConfigFile=theme.conf
 TranslationsDirectory=translations
 Email=Paul Ward <paul@lisphacker.uk>
-Theme-Id=my-breeze
+Theme-Id=MyBreeze
 Theme-API=2.0

@@ -1,0 +1,17 @@
+[SddmGreeterTheme]
+Name=My Breeze
+Description=Breeze theme using my desktop images.
+Author=Paul Ward
+Copyright=(c) 2025, Paul Ward
+License=CC-BY-SA
+Type=sddm-theme
+Version=0.1
+Website=https://github.com/sddm/sddm
+Screenshot=preview.png
+MainScript=Main.qml
+ConfigFile=theme.conf
+TranslationsDirectory=translations
+Email=paul@lisphacker.uk
+Theme-Id=MyBreeze
+Theme-API=2.0
+QtVersion=6
