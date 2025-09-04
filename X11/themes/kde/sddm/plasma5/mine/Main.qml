@@ -4,18 +4,17 @@
     SPDX-License-Identifier: LGPL-2.0-or-later
 */
 
-import QtQuick 2.8
-
-import QtQuick.Layouts 1.1
-import QtQuick.Controls 1.1
-import QtQuick.Controls 2.12 as QQC2
-import QtGraphicalEffects 1.0
+import QtQuick 2.15
+import QtQuick.Layouts 1.15
+import QtQuick.Controls 2.15 as QQC2
+import QtGraphicalEffects 1.15
 
 import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.components 3.0 as PlasmaComponents3
 import org.kde.plasma.extras 2.0 as PlasmaExtras
 
 import "components"
+import "components/animation"
 
 // TODO: Once SDDM 0.19 is released and we are setting the font size using the
 // SDDM KCM's syncing feature, remove the `config.fontSize` overrides here and
@@ -60,6 +59,11 @@ PlasmaCore.ColorScope {
         }
     }
 
+    RejectPasswordAnimation {
+        id: rejectPasswordAnimation
+        target: mainStack
+    }
+
     MouseArea {
         id: loginScreenRoot
         anchors.fill: parent
@@ -99,6 +103,7 @@ PlasmaCore.ColorScope {
             interval: 60000
             onTriggered: {
                 if (!loginScreenRoot.blockUI) {
+                    userListComponent.mainPasswordBox.showPassword = false;
                     loginScreenRoot.uiVisible = false;
                 }
             }
@@ -118,8 +123,6 @@ PlasmaCore.ColorScope {
             anchors.fill: clock
             source: clock
             visible: !softwareRendering
-            horizontalOffset: 1
-            verticalOffset: 1
             radius: 6
             samples: 14
             spread: 0.3
@@ -176,53 +179,55 @@ PlasmaCore.ColorScope {
                 userListCurrentIndex: userModel.lastIndex >= 0 ? userModel.lastIndex : 0
                 lastUserName: userModel.lastUser
                 showUserList: {
-                    if ( !userListModel.hasOwnProperty("count")
-                    || !userListModel.hasOwnProperty("disableAvatarsThreshold"))
-                        return (userList.y + mainStack.y) > 0
+                    if (!userListModel.hasOwnProperty("count")
+                        || !userListModel.hasOwnProperty("disableAvatarsThreshold")) {
+                        return false
+                    }
 
-                    if ( userListModel.count === 0 ) return false
+                    if (userListModel.count === 0 ) {
+                        return false
+                    }
 
-                    if ( userListModel.hasOwnProperty("containsAllUsers") && !userListModel.containsAllUsers ) return false
+                    if (userListModel.hasOwnProperty("containsAllUsers") && !userListModel.containsAllUsers) {
+                        return false
+                    }
 
-                    return userListModel.count <= userListModel.disableAvatarsThreshold && (userList.y + mainStack.y) > 0
+                    return userListModel.count <= userListModel.disableAvatarsThreshold
                 }
 
                 notificationMessage: {
-                    var text = ""
+                    const parts = [];
                     if (keystateSource.data["Caps Lock"]["Locked"]) {
-                        text += i18nd("plasma_lookandfeel_org.kde.lookandfeel","Caps Lock is on")
-                        if (root.notificationMessage) {
-                            text += " • "
-                        }
+                        parts.push(i18nd("plasma_lookandfeel_org.kde.lookandfeel", "Caps Lock is on"));
                     }
-                    text += root.notificationMessage
-                    return text
+                    if (root.notificationMessage) {
+                        parts.push(root.notificationMessage);
+                    }
+                    return parts.join(" • ");
                 }
 
+                actionItemsVisible: !inputPanel.keyboardActive
                 actionItems: [
                     ActionButton {
                         iconSource: "system-suspend"
-                        text: i18ndc("plasma_lookandfeel_org.kde.lookandfeel","Suspend to RAM","Sleep")
+                        text: i18ndc("plasma_lookandfeel_org.kde.lookandfeel", "Suspend to RAM", "Sleep")
                         fontSize: parseInt(config.fontSize) + 1
                         onClicked: sddm.suspend()
                         enabled: sddm.canSuspend
-                        visible: !inputPanel.keyboardActive
                     },
                     ActionButton {
                         iconSource: "system-reboot"
-                        text: i18nd("plasma_lookandfeel_org.kde.lookandfeel","Restart")
+                        text: i18nd("plasma_lookandfeel_org.kde.lookandfeel", "Restart")
                         fontSize: parseInt(config.fontSize) + 1
                         onClicked: sddm.reboot()
                         enabled: sddm.canReboot
-                        visible: !inputPanel.keyboardActive
                     },
                     ActionButton {
                         iconSource: "system-shutdown"
-                        text: i18nd("plasma_lookandfeel_org.kde.lookandfeel","Shut Down")
+                        text: i18nd("plasma_lookandfeel_org.kde.lookandfeel", "Shut Down")
                         fontSize: parseInt(config.fontSize) + 1
                         onClicked: sddm.powerOff()
                         enabled: sddm.canPowerOff
-                        visible: !inputPanel.keyboardActive
                     },
                     ActionButton {
                         iconSource: "system-user-prompt"
@@ -230,7 +235,7 @@ PlasmaCore.ColorScope {
                         fontSize: parseInt(config.fontSize) + 1
                         onClicked: mainStack.push(userPromptComponent)
                         enabled: true
-                        visible: !userListComponent.showUsernamePrompt && !inputPanel.keyboardActive
+                        visible: !userListComponent.showUsernamePrompt
                     }]
 
                 onLoginRequest: {
@@ -330,7 +335,7 @@ PlasmaCore.ColorScope {
             }
 
             function showHide() {
-                state = state == "hidden" ? "visible" : "hidden";
+                state = state === "hidden" ? "visible" : "hidden";
             }
 
             states: [
@@ -425,7 +430,6 @@ PlasmaCore.ColorScope {
             ]
         }
 
-
         Component {
             id: userPromptComponent
             Login {
@@ -451,37 +455,34 @@ PlasmaCore.ColorScope {
                     sddm.login(username, password, sessionButton.currentIndex)
                 }
 
+                actionItemsVisible: !inputPanel.keyboardActive
                 actionItems: [
                     ActionButton {
                         iconSource: "system-suspend"
-                        text: i18ndc("plasma_lookandfeel_org.kde.lookandfeel","Suspend to RAM","Sleep")
+                        text: i18ndc("plasma_lookandfeel_org.kde.lookandfeel", "Suspend to RAM", "Sleep")
                         fontSize: parseInt(config.fontSize) + 1
                         onClicked: sddm.suspend()
                         enabled: sddm.canSuspend
-                        visible: !inputPanel.keyboardActive
                     },
                     ActionButton {
                         iconSource: "system-reboot"
-                        text: i18nd("plasma_lookandfeel_org.kde.lookandfeel","Restart")
+                        text: i18nd("plasma_lookandfeel_org.kde.lookandfeel", "Restart")
                         fontSize: parseInt(config.fontSize) + 1
                         onClicked: sddm.reboot()
                         enabled: sddm.canReboot
-                        visible: !inputPanel.keyboardActive
                     },
                     ActionButton {
                         iconSource: "system-shutdown"
-                        text: i18nd("plasma_lookandfeel_org.kde.lookandfeel","Shut Down")
+                        text: i18nd("plasma_lookandfeel_org.kde.lookandfeel", "Shut Down")
                         fontSize: parseInt(config.fontSize) + 1
                         onClicked: sddm.powerOff()
                         enabled: sddm.canPowerOff
-                        visible: !inputPanel.keyboardActive
                     },
                     ActionButton {
                         iconSource: "system-user-list"
-                        text: i18nd("plasma_lookandfeel_org.kde.lookandfeel","List Users")
+                        text: i18nd("plasma_lookandfeel_org.kde.lookandfeel", "List Users")
                         fontSize: parseInt(config.fontSize) + 1
                         onClicked: mainStack.pop()
-                        visible: !inputPanel.keyboardActive
                     }
                 ]
             }
@@ -491,7 +492,7 @@ PlasmaCore.ColorScope {
             id: logoShadow
             anchors.fill: logo
             source: logo
-            visible: !softwareRendering && config.showlogo == "shown"
+            visible: !softwareRendering && config.showlogo === "shown"
             horizontalOffset: 1
             verticalOffset: 1
             radius: 6
@@ -510,7 +511,7 @@ PlasmaCore.ColorScope {
 
         Image {
             id: logo
-            visible: config.showlogo == "shown"
+            visible: config.showlogo === "shown"
             source: config.logo
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.bottom: footer.top
@@ -549,17 +550,34 @@ PlasmaCore.ColorScope {
                 text: i18ndc("plasma_lookandfeel_org.kde.lookandfeel", "Button to show/hide virtual keyboard", "Virtual Keyboard")
                 font.pointSize: config.fontSize
                 icon.name: inputPanel.keyboardActive ? "input-keyboard-virtual-on" : "input-keyboard-virtual-off"
-                onClicked: inputPanel.showHide()
-                visible: inputPanel.status == Loader.Ready
+                onClicked: {
+                    // Otherwise the password field loses focus and virtual keyboard
+                    // keystrokes get eaten
+                    userListComponent.mainPasswordBox.forceActiveFocus();
+                    inputPanel.showHide()
+                }
+                visible: inputPanel.status === Loader.Ready
             }
 
             KeyboardButton {
                 font.pointSize: config.fontSize
+
+                onKeyboardLayoutChanged: {
+                    // Otherwise the password field loses focus and virtual keyboard
+                    // keystrokes get eaten
+                    userListComponent.mainPasswordBox.forceActiveFocus();
+                }
             }
 
             SessionButton {
                 id: sessionButton
                 font.pointSize: config.fontSize
+
+                onSessionChanged: {
+                    // Otherwise the password field loses focus and virtual keyboard
+                    // keystrokes get eaten
+                    userListComponent.mainPasswordBox.forceActiveFocus();
+                }
             }
 
             Item {
@@ -579,6 +597,7 @@ PlasmaCore.ColorScope {
             footer.enabled = true
             mainStack.enabled = true
             userListComponent.userList.opacity = 1
+            rejectPasswordAnimation.start()
         }
         function onLoginSucceeded() {
             //note SDDM will kill the greeter at some random point after this

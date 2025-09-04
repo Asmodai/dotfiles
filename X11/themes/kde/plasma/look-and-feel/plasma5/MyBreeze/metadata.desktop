@@ -1,9 +1,9 @@
 [Desktop Entry]
-Comment=MySplash
+Comment=MyBreeze
 
 Encoding=UTF-8
 Keywords=Desktop;Workspace;Appearance;Look and Feel;Logout;Lock;Suspend;Shutdown;Hibernate;
-Name=MySplash
+Name=MyBreeze
 
 Type=Service
 
@@ -13,7 +13,6 @@ X-KDE-PluginInfo-Author=Asmodai
 X-KDE-PluginInfo-Category=
 X-KDE-PluginInfo-Email=asmodai@gmail.com
 X-KDE-PluginInfo-License=GPLv3
-X-KDE-PluginInfo-Name=MySplash
+X-KDE-PluginInfo-Name=MyBreeze
 X-KDE-PluginInfo-Version=1.0
 X-Plasma-MainScript=defaults
-
