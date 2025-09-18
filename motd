@@ -111,6 +111,7 @@ case "$host" in
     leonov)      desc="Retro Unix system."              ;;
     lovell)      desc="GitLab server."                  ;;
     miranda)     desc="HP 712/60 workstation."          ;;
+    nebula)      desc="Home Automation Kiosk."          ;;
     nova)        desc="NeXT NetInfo server."            ;;
     oberon)      desc="OPENSTEP developer system."      ;;
     ptolemy)     desc="Retro Unix NIS/NFS server."      ;;
