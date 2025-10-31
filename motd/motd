@@ -1,0 +1,268 @@
+#!/bin/bash
+
+RESET="[0m"
+NORM="[0;37m"
+BOLD="[1;37m"
+DIM="[2;35m"
+ITAL="[3;37m"
+NPUR="[0;35m"
+BPUR="[1;35m"
+
+host=${1:-$(hostname | cut -d. -f1)}
+system=$(uname -s)
+release=$(uname -r)
+machine=$(uname -m)
+version=$(uname -v)
+
+# Allow some things to be set via CLI arg.
+case "$1" in
+    # Special case for Multics.
+    multics|stargazer)
+        host="stargazer"
+        system="Multics"
+        release="12.8"
+        machine="DPS-8/M"
+        version=""
+        ;;
+
+    # Special case for VMS/VAX.
+    berlin)
+        host="berlin"
+        system="OpenVMS/VAX"
+        release="7.3"
+        machine="VAX"
+        version=""
+        ;;
+
+    # Special case for 2.11 BSD.
+    titov)
+        host="titov"
+        system="BSD"
+        release="2.11"
+        machine="PDP-11"
+        version=""
+        ;;
+
+    # Special case for AT&T SVR3.
+    borman)
+        host="borman"
+        system="borman"
+        release="3.2.3"
+        machine="WE32200"
+        version="3"
+        ;;
+
+    *)
+        host="${1-$host}"
+        ;;
+esac
+
+# Fix up system information.
+case "${system}:${version}:${release}" in
+    AIX:*:*)
+        release="${release}.${version}"
+        ;;
+
+    HP-UX:*:*)
+        release=$(echo "$release" | cut -d. -f2-)
+        ;;
+
+    OSF1:*:*)
+        system="OSF/1"
+        ;;
+
+    UnixWare:*:*)
+        release="$version"
+        ;;
+
+    SCO_SV:*:*)
+        system="SCO Unix"
+        [ -f /etc/scologin ] && {
+            system="SCO OpenServer"
+            release="${version}"
+        }
+        ;;
+
+    $host:3:*)
+        system="AT&T System V"
+        ;;
+
+    machten*:*:*)
+        machten=$(/sbin/version)
+        system=$(echo "${machten}" | cut -d\  -f1)
+        release=$(echo "${machten}" | cut -d\  -f2-)
+        ;;
+
+    SunOS:*:5.*)
+        system="Solaris";
+        release=$(echo ${release} | cut -d. -f2-)
+        ;;
+
+    # This might be bogus.  It needs testing on more versions of Mac OS X.
+    # I highly doubt this will work on macOS 11 or above, so this is limited
+    # to Darwin 5.x.
+    Darwin:*:5.*)
+        second=$(echo ${release} | cut -d. -f2)
+        third=$(echo ${release} | cut -d. -f3)
+        system="Mac OS X"
+        release=$(echo "10.$((second-1)).$third")
+        ;;
+esac
+
+# Fix up machine type.
+case "${machine}" in
+    9000/*)
+        machine="PA-RISC"
+        ;;
+
+    IBM,*)
+        machine="POWER"
+        ;;
+
+    aarch64)
+        machine="ARM64"
+        ;;
+
+    alpha|axp)
+        machine="Alpha"
+        ;;
+
+    i86pc|i?86|x86)
+        machine="x86"
+        ;;
+
+    # Might be worth splitting this out so that we can capture the actual
+    # vendor -- e.g. NeXT, Sun, etc.
+    680?0|next68k|m68k|sun2|sun3)
+        machine="68000"
+        ;;
+
+    amd64|x86_64)
+        machine="AMD64"
+        ;;
+
+    sun4m)
+        machine="MicroSPARC"
+        ;;
+
+    sun4u)
+        machine="UltraSPARC"
+        ;;
+
+    sparc)
+        machine="SPARC"
+        ;;
+
+    powerpc|Power*Mac*|ppc)
+        machine="PowerPC"
+        ;;
+esac
+
+# Fix up system type.
+case "${system}" in
+    Linux) system="GNU/Linux" ;;
+esac
+
+pretty="${system} ${release}"
+if [ "${machine}" != "" ]
+then
+    pretty="${pretty} - ${machine}"
+fi
+desc="Yet another Unix host."
+
+case "$host" in
+    #
+    # Physical machines.
+    enterprise)   desc="Main GNU/Linux server."                      ;;
+    equinox)      desc="GNU/Linux workstation."                      ;;
+    farragut)     desc="Streaming system."                           ;;
+    galileo)      desc="GNU/Linux X terminal."                       ;;
+    nebula)       desc="Home Automation Kiosk."                      ;;
+    sovereign)    desc="GNU/Linux Lisp Machine."                     ;;
+    voyager)      desc="Main GNU/Linux laptop."                      ;;
+
+    #
+    # Other machines.
+    axiom)        desc="Symbolics virtual Lisp machine."             ;;
+    challenger)   desc="Dev virtual workstation."                    ;;
+    darkstar)     desc="DigitalOcean Droplet."                       ;;
+
+    #
+    # Servers.
+    daedalus)     desc="Retro network gateway."                      ;;
+    epsilon)      desc="Web server."                                 ;;
+    holodeck)     desc="Home automation server."                     ;;
+    hubble)       desc="Monitoring server."                          ;;
+    jupiter)      desc="Security monitoring server."                 ;;
+    lovell)       desc="GitLab server."                              ;;
+    memory-alpha) desc="Network-Attached Storage."                   ;;
+    wormhole)     desc="Pi-Hole system."                             ;;
+
+    #
+    # Physical retro machines.
+    blackice)     desc="Apple PowerBook G3 laptop."                  ;;
+    gagarin)      desc="Fujitsu-Seimens Pentium PC."                 ;;
+    hadfield)     desc="HP 712/60 workstation."                      ;;
+    haisheng)     desc="Sun Microsystems SunBlade 150 workstation."  ;;
+    junlong)      desc="Sun Microsystems Ultra 5 workstation."       ;;
+    komarov)      desc="IBM RS/6000 Model 44p-170 server."           ;;
+    mukai)        desc="IBM PS/2 Model 80 workstation."              ;;
+    polyakov)     desc="DEC Personal Workstation 500au."             ;;
+    ride)         desc="DECpc 486-33 PC."                            ;;
+    silverstorm)  desc="Apple PowerBooK G4 laptop."                  ;;
+    xuzhe)        desc="Sun Microsystems SPARC LX workstation."      ;;
+    yang)         desc="HP 715 workstation."                         ;;
+
+    #
+    # Retro infrastructure.
+    armstrong)    desc="Retro hardware simulator."                   ;;
+
+    #
+    # Simulated Unix machines.
+    borman)       desc="Simulated AT&T 3B2/700 workstation."         ;;
+    fisher)       desc="Simulated Intel x86 server."                 ;;
+    kelvin)       desc="Simulated DEC MicroVAX 3900 server."         ;;
+    korolev)      desc="Simulated DEC Alpha EV4 server."             ;;
+    leonov)       desc="Simulated Intel x86 server."                 ;;
+    shepard)      desc="Simulated Intel x86 server."                 ;;
+    tereshkova)   desc="Simulated DEC VAXstation 3100 workstation."  ;;
+    titov)        desc="Simulated DEC PDP-11/93 server."             ;;
+    volkov)       desc="Simulated DEC VAX-11/780 server."            ;;
+    walker)       desc="Simulated Intel x86 server."                 ;;
+    whitsun)      desc="Simulated DEC MicroVAX 3900 server."         ;;
+    xiaoguang)    desc="Simulated Intel x86 server."                 ;;
+    yamato)       desc="Simulated DEC MicroVAX 3900 server."         ;;
+
+    #
+    # Simulated NeXT machines.
+    akira)        desc="Simulated NeXTcomputer."                     ;;
+    antares)      desc="Simulated NeXTcube."                         ;;
+    apollo)       desc="Simulated NeXTcube."                         ;;
+    bradbury)     desc="Simulated NeXTcube."                         ;;
+    california)   desc="Simulated NeXTcube."                         ;;
+    cardenas)     desc="Simulated NeXTcube."                         ;;
+    centaur)      desc="Simulated NeXTcube."                         ;;
+    dauntless)    desc="Simulated Intel x86 workstation."            ;;
+    galaxy)       desc="Simulated Intel x86 workstation."            ;;
+    grissom)      desc="Simulated Intel x86 workstation."            ;;
+    oberon)       desc="Simulated Intel x86 workstation."            ;;
+    saratoga)     desc="Simulated Intel x86 workstation."            ;;
+    ticonderoga)  desc="Simulated NeXTcube."                         ;;
+    yeager)       desc="Simulated NeXTcube."                         ;;
+
+    #
+    # Other simulated retro systems.
+    berlin)       desc="Simulated MicroVAX 3900 server."             ;;
+    stargazer)    desc="Simulated Honeywell DPS-8/M mainframe."      ;;
+esac
+
+cat motd.ans
+cat <<EOF
+
+  ${DIM}::${NORM} ${BOLD}${host}.home${RESET}
+  ${DIM}::${NORM} ${BPUR}${desc}${RESET}
+  ${DIM}::${NORM} ${NPUR}${pretty}${RESET}
+
+EOF
+
+# motd ends here.
