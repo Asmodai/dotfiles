@@ -90,8 +90,9 @@ installStarship() {
 
         echo "Installing Starship config..."
 
-        rm -rf /usr/local/share/starship/starship.toml 2>/dev/null
-        rm -rf /usr/local/share/starship/starship-16.toml 2>/dev/null
+        sudo mkdir /usr/local/share/starship 2>/dev/null
+        sudo rm -rf /usr/local/share/starship/starship.toml 2>/dev/null
+        sudo rm -rf /usr/local/share/starship/starship-16.toml 2>/dev/null
 
         sudo ln -s ${_rootwd}/starship/starship.toml /usr/local/share/starship/starship.toml
         sudo ln -s ${_rootwd}/starship/starship-16.toml /usr/local/share/starship/starship-16.toml
