@@ -3,13 +3,11 @@
 #
 # utils.zsh --- Various utilities.
 #
-# Copyright (c) 2016 Paul Ward <asmodai@gmail.com>
+# Copyright (c) 2016-2025 Paul Ward <asmodai@gmail.com>
 #
 # Author:     Paul Ward <asmodai@gmail.com>
 # Maintainer: Paul Ward <asmodai@gmail.com>
 # Created:    17 Aug 2016 19:24:43
-# Keywords:   
-# URL:        not distributed yet
 #
 # {{{ License:
 #
@@ -36,56 +34,52 @@
 
 . ${ZSH}/lib/defns.zsh
 
-function getRHEL () {
-    test -f /etc/redhat-release && echo $TRUE || echo $FALSE
-}
-
-function getCentOS () {
-    test -f /etc/centos-release && echo $TRUE || echo $FALSE
-}
-
+# Get version from the Linux Standard Base.
 function getLSB () {
     if [[ -f /usr/bin/lsb_release ]];
     then
         echo $(/usr/bin/lsb_release -i | awk '{ print $3 }')
+
         return
     fi
 
     echo ${FALSE}
 }
 
-function getDistro () {
-    local gotCentOS=$(getCentOS)
-    local gotRHEL=$(getRHEL)
-    local gotDebian=$(getLSB)
-    local distro=
+# Get the underlying distribution.
+function getDistro() {
+    local gotLSB=$(getLSB)
 
-    if [ ${gotCentOS} = ${TRUE} ];
+    if [[ ! "${gotLSB}" = "${FALSE}" ]]
     then
-        distro="CentOS"
-    elif [ ${gotRHEL} = ${TRUE} ];
-    then
-        distro="RedHat"
-    elif [ ! ${gotDebian} = ${FALSE} ];
-    then
-        distro=${gotDebian}
+        echo "${gotLSB}"
     else
-        distro="unknown"
-    fi
+        local releases=(/etc/*-release)
 
-    echo ${distro}
+        case "${(j: :)releases}" in
+            (*almalinux*) echo "AlmaLinux" ;;
+            (*rocky*)     echo "Rocky"     ;;
+            (*centos*)    echo "CentOS"    ;;
+            (*redhat*)    echo "RedHat"    ;;
+            (*)           echo "Unknown"   ;;
+        esac
+    fi
 }
 
+# Is the distro derived from RedHat?
 function isRedHat () {
     local distro=$(getDistro)
 
     case $distro in
-        RedHat)    echo ${TRUE}  ;;
+        AlmaLinux) echo ${TRUE}  ;;
+        Rocky)     echo ${TRUE}  ;;
         CentOS)    echo ${TRUE}  ;;
+        RedHat)    echo ${TRUE}  ;;
         *)         echo ${FALSE} ;;
     esac
 }
 
+# Is the distro equal to the given one?
 function isDistro () {
     [[ "$(getDistro)" = "$1" ]] && echo ${TRUE} || echo ${FALSE}
 }

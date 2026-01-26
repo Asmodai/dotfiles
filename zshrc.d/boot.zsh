@@ -3,13 +3,11 @@
 #
 # boot.zsh --- Bootup script.
 #
-# Copyright (c) 2016 Paul Ward <asmodai@gmail.com>
+# Copyright (c) 2016-2025 Paul Ward <asmodai@gmail.com>
 #
 # Author:     Paul Ward <asmodai@gmail.com>
 # Maintainer: Paul Ward <asmodai@gmail.com>
 # Created:    15 Aug 2016 19:58:12
-# Keywords:   
-# URL:        not distributed yet
 #
 # {{{ License:
 #
@@ -63,6 +61,7 @@ do
 done
 unset config
 
+# Is $2 a plugin in the $1 base directory.
 function isPlugin () {
     local base=$1
     local name=$2
@@ -71,6 +70,7 @@ function isPlugin () {
          || test -f ${base}/plugins/${name}/_${name}
 }
 
+# List all plugins.
 function listPlugins () {
   local base=$1
   typeset -a dirs
@@ -80,7 +80,7 @@ function listPlugins () {
       echo "No argument provided!"
       return
   fi
-  
+
   for i in $(ls -d ${base}/plugins/*);
   do
     dirs+=`basename $i`
@@ -88,7 +88,6 @@ function listPlugins () {
 
   echo ${(j: :)dirs}
 }
-
 
 # Add all defined plugins.
 for plugin ($(listPlugins "${ZSH}"));
@@ -110,11 +109,13 @@ else
     SHORT_HOST=${HOST/.*/}
 fi
 
+# Set up completion dumping.
 if [ -z "${ZSH_COMPDUMP}" ];
 then
     ZSH_COMPDUMP="${ZROOTDIR:-${HOME}}/.zcompdump-${SHORT_HOST}-${ZSH_VERSION}"
 fi
 
+# Fix up completions.
 if [[ ${ZSH_DISABLE_COMPFIX} != true ]];
 then
     if !compaudit &>/dev/null;

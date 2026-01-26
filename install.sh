@@ -79,22 +79,22 @@ installZsh() {
     fi
 }
 
-installPowerLine() {
-    yesOrNo "Install PowerLine config"
+installStarship() {
+    yesOrNo "Install Starsihp"
 
     if [[ "${YESORNO}" = "${TRUE}" ]]
     then
-        echo "Installing PowerLine..."
+        echo "Installing Starship..."
 
-        pip install --break-system-packages powerline-gitstatus
-        pip install --break-system-packages powerline-status
+        curl -sS https://starship.rs/install.sh | sudo sh
 
-        echo "Installing PowerLine config..."
+        echo "Installing Starship config..."
 
-        test -d ${HOME}/.config || mkdir ${HOME}/.config
+        rm -rf /usr/local/share/starship/starship.toml 2>/dev/null
+        rm -rf /usr/local/share/starship/starship-16.toml 2>/dev/null
 
-        rm -rf ${HOME}/.config/powerline 2>/dev/null
-        ln -s ${_rootwd}/powerline ${HOME}/.config/powerline
+        sudo ln -s ${_rootwd}/starship/starship.toml /usr/local/share/starship/starship.toml
+        sudo ln -s ${_rootwd}/starship/starship-16.toml /usr/local/share/starship/starship-16.toml
 
         echo "Done."
     fi
@@ -260,7 +260,7 @@ installFonts() {
 }
 
 installZsh
-installPowerLine
+installStarship
 installVim
 
 installX11

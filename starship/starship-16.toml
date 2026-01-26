@@ -1,0 +1,138 @@
+add_newline     = false
+command_timeout = 1000
+follow_symlinks = true
+palette         = "mine"
+
+# Format of the prompt.
+format = """
+$time\
+$directory\
+$fill\
+$status\
+$cmd_duration\
+[$git_branch($git_state)($git_status)](bold bg:none fg:white)\
+$line_break\
+$username\
+($hostname)\
+$character
+"""
+
+# Custom palette is oriented around xterm-256colour.  This probably wont
+# work that well in older terminals.
+#
+# See https://i.sstatic.net/KTSQa.png for colour values.
+[palettes.mine]
+rootbg = "124"
+userbg = "97"
+hostbg = "202"
+gitbg  = "bright-black"
+gitfg  = "bright-white"
+purple = "97"
+red    = "88"
+black  = "16"
+bred   = "196"
+
+# Time block.
+#
+# Prints basic time and date.  Nothing fancy.
+[time]
+format = "[ $time ]($style)[](fg:white bg:black)"
+style = "bg:black fg:white"
+time_format = "%H:%M:%S %Y-%m-%d"
+use_12hr = false
+disabled = false
+
+# "Character" block.  This represents ye olde "$" and "#".
+#
+# This displays a green lambda if stuff is great, or just a red blob to
+# indicate that an error was returned.
+[character]
+format = "$symbol"
+error_symbol = "[](bg:hostbg fg:red inverted)[   ](bold bg:red fg:black bold)[](fg:red bg:none) "
+success_symbol = "[](bg:hostbg fg:black inverted)[ λ ](bold bg:black fg:bright-green bold)[](fg:black bg:none) "
+
+# Fill block.
+#
+# Used when right-aligning.
+[fill]
+symbol = ' '
+style = 'bg:none'
+
+# Package count.
+#
+# We don't want this.
+[package]
+disabled = false
+
+# Command duration block.
+#
+# So now I know just how long I'm in irc or emacs.
+[cmd_duration]
+min_time = 1000
+show_milliseconds = false
+disabled = false
+format="[](bg:none fg:bright-black)[ 󰞌 $duration ]($style)[](bg:none fg:bright-black)"
+style="bg:bright-black fg:bright-white"
+
+# Current working directory block.
+[directory]
+truncation_length = 5
+format = "[ 󰉋 $path ]($style)[$lock_symbol]($lock_style)[](fg:black bg:none)"
+style = "fg:purple bg:black"
+read_only = "🔒"
+read_only_style= "bold red"
+
+# Current username block.
+#
+# Has special handling for root.
+[username]
+show_always = true
+disabled = false
+style_user = "bold fg:bright-white bg:userbg"
+style_root = "bold fg:bright-white bg:rootbg"
+format = '[ $user ]($style)[]($style inverted fg:hostbg)'
+
+# Hostname block.
+[hostname]
+format = "[ $hostname ]($style)"
+ssh_only = true
+trim_at = "."
+disabled = false
+style = "bg:bright-white fg:hostbg inverted"
+
+# Command exit status block.
+[status]
+style = "bg:yellow fg:black"
+format = "[](bg:none fg:yellow)[ $symbol$status ]($style)[](bg:none fg:yellow)"
+disabled = false
+
+# Git commit block.
+[git_commit]
+commit_hash_length = 8
+style = "bold white"
+
+# Git branch block.
+[git_branch]
+format = "[](bg:none fg:gitbg)[ 󰘬 $branch ]($style)"
+style = "bg:gitbg fg:gitfg"
+
+# Git status block.
+[git_status]
+disabled    = false
+format      = '([$all_status$ahead_behind]($style))'
+style       = "fg:gitfg bg:gitbg"
+conflicted  = "[\\[=$count\\]](fg:yellow bg:gitbg)"
+untracked   = "[\\[?$count\\]](fg:bright-blue bg:gitbg)"
+stashed     = "[\\[\\$$count\\]](fg:bright-black bg:gitbg)"
+modified    = "[\\[!$count\\]](fg:bright-yellow bg:gitbg)"
+staged      = "[\\[+$count\\]](fg:bright-green bg:gitbg)"
+renamed     = "[\\[»$count\\]](fg:bright-cyan bg:gitbg)"
+deleted     = "[\\[✘$count\\]](fg:bright-red bg:gitbg)"
+
+# Git state block.
+[git_state]
+disabled = false
+format = '\([$state( $progress_current/$progress_total)]($style)\) '
+style = "fg:cyan bg:gitbg"
+
+# EOF

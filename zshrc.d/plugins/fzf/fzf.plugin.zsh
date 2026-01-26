@@ -1,5 +1,4 @@
-if [ ! -z "$(whence fzf)" ]
+if [ ! -z "$(whence fzf 2>/dev/null)" ]
 then
-  alias cdfz='cd $(dirname $(fzf))'
+    alias cdfz='cd $(dirname $(fzf))'
 fi
-

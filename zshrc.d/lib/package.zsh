@@ -3,13 +3,11 @@
 #
 # package.zsh --- Package utilities.
 #
-# Copyright (c) 2016 Paul Ward <asmodai@gmail.com>
+# Copyright (c) 2016-2025 Paul Ward <asmodai@gmail.com>
 #
 # Author:     Paul Ward <asmodai@gmail.com>
 # Maintainer: Paul Ward <asmodai@gmail.com>
 # Created:    17 Aug 2016 20:20:43
-# Keywords:   
-# URL:        not distributed yet
 #
 # {{{ License:
 #
@@ -60,6 +58,8 @@ function pluginList () {
 
         if [ "${color}" = "${TRUE}" ]
         then
+            # TODO: This should be written.
+            output="${output}   :$k:${PLUGINS[$k]}\n"
         else
             output="${output}   :$k:${PLUGINS[$k]}\n"
         fi

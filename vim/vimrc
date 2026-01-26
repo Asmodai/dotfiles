@@ -57,10 +57,6 @@ set magic
 " Colour scheme.
 colorscheme slate
 
-" powerline magic.
-set rtp+=/home/asmodai/.local/lib/python3.11/site-packages/powerline/bindings/vim
-set rtp+=/home/asmodai/.local/lib/python3.10/site-packages/powerline/bindings/vim
-
 " Always show status.
 set laststatus=2
 
