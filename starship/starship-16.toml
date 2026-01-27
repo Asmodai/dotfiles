@@ -25,7 +25,7 @@ $character
 rootbg = "124"
 userbg = "97"
 hostbg = "202"
-gitbg  = "bright-black"
+gitbg  = "16"
 gitfg  = "bright-white"
 purple = "97"
 red    = "88"
@@ -48,7 +48,7 @@ disabled = false
 # indicate that an error was returned.
 [character]
 format = "$symbol"
-error_symbol = "[](bg:hostbg fg:red inverted)[   ](bold bg:red fg:black bold)[](fg:red bg:none) "
+error_symbol = "[](bg:hostbg fg:red inverted)[ λ ](bold bg:red fg:yellow bold)[](fg:red bg:none) "
 success_symbol = "[](bg:hostbg fg:black inverted)[ λ ](bold bg:black fg:bright-green bold)[](fg:black bg:none) "
 
 # Fill block.
@@ -119,15 +119,15 @@ style = "bg:gitbg fg:gitfg"
 # Git status block.
 [git_status]
 disabled    = false
-format      = '([$all_status$ahead_behind]($style))'
+format      = '[$all_status$ahead_behind]($style)'
 style       = "fg:gitfg bg:gitbg"
-conflicted  = "[\\[=$count\\]](fg:yellow bg:gitbg)"
-untracked   = "[\\[?$count\\]](fg:bright-blue bg:gitbg)"
-stashed     = "[\\[\\$$count\\]](fg:bright-black bg:gitbg)"
-modified    = "[\\[!$count\\]](fg:bright-yellow bg:gitbg)"
-staged      = "[\\[+$count\\]](fg:bright-green bg:gitbg)"
-renamed     = "[\\[»$count\\]](fg:bright-cyan bg:gitbg)"
-deleted     = "[\\[✘$count\\]](fg:bright-red bg:gitbg)"
+conflicted  = "[=$count ](fg:yellow bg:gitbg bold)"
+untracked   = "[?$count ](fg:bright-blue bg:gitbg)"
+stashed     = "[\\$$count ](fg:bright-purple bg:gitbg)"
+modified    = "[!$count ](fg:bright-yellow bg:gitbg)"
+staged      = "[+$count ](fg:bright-green bg:gitbg)"
+renamed     = "[»$count ](fg:bright-cyan bg:gitbg)"
+deleted     = "[✘$count ](fg:bright-red bg:gitbg)"
 
 # Git state block.
 [git_state]
