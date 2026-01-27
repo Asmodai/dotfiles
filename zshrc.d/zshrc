@@ -102,21 +102,21 @@ function getPaths() {
 
     # Set up for Go.
     local godir=""
-    test -d "${HOME}/${PROJECTS_DIRECTORY}/Go" && godir="Go"
-    test -d "${HOME}/${PROJECTS_DIRECTORY}/go" && godir="go"
+    test -d "${PROJECTS_DIRECTORY}/Go" && godir="Go"
+    test -d "${PROJECTS_DIRECTORY}/go" && godir="go"
     if [[ ! "${godir}" = "" ]]
     then
-        export GOPATH="${HOME}/${PROJECTS_DIRECTORY}/${godir}"
+        export GOPATH="${PROJECTS_DIRECTORY}/${godir}"
         export GOHOME="${GOPATH}"
     fi
 
     # Set up for Lisp.
     local lispdir=""
-    test -d "${HOME}/${PROJECTS_DIRECTORY}/Lisp" && lispdir="Lisp"
-    test -d "${HOME}/${PROJECTS_DIRECTORY}/lisp" && lispdir="lisp"
+    test -d "${PROJECTS_DIRECTORY}/Lisp" && lispdir="Lisp"
+    test -d "${PROJECTS_DIRECTORY}/lisp" && lispdir="lisp"
     if [[ ! "${LISPDIR}" = "" ]]
     then
-        export LISPPATH="${HOME}/${PROJECTS_DIRECTORY}/${lispdir}"
+        export LISPPATH="${PROJECTS_DIRECTORY}/${lispdir}"
     fi
 
     # Keep X11 paths out of this.  If one requires X, then write a plugin
