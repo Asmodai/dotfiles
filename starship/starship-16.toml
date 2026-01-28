@@ -70,6 +70,7 @@ disabled = false
 # This is just a small subset of what's available, because I don't use it all.
 [os.symbols]
 Amazon           = ''
+AlmaLinux        = " "
 Arch             = ''
 Debian           = ''
 EndeavourOS      = ''
@@ -123,7 +124,7 @@ disabled = false
 min_time          = 1000
 show_milliseconds = false
 disabled          = false
-format            = "[](bg:barbg fg:durbg)[ 󰞌 $duration ]($style)[](bg:none fg:durbg)"
+format            = "[](bg:barbg fg:durbg)[󰞌 $duration]($style)[](bg:none fg:durbg)"
 style             = "bg:durbg fg:durfg"
 
 # Current working directory block.
@@ -157,7 +158,7 @@ style    = "bg:black fg:hostfg"
 # Command exit status block.
 [status]
 style    = "bg:statbg fg:statfg"
-format   = "[](bg:barbg fg:statbg)[ $symbol$status ]($style)[](bg:barbg fg:statbg)"
+format   = "[](bg:barbg fg:statbg)[$symbol$status]($style)[](bg:barbg fg:statbg)"
 disabled = false
 
 # Git commit block.
