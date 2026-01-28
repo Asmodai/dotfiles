@@ -12,6 +12,7 @@ $directory\
 $fill\
 $cmd_duration\
 $status\
+$jobs\
 $git_branch$git_commit$fill$git_state$git_status\
 $line_break\
 $hostname\
@@ -39,6 +40,8 @@ barfg     = "242"
 gitfg     = "16"
 durbg     = "105"
 durfg     = "16"
+jobbg     = "106"
+jobfg     = "16"
 statbg    = "yellow"
 statfg    = "16"
 red       = "88"
@@ -129,7 +132,7 @@ style             = "bg:durbg fg:durfg"
 
 # Current working directory block.
 [directory]
-truncation_length = 4
+truncation_length = 3
 truncate_to_repo  = false
 truncation_symbol = "…"
 format            = "[ 󰷏 $path ]($style)[$lock_symbol]($lock_style)[](fg:dirbg bg:barbg)"
@@ -150,7 +153,7 @@ format      = '[ $user ]($style)[]($style inverted fg:timebg)'
 # Hostname block.
 [hostname]
 format   = "[ 🖧 ]($style)[$hostname]($style bold)"
-ssh_only = true
+ssh_only = false
 trim_at  = "."
 disabled = false
 style    = "bg:black fg:hostfg"
@@ -160,6 +163,14 @@ style    = "bg:black fg:hostfg"
 style    = "bg:statbg fg:statfg"
 format   = "[](bg:barbg fg:statbg)[$symbol$status]($style)[](bg:barbg fg:statbg)"
 disabled = false
+
+[jobs]
+threshold        = 1
+number_threshold = 1
+symbol           = "⧛ "
+style            = "bg:jobbg fg:jobfg"
+format           = "[](bg:barbg fg:jobbg)[$symbol$number]($style)[](bg:barbg fg:jobbg)"
+disabled         = false
 
 # Git commit block.
 [git_commit]
