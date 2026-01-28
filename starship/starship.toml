@@ -12,11 +12,9 @@ $directory\
 $fill\
 $cmd_duration\
 $status\
-$git_branch$git_commit$git_state$git_status\
+$git_branch$git_commit$fill$git_state$git_status\
 $line_break\
-[ ╰──](fg:barfg bg:barbg)\
-[](fg:hostbg bg:barbg)\
-($hostname)\
+$hostname\
 $character
 """
 
@@ -28,9 +26,10 @@ $character
 usernorm  = "bright-white"
 userroot  = "210"
 userbg    = "97"
-hostbg    = "202"
+hostfg    = "202"
+hostbg    = "none"
 timebg    = "236"
-timefg    = "147"
+timefg    = "252"
 osbg      = "bright-white"
 osfg      = "16"
 dirbg     = "16"
@@ -44,10 +43,10 @@ statbg    = "yellow"
 statfg    = "16"
 red       = "88"
 black     = "16"
-gitbg     = "208"
+gitbg     = "150"#"208"
 gitlogobg = "202"
 gitlogofg = "16"
-gitcmt    = "214"
+gitcmt    = "105"#"214"
 gitahd    = "green"
 gitbhd    = "179"
 gitdvd    = "196"
@@ -59,6 +58,8 @@ gitstgd   = "bright-green"
 gitrend   = "bright-cyan"
 gituntr   = "bright-blue"
 gitdeld   = "red"
+staterr   = "196"
+statok    = "bright-green"
 
 [os]
 format   = '[ $symbol ](fg:osfg bg:osbg bold)[](bg:userbg fg:osbg)'
@@ -99,8 +100,8 @@ disabled    = false
 # indicate that an error was returned.
 [character]
 format         = "$symbol"
-error_symbol   = "[](bg:hostbg fg:black inverted)[ λ ](bold bg:black fg:bright-red bold)[](fg:black bg:none) "
-success_symbol = "[](bg:hostbg fg:black inverted)[ λ ](bold bg:black fg:bright-green bold)[](fg:black bg:none) "
+error_symbol   = "[ λ ](bold bg:black fg:staterr bold)[](fg:black bg:none) "
+success_symbol = "[ λ ](bold bg:black fg:statok bold)[](fg:black bg:none) "
 
 # Fill block.
 #
@@ -147,11 +148,11 @@ format      = '[ $user ]($style)[]($style inverted fg:timebg)'
 
 # Hostname block.
 [hostname]
-format   = "[ $hostname ]($style)"
+format   = "[ 🖧 ]($style)[$hostname]($style bold)"
 ssh_only = true
 trim_at  = "."
 disabled = false
-style    = "bg:bright-white fg:hostbg inverted bold"
+style    = "bg:black fg:hostfg"
 
 # Command exit status block.
 [status]
@@ -165,12 +166,12 @@ disabled           = false
 commit_hash_length = 8
 only_detached      = false
 tag_disabled       = false
-format             = '[](bg:bar fg:gitcmt)[ $hash$tag ]($style)[](bg:bar fg:gitcmt)'
+format             = '[ $hash$tag ]($style)[](bg:bar fg:gitcmt)'
 style              = "bg:gitcmt fg:gitfg"
 
 # Git branch block.
 [git_branch]
-format = "\n[ ├──](bg:barbg fg:barfg)[](bg:bar fg:gitbg)[ 󰘬 $branch ]($style)[](bg:barbg fg:gitbg)"
+format = "\n[ 󰘬 $branch ]($style)[](bg:gitcmt fg:gitbg)"
 style  = "bg:gitbg fg:gitfg"
 
 # Git status block.
