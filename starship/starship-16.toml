@@ -24,7 +24,7 @@ $character
 [palettes.mine]
 rootbg    = "124"
 userbg    = "97"
-hostbg    = "204"
+hostbg    = "202"
 timebg    = "97"
 pathbg    = "16"
 pathfg    = "purple"
