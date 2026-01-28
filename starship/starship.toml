@@ -117,7 +117,7 @@ format   = "[ $hostname ]($style)"
 ssh_only = true
 trim_at  = "."
 disabled = false
-style    = "bg:bright-white fg:hostbg inverted"
+style    = "bg:bright-white fg:hostbg inverted bold"
 
 # Command exit status block.
 [status]
