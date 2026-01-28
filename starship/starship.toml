@@ -10,7 +10,7 @@ $directory\
 $fill\
 $status\
 $cmd_duration\
-[$git_branch($git_state)($git_status)](bold bg:none fg:white)\
+($git_branch)($git_commit)($git_state)($fill)($git_status)\
 $line_break\
 $username\
 ($hostname)\
@@ -22,15 +22,29 @@ $character
 #
 # See https://i.sstatic.net/KTSQa.png for colour values.
 [palettes.mine]
-rootbg = "124"
-userbg = "97"
-hostbg = "202"
-gitbg  = "16"
-gitfg  = "bright-white"
-purple = "97"
-red    = "88"
-black  = "16"
-bred   = "196"
+rootbg    = "124"
+userbg    = "97"
+hostbg    = "204"
+gitbg     = "208"
+gitfg     = "16"
+gitlogobg = "202"
+gitlogofg = "16"
+gitcmt    = "214"
+gitahd    = "green"
+gitbhd    = "179"
+gitdvd    = "196"
+gitupd    = "green"
+gitcnfl   = "yellow"
+gitstsh   = "purple"
+gitmodi   = "202"
+gitstgd   = "bright-green"
+gitrend   = "bright-cyan"
+gituntr   = "bright-blue"
+gitdeld   = "red"
+purple    = "97"
+red       = "88"
+black     = "16"
+bred      = "196"
 
 # Time block.
 #
@@ -108,26 +122,34 @@ disabled = false
 
 # Git commit block.
 [git_commit]
+disabled           = false
 commit_hash_length = 8
-style = "bold white"
+only_detached      = false
+tag_disabled       = false
+format             = '[ $hash$tag ]($style)[](bg:none fg:gitcmt)'
+style              = "bg:gitcmt fg:gitfg"
 
 # Git branch block.
 [git_branch]
-format = "[](bg:none fg:gitbg)[ 󰘬 $branch ]($style)"
+format = "\n[ 󰘬 ](bg:gitlogobg fg:gitlogofg bold)[](bg:gitlogobg fg:gitbg inverted)[ $branch ]($style)[](bg:gitcmt fg:gitbg)"
 style = "bg:gitbg fg:gitfg"
 
 # Git status block.
 [git_status]
 disabled    = false
-format      = '[$all_status$ahead_behind]($style)'
+format      = "[$all_status$ahead_behind]($style)"
 style       = "fg:gitfg bg:gitbg"
-conflicted  = "[=$count ](fg:yellow bg:gitbg bold)"
-untracked   = "[?$count ](fg:bright-blue bg:gitbg)"
-stashed     = "[\\$$count ](fg:bright-purple bg:gitbg)"
-modified    = "[!$count ](fg:bright-yellow bg:gitbg)"
-staged      = "[+$count ](fg:bright-green bg:gitbg)"
-renamed     = "[»$count ](fg:bright-cyan bg:gitbg)"
-deleted     = "[✘$count ](fg:bright-red bg:gitbg)"
+ahead       = "[](bg:none fg:gitahd)[⇡](fg:gitfg bg:gitahd bold)[](bg:none fg:gitahd)"
+behind      = "[](bg:none fg:gitbhd)[⇣](fg:gitfg bg:gitbhd bold)[](bg:none fg:gitbhd)"
+diverged    = "[](bg:none fg:gitdvd)[⇕](fg:gitfg bg:gitdvd bold)[](bg:none fg:gitdvd)"
+up_to_date  = "[](bg:none fg:gitupd)[✔](fg:gitfg bg:gitupd bold)[](bg:none fg:gitupd)"
+conflicted  = "[](bg:none fg:gitcnfl)[⁉ $count](fg:gitfg bg:gitcnfl bold)[](bg:none fg:gitcnfl)"
+untracked   = "[](bg:none fg:gituntr)[? $count](fg:gitfg bg:gituntr bold)[](bg:none fg:gituntr)"
+stashed     = "[](bg:none fg:gitstsh)[⚶ $count](fg:gitfg bg:gitstsh bold)[](bg:none fg:gitstsh)"
+modified    = "[](bg:none fg:gitmodi)[! $count](fg:gitfg bg:gitmodi bold)[](bg:none fg:gitmodi)"
+staged      = "[](bg:none fg:gitstgd)[+ $count](fg:gitfg bg:gitstgd bold)[](bg:none fg:gitstgd)"
+renamed     = "[](bg:none fg:gitrend)[» $count](fg:gitfg bg:gitrend bold)[](bg:none fg:gitrend)"
+deleted     = "[](bg:none fg:gitdeld)[✘ $count](fg:gitfg bg:gitdeld bold)[](bg:none fg:gitdeld)"
 
 # Git state block.
 [git_state]
