@@ -27,6 +27,7 @@ $character
 usernorm  = "bright-white"
 userroot  = "210"
 userbg    = "97"
+hostlfg   = "172"
 hostfg    = "202"
 hostbg    = "none"
 timebg    = "236"
@@ -152,7 +153,7 @@ format      = '[ $user ]($style)[]($style inverted fg:timebg)'
 
 # Hostname block.
 [hostname]
-format   = "[ 🖧 ]($style)[$hostname]($style bold)"
+format   = "[ 🖧 ]($style fg:hostlfg)[$hostname]($style bold)"
 ssh_only = true
 trim_at  = "."
 disabled = false
