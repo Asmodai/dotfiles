@@ -28,7 +28,7 @@ $character
 user_norm      = "183"
 user_root      = "196"
 host_bg        = "16"
-host_fg        = "172"#"202"
+host_fg        = "172"
 host_at        = "250"
 time_bg        = "97"
 time_fg        = "253"
@@ -42,7 +42,7 @@ red            = "88"
 black          = "16"
 git_branch_bg  = "97"
 git_branch_fg  = "253"
-git_commit_bg  = "16"#"214"
+git_commit_bg  = "16"
 git_commit_fg  = "183"
 git_status_bg  = "236"
 git_status_fg  = "253"
@@ -132,6 +132,21 @@ disabled          = false
 format            = "[](bg:bar_bg fg:duration_bg)[󰞌 $duration]($style)[](bg:bar_bg fg:duration_bg)"
 style             = "bg:duration_bg fg:duration_fg"
 
+# Command exit status block.
+[status]
+style    = "bg:status_bg fg:status_fg"
+format   = "[](bg:bar_bg fg:status_bg)[$symbol$status]($style)[](bg:bar_bg fg:status_bg)"
+disabled = false
+
+# Shell jobs.
+[jobs]
+threshold        = 1
+number_threshold = 1
+symbol           = "⧛ "
+style            = "bg:jobs_bg fg:jobs_fg"
+format           = "[](bg:bar_bg fg:jobs_bg)[$symbol$number]($style)[](bg:bar_bg fg:jobs_bg)"
+disabled         = false
+
 # Current working directory block.
 [directory]
 truncation_length = 5
@@ -159,20 +174,6 @@ ssh_only = false
 trim_at  = "."
 disabled = false
 style    = "bg:host_bg fg:host_fg"
-
-# Command exit status block.
-[status]
-style    = "bg:status_bg fg:status_fg"
-format   = "[](bg:bar_bg fg:status_bg)[$symbol$status]($style)[](bg:bar_bg fg:status_bg)"
-disabled = false
-
-[jobs]
-threshold        = 1
-number_threshold = 1
-symbol           = "⧛ "
-style            = "bg:jobs_bg fg:jobs_fg"
-format           = "[](bg:bar_bg fg:jobs_bg)[$symbol$number]($style)[](bg:bar_bg fg:jobs_bg)"
-disabled         = false
 
 # Git commit block.
 [git_commit]
