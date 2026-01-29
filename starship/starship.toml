@@ -7,7 +7,6 @@ continuation_prompt = '[ ](fg:97 bg:none bold)'
 # Format of the prompt.
 format = """
 $os\
-$username\
 $time\
 $directory\
 $fill\
@@ -16,6 +15,7 @@ $status\
 $jobs\
 $git_branch$git_commit$fill$git_state$git_status\
 $line_break\
+$username\
 $hostname\
 $character
 """
@@ -25,49 +25,49 @@ $character
 #
 # See https://i.sstatic.net/KTSQa.png for colour values.
 [palettes.mine]
-usernorm  = "bright-white"
-userroot  = "210"
-userbg    = "97"
-hostlfg   = "172"
-hostfg    = "202"
-hostbg    = "none"
-timebg    = "236"
-timefg    = "252"
-osbg      = "bright-white"
-osfg      = "16"
-dirbg     = "16"
-dirfg     = "147"
-barbg     = "none"
-barfg     = "242"
-gitfg     = "16"
-durbg     = "105"
-durfg     = "16"
-jobbg     = "106"
-jobfg     = "16"
-statbg    = "yellow"
-statfg    = "16"
-red       = "88"
-black     = "16"
-gitbg     = "150"#"208"
-gitlogobg = "202"
-gitlogofg = "16"
-gitcmt    = "105"#"214"
-gitahd    = "green"
-gitbhd    = "179"
-gitdvd    = "196"
-gitupd    = "green"
-gitcnfl   = "yellow"
-gitstsh   = "purple"
-gitmodi   = "202"
-gitstgd   = "bright-green"
-gitrend   = "bright-cyan"
-gituntr   = "bright-blue"
-gitdeld   = "red"
-staterr   = "196"
-statok    = "bright-green"
+user_norm      = "183"
+user_root      = "196"
+host_bg        = "16"
+host_fg        = "172"#"202"
+host_at        = "250"
+time_bg        = "97"
+time_fg        = "253"
+os_bg          = "253"
+os_fg          = "16"
+dir_bg         = "16"
+dir_fg         = "183"
+bar_bg         = "none"
+bar_fg         = "242"
+red            = "88"
+black          = "16"
+git_branch_bg  = "97"
+git_branch_fg  = "253"
+git_commit_bg  = "16"#"214"
+git_commit_fg  = "183"
+git_status_bg  = "236"
+git_status_fg  = "253"
+git_ahead      = "green"
+git_behind     = "179"
+git_diverged   = "196"
+git_uptodate   = "green"
+git_conflicted = "yellow"
+git_untracked  = "bright-blue"
+git_stashed    = "purple"
+git_modified   = "202"
+git_staged     = "bright-green"
+git_renamed    = "bright-cyan"
+git_deleted    = "red"
+duration_bg    = "105"
+duration_fg    = "16"
+jobs_bg        = "106"
+jobs_fg        = "16"
+status_bg      = "yellow"
+status_fg      = "16"
+status_err     = "196"
+status_ok      = "bright-green"
 
 [os]
-format   = '[ $symbol ](fg:osfg bg:osbg bold)[](bg:userbg fg:osbg)'
+format   = '[ $symbol ](fg:os_fg bg:os_bg bold)[](bg:time_bg fg:os_bg)'
 disabled = false
 
 # OS symbols.
@@ -94,9 +94,9 @@ Windows          = ''
 #
 # Prints basic time and date.  Nothing fancy.
 [time]
-format      = "[ $time ]($style)[](fg:timebg bg:dirbg)"
-style       = "bg:timebg fg:timefg bold"
-time_format = "󰦖 %H:%M:%S"
+format      = "[ $time ]($style)[](fg:time_bg bg:dir_bg)"
+style       = "bg:time_bg fg:time_fg bold"
+time_format = "%H:%M:%S"
 use_12hr    = false
 disabled    = false
 
@@ -106,8 +106,8 @@ disabled    = false
 # indicate that an error was returned.
 [character]
 format         = "$symbol"
-error_symbol   = "[ λ ](bold bg:black fg:staterr bold)[](fg:black bg:none) "
-success_symbol = "[ λ ](bold bg:black fg:statok bold)[](fg:black bg:none) "
+error_symbol   = "[ λ ](bold bg:host_bg fg:status_err bold)[](fg:host_bg bg:none) "
+success_symbol = "[ λ ](bold bg:host_bg fg:status_ok bold)[](fg:host_bg bg:none) "
 
 # Fill block.
 #
@@ -129,16 +129,16 @@ disabled = false
 min_time          = 1000
 show_milliseconds = false
 disabled          = false
-format            = "[](bg:barbg fg:durbg)[󰞌 $duration]($style)[](bg:none fg:durbg)"
-style             = "bg:durbg fg:durfg"
+format            = "[](bg:bar_bg fg:duration_bg)[󰞌 $duration]($style)[](bg:bar_bg fg:duration_bg)"
+style             = "bg:duration_bg fg:duration_fg"
 
 # Current working directory block.
 [directory]
-truncation_length = 3
+truncation_length = 5
 truncate_to_repo  = false
 truncation_symbol = "…"
-format            = "[ 󰷏 $path ]($style)[$lock_symbol]($lock_style)[](fg:dirbg bg:barbg)"
-style             = "fg:dirfg bg:dirbg"
+format            = "[ 󰷏 $path ]($style)[$lock_symbol]($lock_style)[](fg:dir_bg bg:bar_bg)"
+style             = "fg:dir_fg bg:dir_bg"
 read_only         = "🔒"
 read_only_style   = "bold red"
 
@@ -148,30 +148,30 @@ read_only_style   = "bold red"
 [username]
 show_always = true
 disabled    = false
-style_user  = "bold fg:usernorm bg:userbg"
-style_root  = "bold fg:userroot bg:userbg"
-format      = '[ $user ]($style)[]($style inverted fg:timebg)'
+style_user  = "bold fg:user_norm bg:host_bg"
+style_root  = "bold fg:user_root bg:host_bg"
+format      = '[ $user]($style)'
 
 # Hostname block.
 [hostname]
-format   = "[ 🖧 ]($style fg:hostlfg)[$hostname]($style bold)"
-ssh_only = true
+format   = "[@]($style fg:host_at)[$hostname]($style bold)"
+ssh_only = false
 trim_at  = "."
 disabled = false
-style    = "bg:black fg:hostfg"
+style    = "bg:host_bg fg:host_fg"
 
 # Command exit status block.
 [status]
-style    = "bg:statbg fg:statfg"
-format   = "[](bg:barbg fg:statbg)[$symbol$status]($style)[](bg:barbg fg:statbg)"
+style    = "bg:status_bg fg:status_fg"
+format   = "[](bg:bar_bg fg:status_bg)[$symbol$status]($style)[](bg:bar_bg fg:status_bg)"
 disabled = false
 
 [jobs]
 threshold        = 1
 number_threshold = 1
 symbol           = "⧛ "
-style            = "bg:jobbg fg:jobfg"
-format           = "[](bg:barbg fg:jobbg)[$symbol$number]($style)[](bg:barbg fg:jobbg)"
+style            = "bg:jobs_bg fg:jobs_fg"
+format           = "[](bg:bar_bg fg:jobs_bg)[$symbol$number]($style)[](bg:bar_bg fg:jobs_bg)"
 disabled         = false
 
 # Git commit block.
@@ -180,35 +180,35 @@ disabled           = false
 commit_hash_length = 8
 only_detached      = false
 tag_disabled       = false
-format             = '[ $hash$tag ]($style)[](bg:bar fg:gitcmt)'
-style              = "bg:gitcmt fg:gitfg"
+format             = '[ $hash$tag ]($style)[](bg:bar_bg fg:git_commit_bg)'
+style              = "bg:git_commit_bg fg:git_commit_fg"
 
 # Git branch block.
 [git_branch]
-format = "\n[ 󰘬 $branch ]($style)[](bg:gitcmt fg:gitbg)"
-style  = "bg:gitbg fg:gitfg"
+format = "\n[ 󰘬 ](fg:os_fg bg:os_bg bold)[](bg:git_branch_bg fg:os_bg)[ $branch ]($style)[](bg:git_commit_bg fg:git_branch_bg)"
+style  = "bg:git_branch_bg fg:git_branch_fg bold"
 
 # Git status block.
 [git_status]
 disabled   = false
-format     = "[$all_status$ahead_behind]($style)"
-style      = "fg:gitfg bg:barbg"
-ahead      = "[](bg:barbg fg:gitahd)[🠅](fg:gitfg bg:gitahd bold)[](bg:barbg fg:gitahd)"
-behind     = "[](bg:barbg fg:gitbhd)[🠇](fg:gitfg bg:gitbhd bold)[](bg:barbg fg:gitbhd)"
-diverged   = "[](bg:barbg fg:gitdvd)[⮽](fg:gitfg bg:gitdvd bold)[](bg:barbg fg:gitdvd)"
-up_to_date = "[](bg:barbg fg:gitupd)[✔](fg:gitfg bg:gitupd bold)[](bg:barbg fg:gitupd)"
-conflicted = "[](bg:barbg fg:gitcnfl)[⁉ $count](fg:gitfg bg:gitcnfl bold)[](bg:barbg fg:gitcnfl)"
-untracked  = "[](bg:barbg fg:gituntr)[? $count](fg:gitfg bg:gituntr bold)[](bg:barbg fg:gituntr)"
-stashed    = "[](bg:barbg fg:gitstsh)[⚶ $count](fg:gitfg bg:gitstsh bold)[](bg:barbg fg:gitstsh)"
-modified   = "[](bg:barbg fg:gitmodi)[! $count](fg:gitfg bg:gitmodi bold)[](bg:barbg fg:gitmodi)"
-staged     = "[](bg:barbg fg:gitstgd)[+ $count](fg:gitfg bg:gitstgd bold)[](bg:barbg fg:gitstgd)"
-renamed    = "[](bg:barbg fg:gitrend)[» $count](fg:gitfg bg:gitrend bold)[](bg:barbg fg:gitrend)"
-deleted    = "[](bg:barbg fg:gitdeld)[✘ $count](fg:gitfg bg:gitdeld bold)[](bg:barbg fg:gitdeld)"
+format     = "[](bg:bar_bg fg:git_status_bg)[$all_status$ahead_behind]($style)[](bg:bar_bg fg:git_status_bg)"
+style      = "fg:git_status_fg bg:git_status_bg"
+ahead      = "[ 🠅${count} ](fg:git_ahead bg:git_status_bg bold)"
+behind     = "[ 🠇${count} ](fg:git_behind bg:git_status_bg bold)"
+diverged   = "[ ⮽🠅${ahead_count}🠇${behind_count} ](fg:git_diverged bg:git_status_bg bold)"
+up_to_date = "[ ✔ ](fg:git_uptodate bg:git_status_bg bold)"
+conflicted = "[ ⁉${count} ](fg:git_conflicted bg:git_status_bg bold)"
+untracked  = "[ ?${count} ](fg:git_untracked bg:git_status_bg bold)"
+stashed    = "[ ⚶${count} ](fg:git_stashed bg:git_status_bg bold)"
+modified   = "[ !${count} ](fg:git_modified bg:git_status_bg bold)"
+staged     = "[ +${count} ](fg:git_staged bg:git_status_bg bold)"
+renamed    = "[ »${count} ](fg:git_renamed bg:git_status_bg bold)"
+deleted    = "[ ✘${count} ](fg:git_deleted bg:git_status_bg bold)"
 
 # Git state block.
 [git_state]
 disabled = false
 format   = '\([$state( $progress_current/$progress_total)]($style)\) '
-style    = "fg:cyan bg:gitbg"
+style    = "fg:cyan bg:git_branch_bg"
 
 # EOF
