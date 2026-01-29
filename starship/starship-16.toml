@@ -1,7 +1,8 @@
-add_newline     = false
-command_timeout = 1000
-follow_symlinks = true
-palette         = "mine"
+add_newline         = false
+command_timeout     = 1000
+follow_symlinks     = true
+palette             = "mine"
+continuation_prompt = '[ ](fg:97 bg:none bold)'
 
 # Format of the prompt.
 format = """
