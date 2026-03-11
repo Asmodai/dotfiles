@@ -35,7 +35,7 @@
 . ${ZSH}/lib/defns.zsh
 
 # Get version from the Linux Standard Base.
-function getLSB () {
+function getLSB() {
     if [[ -f /usr/bin/lsb_release ]];
     then
         echo $(/usr/bin/lsb_release -i | awk '{ print $3 }')
@@ -49,7 +49,17 @@ function getLSB () {
 # Get the underlying distribution.
 function getDistro() {
     local gotLSB=$(getLSB)
+    local sysname=$(uname -s)
 
+    case "${susname}" in
+        Darwin)  echo "macOS";   return ;;
+        FreeBSD) echo "FreeBSD"; return ;;
+        NetBSD)  echo "NetBSD";  return ;;
+        OpenBSD) echo "OpenBSD"; return ;;
+        Solaris) echo "Solaris"; return ;;
+    esac
+
+    # Special handling for systems with the Linux kernel.
     if [[ ! "${gotLSB}" = "${FALSE}" ]]
     then
         echo "${gotLSB}"
