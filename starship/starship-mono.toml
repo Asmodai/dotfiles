@@ -1,0 +1,195 @@
+add_newline         = false
+command_timeout     = 1000
+follow_symlinks     = true
+palette             = "mine"
+continuation_prompt = '[>> ](fg:white bg:none bold)'
+
+# Format of the prompt.
+format = """
+$os\
+$time\
+$directory\
+$fill\
+$cmd_duration\
+$status\
+$jobs\
+$git_branch$git_commit$fill$git_state$git_status\
+$line_break\
+$username\
+$hostname\
+$character
+"""
+
+# Custom palette is oriented around xterm-256colour.  This probably wont
+# work that well in older terminals.
+#
+# See https://i.sstatic.net/KTSQa.png for colour values.
+[palettes.mine]
+user_norm      = "white"
+user_root      = "white"
+host_bg        = "none"
+host_fg        = "white"
+host_at        = "grey"
+time_bg        = "none"
+time_fg        = "white"
+os_bg          = "none"
+os_fg          = "white"
+dir_bg         = "none"
+dir_fg         = "white"
+bar_bg         = "none"
+bar_fg         = "white"
+red            = "white"
+black          = "black"
+git_branch_bg  = "none"
+git_branch_fg  = "grey"
+git_commit_bg  = "none"
+git_commit_fg  = "white"
+git_status_bg  = "none"
+git_status_fg  = "white"
+git_ahead      = "white"
+git_behind     = "white"
+git_diverged   = "white"
+git_uptodate   = "white"
+git_conflicted = "white"
+git_untracked  = "white"
+git_stashed    = "white"
+git_modified   = "white"
+git_staged     = "white"
+git_renamed    = "white"
+git_deleted    = "white"
+duration_bg    = "none"
+duration_fg    = "white"
+jobs_bg        = "none"
+jobs_fg        = "white"
+status_bg      = "none"
+status_fg      = "white"
+status_err     = "grey"
+status_ok      = "white"
+
+[os]
+format   = '[ # ](fg:os_fg bg:os_bg bold)[>](bg:time_bg fg:os_bg)'
+disabled = false
+
+# Time block.
+#
+# Prints basic time and date.  Nothing fancy.
+[time]
+format      = "[ $time ]($style)[-](fg:time_bg bg:dir_bg)"
+style       = "bg:time_bg fg:time_fg bold"
+time_format = "%H:%M:%S"
+use_12hr    = false
+disabled    = false
+
+# "Character" block.  This represents ye olde "$" and "#".
+#
+# This displays a green lambda if stuff is great, or just a red blob to
+# indicate that an error was returned.
+[character]
+format         = "$symbol"
+error_symbol   = "[\\$](bold bg:host_bg fg:status_err bold) "
+success_symbol = "[\\$](bold bg:host_bg fg:status_ok bold) "
+
+# Fill block.
+#
+# Used when right-aligning.
+[fill]
+symbol = ' '
+style  = 'bg:none'
+
+# Package count.
+#
+# We don't want this.
+[package]
+disabled = false
+
+# Command duration block.
+#
+# So now I know just how long I'm in irc or emacs.
+[cmd_duration]
+min_time          = 1000
+show_milliseconds = false
+disabled          = false
+format            = "[<](bg:bar_bg fg:duration_bg)[D $duration]($style)[>](bg:bar_bg fg:duration_bg)"
+style             = "bg:duration_bg fg:duration_fg"
+
+# Command exit status block.
+[status]
+style    = "bg:status_bg fg:status_fg"
+format   = "[<](bg:bar_bg fg:status_bg)[! $status]($style)[>](bg:bar_bg fg:status_bg)"
+disabled = false
+
+# Shell jobs.
+[jobs]
+threshold        = 1
+number_threshold = 1
+symbol           = "J "
+style            = "bg:jobs_bg fg:jobs_fg"
+format           = "[<](bg:bar_bg fg:jobs_bg)[$symbol$number]($style)[>](bg:bar_bg fg:jobs_bg)"
+disabled         = false
+
+# Current working directory block.
+[directory]
+truncation_length = 5
+truncate_to_repo  = false
+truncation_symbol = "..."
+format            = "[ $path ]($style)[$lock_symbol]($lock_style)[>](fg:dir_bg bg:bar_bg)"
+style             = "fg:dir_fg bg:dir_bg"
+read_only         = "ro"
+read_only_style   = "bold red"
+
+# Current username block.
+#
+# Has special handling for root.
+[username]
+show_always = true
+disabled    = false
+style_user  = "bold fg:user_norm bg:host_bg"
+style_root  = "bold fg:user_root bg:host_bg"
+format      = '[ $user]($style)'
+
+# Hostname block.
+[hostname]
+format   = "[@]($style fg:host_at)[$hostname]($style bold)"
+ssh_only = false
+trim_at  = "."
+disabled = false
+style    = "bg:host_bg fg:host_fg"
+
+# Git commit block.
+[git_commit]
+disabled           = false
+commit_hash_length = 8
+only_detached      = false
+tag_disabled       = false
+format             = '[ $hash$tag ]($style)[>](bg:bar_bg fg:git_commit_bg)'
+style              = "bg:git_commit_bg fg:git_commit_fg"
+
+# Git branch block.
+[git_branch]
+format = "\n[ git ](fg:os_fg bg:os_bg bold)[>](bg:git_branch_bg fg:os_bg)[ $branch ]($style)[>](bg:git_commit_bg fg:git_branch_bg)"
+style  = "bg:git_branch_bg fg:git_branch_fg bold"
+
+# Git status block.
+[git_status]
+disabled   = false
+format     = "[<](bg:bar_bg fg:git_status_bg)[$all_status$ahead_behind]($style)[>](bg:bar_bg fg:git_status_bg)"
+style      = "fg:git_status_fg bg:git_status_bg"
+ahead      = "[ A${count} ](fg:git_ahead bg:git_status_bg bold)"
+behind     = "[ B${count} ](fg:git_behind bg:git_status_bg bold)"
+diverged   = "[ D${ahead_count}🠇${behind_count} ](fg:git_diverged bg:git_status_bg bold)"
+up_to_date = "[ U](fg:git_uptodate bg:git_status_bg bold)"
+conflicted = "[ -${count} ](fg:git_conflicted bg:git_status_bg bold)"
+untracked  = "[ ?${count} ](fg:git_untracked bg:git_status_bg bold)"
+stashed    = "[ *${count} ](fg:git_stashed bg:git_status_bg bold)"
+modified   = "[ !${count} ](fg:git_modified bg:git_status_bg bold)"
+staged     = "[ +${count} ](fg:git_staged bg:git_status_bg bold)"
+renamed    = "[ >${count} ](fg:git_renamed bg:git_status_bg bold)"
+deleted    = "[ x${count} ](fg:git_deleted bg:git_status_bg bold)"
+
+# Git state block.
+[git_state]
+disabled = false
+format   = '\([$state( $progress_current/$progress_total)]($style)\) '
+style    = "fg:cyan bg:git_branch_bg"
+
+# EOF

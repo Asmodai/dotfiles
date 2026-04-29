@@ -7,8 +7,9 @@ if [[ -f "${_starship}" ]]
 then
     _colors=$(tput colors)
     case ${_colors} in
-        256) STARSHIP_CONFIG=${STARSHIP_DATA}/starship.toml    ;;
-        *)   STARSHIP_CONFIG=${STARSHIP_DATA}/starship-16.toml ;;
+        256) STARSHIP_CONFIG=${STARSHIP_DATA}/starship.toml      ;;
+        16)  STARSHIP_CONFIG=${STARSHIP_DATA}/starship-16.toml   ;;
+        *)   STARSHIP_CONFIG=${STARSHIP_DATA}/starship-mono.toml ;;
     esac
 
     export STARSHIP_CONFIG

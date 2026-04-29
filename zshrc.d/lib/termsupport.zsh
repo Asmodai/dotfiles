@@ -21,9 +21,11 @@ function title {
             print -Pn "\e]2;$2:q\a" # set window name
             print -Pn "\e]1;$1:q\a" # set tab name
             ;;
+
         screen*)
             print -Pn "\ek$1:q\e\\" # set screen hardstatus
             ;;
+
         *)
             if [[ "$TERM_PROGRAM" == "iTerm.app" ]]
             then
@@ -32,17 +34,18 @@ function title {
             else
                 # Try to use terminfo to set the title
                 # If the feature is available set title
-                if [[ -n "$terminfo[fsl]" ]] && [[ -n "$terminfo[tsl]" ]]; then
-                    echoti tsl
-                    print -Pn "$1"
-                    echoti fsl
-                fi
+                #if [[ -n "$terminfo[fsl]" ]] && [[ -n "$terminfo[tsl]" ]]; then
+                #    echoti tsl
+                #    print -Pn "$1"
+                #    echoti fsl
+                #fi
+                # Do absolutely nothing so as to not ruin old terminals.
             fi
             ;;
     esac
 }
 
-ZSH_THEME_TERM_TAB_TITLE_IDLE="%15<..<%~%<<" #15 char left truncated PWD
+ZSH_THEME_TERM_TAB_TITLE_IDLE="%n@%m: %15<..<%~%<<" #15 char left truncated PWD
 ZSH_THEME_TERM_TITLE_IDLE="%n@%m: %~"
 # Avoid duplication of directory in terminals with independent dir display
 if [[ "$TERM_PROGRAM" == Apple_Terminal ]]
@@ -76,7 +79,7 @@ function zsh_termsupport_preexec {
     local CMD=${1[(wr)^(*=*|sudo|ssh|mosh|rake|-*)]:gs/%/%%}
     local LINE="${2:gs/%/%%}"
 
-    title '$CMD' '%100>...>$LINE%<<'
+    title '%n@%m: $CMD' '%100>...>$LINE%<<'
 }
 
 precmd_functions+=(zsh_termsupport_precmd)

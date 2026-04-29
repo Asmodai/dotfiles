@@ -67,16 +67,36 @@ _eza=$(which eza 2>/dev/null)
 
 if [[ -f "${_eza}" ]];
 then
-  alias ls="${_eza} -g --color=always --group-directories-first --icons=auto"
-  alias la="${_eza} -ga --color=always --group-directories-first --icons=auto"
-  alias ll="${_eza} -gl --color=always --group-directories-first --icons=auto"
-  alias lt="${_eza} -gaT --color=always --group-directories-first --icons=auto"
-  alias lsa="${_eza} -gla --color=always --group-directories-first --icons=auto"
-  alias l="${_eza} -gla --color=always --group-directories-first --icons=auto"
+    local _colors=$(tput colors)
+    local _cmode=""
+    local _imode=""
 
-  unset '_comps[ls]'
-  compdef __eza eza ls la ll lt lsa l
+    case ${_colors} in
+        256)
+            _cmode="--color=always"
+            _imode="--icons=auto"
+            ;;
+
+        16)
+            _cmode="--color=always"
+            _imode="--icons=auto"
+            ;;
+
+        *)
+            _cmode="--color=auto"
+            _imode="--icons=never"
+            ;;
+    esac
+
+    alias ls="${_eza} -g --group-directories-first ${_cmode} ${_imode}"
+    alias la="${_eza} -ga --group-directories-first ${_cmode} ${_imode}"
+    alias ll="${_eza} -gl --group-directories-first ${_cmode} ${_imode}"
+    alias lt="${_eza} -gaT --group-directories-first ${_cmode} ${_imode}"
+    alias lsa="${_eza} -gla --group-directories-first ${_cmode} ${_imode}"
+    alias l="${_eza} -gla  --group-directories-first ${_cmode} ${_imode}"
+
+    unset '_comps[ls]'
+    compdef __eza eza ls la ll lt lsa l
 fi
 
 unset _eza
-
