@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 RESET="[0m"
 NORM="[0;37m"
@@ -13,6 +13,8 @@ system=$(uname -s)
 release=$(uname -r)
 machine=$(uname -m)
 version=$(uname -v)
+domain="retro.lisphacker.home"
+other=""
 
 # Allow some things to be set via CLI arg.
 case "$1" in
@@ -25,33 +27,71 @@ case "$1" in
         version=""
         ;;
 
-    # Special case for VMS/VAX.
-    berlin)
-        host="berlin"
+    # Special case for VMS/VAX 7.3.
+    wilson|wakata|sharma|chawla|deng)
+        host="$1"
         system="OpenVMS/VAX"
         release="7.3"
         machine="VAX"
         version=""
+        other="VMS cluster node"
+        ;;
+
+    # Special case for VMS/VAX 3.5.
+    conrad)
+        host="$1"
+        system="VAX/VMS"
+        release="3.5"
+        machine="VAX"
+        version=""
+        ;;
+
+    # Special case for RSX-11M.
+    white)
+        host="$1"
+        system="RSX-11M-Plus"
+        release="v4.6"
+        version=""
+        machine="PDP-11/70"
+        ;;
+
+    # Special case for TOPS-20.
+    fei)
+        host="$1"
+        system="TOPS-20"
+        release="v4.1"
+        version=""
+        machine="PDP-10"
         ;;
 
     # Special case for 2.11 BSD.
     titov)
-        host="titov"
+        host="$1"
         system="BSD"
         release="2.11"
         machine="PDP-11"
         version=""
         ;;
 
+    # Special case for ULTRIX32.
+    volkov)
+        host="$1"
+        system="ULTRIX32"
+        release="2.5"
+        machine="VAX-11/780"
+        version=""
+        ;;
+
     # Special case for AT&T SVR3.
     borman)
-        host="borman"
+        host="$1"
         system="borman"
         release="3.2.3"
         machine="WE32200"
         version="3"
         ;;
 
+    # Everything else.
     *)
         host="${1-$host}"
         ;;
@@ -137,6 +177,11 @@ case "${machine}" in
         machine="68000"
         ;;
 
+    # Maybe one day I'll get an AViiON.
+    88???|m88k)
+        machine="88000"
+        ;;
+
     amd64|x86_64)
         machine="AMD64"
         ;;
@@ -163,103 +208,201 @@ case "${system}" in
     Linux) system="GNU/Linux" ;;
 esac
 
+# Initial `pretty' string.
 pretty="${system} ${release}"
+
+# Do we have a machine type?
 if [ "${machine}" != "" ]
 then
     pretty="${pretty} - ${machine}"
 fi
+
+# Other information?
+if [ "${other}" != "" ]
+then
+    pretty="${pretty} - ${other}"
+fi
+
+# Default description.
 desc="Yet another Unix host."
 
+# Determine the description.
 case "$host" in
-    #
-    # Physical machines.
-    enterprise)   desc="Main GNU/Linux server."                      ;;
-    equinox)      desc="GNU/Linux workstation."                      ;;
-    farragut)     desc="Streaming system."                           ;;
-    galileo)      desc="GNU/Linux X terminal."                       ;;
-    nebula)       desc="Home Automation Kiosk."                      ;;
-    sovereign)    desc="GNU/Linux Lisp Machine."                     ;;
-    voyager)      desc="Main GNU/Linux laptop."                      ;;
+    farragut)
+        desc="Main rig."
+        domain="lisphacker.home"
+        ;;
+
+    equinox)
+        desc="Rig."
+        domain="lisphacker.home"
+        ;;
+
+    sovereign)
+        desc="Home automation controller."
+        domain="lisphacker.home"
+        ;;
+
+    voyager)
+        desc="Laptop."
+        domain="lisphacker.home"
+        ;;
+
+    hubble)
+        desc="Ansible and monitoring server."
+        domain="lisphacker.home"
+        ;;
+
+    epsilon)
+        desc="Web server."
+        domain="lisphacker.home"
+        ;;
+
+    lovell)
+        desc="GitLab server."
+        domain="lisphacker.home"
+        ;;
+
+    enterprise)
+        desc="Media server."
+        domain="lisphacker.home"
+        ;;
+
+    jupiter)
+        desc="Security server."
+        domain="lisphacker.home"
+        ;;
+
+    memory-alpha)
+        desc="NAS server."
+        domain="lisphacker.home"
+        ;;
+
+    scryer)
+        desc="Home automation server."
+        domain="lisphacker.home"
+        ;;
+
+    eclipse)
+        desc="Metrics server."
+        domain="lisphacker.home"
+        ;;
+
+    daystrom)
+        desc="Minecraft resource server."
+        domain="lisphacker.home"
+        ;;
+
+    atlas)
+        desc="Minecraft server"
+        domain="lisphacker.home"
+        ;;
+
+    wormhole)
+        desc="PiHole server."
+        domain="lisphacker.home"
+        ;;
+
+    neutralzone)
+        desc="Internet gateway."
+        domain="lisphacker.home"
+        ;;
+
+    ## To be removed.
+    armstrong)
+        desc="Retro hardware simulator."
+        domain="lisphacker.home"
+        ;;
+
+    ## To be removed.
+    challenger)
+        desc="Dev virtual workstation."
+        domain="lisphacker.home"
+        ;;
 
     #
-    # Other machines.
+    # Remote systems.
+    darkstar)
+        desc="DigitalOcean Droplet."
+        domain="lisphacker.uk"
+        ;;
+
+    #
+    # Retro Unix systems.
+    borman)       desc="Simulated AT&T 3B2/700 workstation."         ;;
+    chawla)       desc="Simulated DEC MicroVAX 3900 server."         ;;
+    chen)         desc="UNUSED"                                      ;;
+    conrad)       desc="Simulated DEC VAX-11/780 server."            ;;
+    deng)         desc="Simulated DEC MicroVAX 3900 server."         ;;
+    duke)         desc="Apple PowerBook G4 Aluminium laptop."        ;;
+    fisher)       desc="Simulated Intel x86 server."                 ;;
+    gagarin)      desc="Fujitsu-Siemens Scenic AB"                   ;;
+    garreau)      desc="Apple Quadra 750 workstation."               ;;
+    hadfield)     desc="HP 712/60 workstation."                      ;;
+    henize)       desc="Apple PowerBook G3 laptop."                  ;;
+    kelvin)       desc="Simulated DEC MicroVAX 3100 M96 server."     ;;
+    komarov)      desc="IBM RS/6000 Model 44p-170 server."           ;;
+    korolev)      desc="Simulated DEC Alpha EV4 server."             ;;
+    leonov)       desc="Simulated Intel x86 server."                 ;;
+    mukai)        desc="IBM PS/2 Model 80 workstation."              ;;
+    polyakov)     desc="DEC Personal Workstation 500au."             ;;
+    resnik)       desc="Simulated DEC MicroVAX 3900 server."         ;;
+    ride)         desc="DECpc 486-33 PC."                            ;;
+    seddon)       desc="Apple PowerBook G4 Titanium laptop."         ;;
+    sharma)       desc="Simulated DEC MicroVAX 3900 server."         ;;
+    shepard)      desc="Simulated Intel x86 server."                 ;;
+    tereshkova)   desc="UNUSED"                                      ;;
+    titov)        desc="Simulated DEC PDP-11/93 server."             ;;
+    volkov)       desc="Simulated DEC VAX-11/780 server."            ;;
+    wakata)       desc="Simulated DEC MicroVAX 3900 server."         ;;
+    walker)       desc="Simulated Intel x86 server."                 ;;
+    wang)         desc="UNUSED"                                      ;;
+    white)        desc="Simulated DEC PDP-11/70 server."             ;;
+    whitsun)      desc="Simulated DEC MicroVAX 3900 server."         ;;
+    wilson)       desc="Simulated DEC MicroVAX 3900 server."         ;;
+    yamato)       desc="Simulated DEC MicroVAX 3900 server."         ;;
+    yang)         desc="HP 715/50 workstation."                      ;;
+    zhang)        desc="UNUSED"                                      ;;
+
+    #
+    # Non-Unix retro systems.
     axiom)        desc="Symbolics virtual Lisp machine."             ;;
-    challenger)   desc="Dev virtual workstation."                    ;;
-    darkstar)     desc="DigitalOcean Droplet."                       ;;
-
-    #
-    # Servers.
-    daedalus)     desc="Retro network gateway."                      ;;
-    epsilon)      desc="Web server."                                 ;;
-    holodeck)     desc="Home automation server."                     ;;
-    hubble)       desc="Monitoring server."                          ;;
-    jupiter)      desc="Security monitoring server."                 ;;
-    lovell)       desc="GitLab server."                              ;;
-    memory-alpha) desc="Network-Attached Storage."                   ;;
-    wormhole)     desc="Pi-Hole system."                             ;;
+    fei)          desc="Simulated DEC PDP-10 server."                ;;
+    kranz)        desc="Hercules System 370 mainframe."              ;;
+    stargazer)    desc="Simulated Honeywell DPS-8/M mainframe."      ;;
 
     #
     # Physical retro machines.
-    blackice)     desc="Apple PowerBook G3 laptop."                  ;;
-    gagarin)      desc="Fujitsu-Seimens Pentium PC."                 ;;
-    hadfield)     desc="HP 712/60 workstation."                      ;;
-    haisheng)     desc="Sun Microsystems SunBlade 150 workstation."  ;;
-    junlong)      desc="Sun Microsystems Ultra 5 workstation."       ;;
-    komarov)      desc="IBM RS/6000 Model 44p-170 server."           ;;
-    mukai)        desc="IBM PS/2 Model 80 workstation."              ;;
-    polyakov)     desc="DEC Personal Workstation 500au."             ;;
-    ride)         desc="DECpc 486-33 PC."                            ;;
-    silverstorm)  desc="Apple PowerBooK G4 laptop."                  ;;
-    xuzhe)        desc="Sun Microsystems SPARC LX workstation."      ;;
-    yang)         desc="HP 715 workstation."                         ;;
-
-    #
-    # Retro infrastructure.
-    armstrong)    desc="Retro hardware simulator."                   ;;
-
-    #
-    # Simulated Unix machines.
-    borman)       desc="Simulated AT&T 3B2/700 workstation."         ;;
-    fisher)       desc="Simulated Intel x86 server."                 ;;
-    kelvin)       desc="Simulated DEC MicroVAX 3900 server."         ;;
-    korolev)      desc="Simulated DEC Alpha EV4 server."             ;;
-    leonov)       desc="Simulated Intel x86 server."                 ;;
-    shepard)      desc="Simulated Intel x86 server."                 ;;
-    tereshkova)   desc="Simulated DEC VAXstation 3100 workstation."  ;;
-    titov)        desc="Simulated DEC PDP-11/93 server."             ;;
-    volkov)       desc="Simulated DEC VAX-11/780 server."            ;;
-    walker)       desc="Simulated Intel x86 server."                 ;;
-    whitsun)      desc="Simulated DEC MicroVAX 3900 server."         ;;
-    xiaoguang)    desc="Simulated Intel x86 server."                 ;;
-    yamato)       desc="Simulated DEC MicroVAX 3900 server."         ;;
+    glenn)        desc="Development retro LAN gateway."              ;;
+    #glenn)        desc="Honeywell DPS-8/M simulator server."         ;;
+    grissom)      desc="SIMH TCP/IP node simulation server."         ;;
+    mcdivitt)     desc="SIMH DECnet node simulation server."         ;;
+    popovich)     desc="Herules IBM System 370 simulator server."    ;;
+    sagan)        desc="Retro LAN gateway."                          ;;
 
     #
     # Simulated NeXT machines.
-    akira)        desc="Simulated NeXTcomputer."                     ;;
-    antares)      desc="Simulated NeXTcube."                         ;;
-    apollo)       desc="Simulated NeXTcube."                         ;;
-    bradbury)     desc="Simulated NeXTcube."                         ;;
-    california)   desc="Simulated NeXTcube."                         ;;
-    cardenas)     desc="Simulated NeXTcube."                         ;;
-    centaur)      desc="Simulated NeXTcube."                         ;;
-    dauntless)    desc="Simulated Intel x86 workstation."            ;;
-    galaxy)       desc="Simulated Intel x86 workstation."            ;;
-    grissom)      desc="Simulated Intel x86 workstation."            ;;
-    oberon)       desc="Simulated Intel x86 workstation."            ;;
-    saratoga)     desc="Simulated Intel x86 workstation."            ;;
-    ticonderoga)  desc="Simulated NeXTcube."                         ;;
-    yeager)       desc="Simulated NeXTcube."                         ;;
-
-    #
-    # Other simulated retro systems.
-    berlin)       desc="Simulated MicroVAX 3900 server."             ;;
-    stargazer)    desc="Simulated Honeywell DPS-8/M mainframe."      ;;
+    bobko)        desc="Simulated Intel workstation."                ;;
+    brand)        desc="Simulated NeXTstation workstation."          ;;
+    crippen)      desc="Simulated NeXTcomputer workstation."         ;;
+    engle)        desc="Simulated NeXTcomputer workstation."         ;;
+    fabian)       desc="Simulated Intel workstation."                ;;
+    gibson)       desc="Simulated Intel workstation."                ;;
+    hauck)        desc="Simulated NeXTdimension workstation."        ;;
+    hawley)       desc="Simulated NeXTstation workstation."          ;;
+    lousma)       desc="Simulated NeXTcube workstation."             ;;
+    lucid)        desc="Simulated Intel workstation."                ;;
+    mattingly)    desc="Simulated Intel workstation."                ;;
+    nagel)        desc="Simulated NeXTdimension workstation."        ;;
+    shaw)         desc="Sun workstation probably."                   ;;
+    truly)        desc="HP 712 possibly."                            ;;
+    young)        desc="Simulated NeXTcomputer workstation."         ;;
 esac
 
 cat motd.ans
 cat <<EOF
 
-  ${DIM}::${NORM} ${BOLD}${host}.home${RESET}
+  ${DIM}::${NORM} ${BOLD}${host}.${domain}${RESET}
   ${DIM}::${NORM} ${BPUR}${desc}${RESET}
   ${DIM}::${NORM} ${NPUR}${pretty}${RESET}
 
