@@ -92,12 +92,14 @@ installStarship() {
 
         sudo mkdir -p /usr/local/share/starship 2>/dev/null
         sudo rm -rf /usr/local/share/starship/starship.toml 2>/dev/null
-        sudo rm -rf /usr/local/share/starship/starship-mono.toml 2>/dev/null
         sudo rm -rf /usr/local/share/starship/starship-16.toml 2>/dev/null
+        sudo rm -rf /usr/local/share/starship/starship-8.toml 2>/dev/null
+        sudo rm -rf /usr/local/share/starship/starship-mono.toml 2>/dev/null
 
         sudo cp ${_rootwd}/starship/starship.toml /usr/local/share/starship/starship.toml
-        sudo cp ${_rootwd}/starship/starship-mono.toml /usr/local/share/starship/starship-mono.toml
         sudo cp ${_rootwd}/starship/starship-16.toml /usr/local/share/starship/starship-16.toml
+        sudo cp ${_rootwd}/starship/starship-8.toml /usr/local/share/starship/starship-8.toml
+        sudo cp ${_rootwd}/starship/starship-mono.toml /usr/local/share/starship/starship-mono.toml
 
         echo "Done."
     fi
