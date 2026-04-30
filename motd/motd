@@ -334,7 +334,7 @@ case "$host" in
 
     #
     # Retro Unix systems.
-    borman)       desc="Simulated AT&T 3B2/700 workstation."         ;;
+    borman)       desc="Simulated AT&T 3B2-700 workstation."         ;;
     chawla)       desc="Simulated DEC MicroVAX 3900 server."         ;;
     chen)         desc="UNUSED"                                      ;;
     conrad)       desc="Simulated DEC VAX-11/780 server."            ;;
