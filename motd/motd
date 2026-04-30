@@ -248,6 +248,11 @@ case "$host" in
         domain="lisphacker.home"
         ;;
 
+    daedalus)
+        desc="X Window System terminal."
+        domain="lisphacker.home"
+        ;;
+
     hubble)
         desc="Ansible and monitoring server."
         domain="lisphacker.home"
