@@ -49,6 +49,7 @@ DISABLE_LS_COLORS="false"
 
 # Disable terminal title?
 DISABLE_AUTO_TITLE="false"
+DISABLE_PREEXEC_TITLE="false"
 
 # Command auto correction?
 DISABLE_AUTO_CORRECTION="false"

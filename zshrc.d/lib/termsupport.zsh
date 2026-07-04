@@ -75,6 +75,11 @@ function zsh_termsupport_preexec {
         return
     fi
 
+    if [[ "$DISABLE_PREEXEC_TITLE" == true ]]
+    then
+        return
+    fi
+
     # cmd name only, or if this is sudo or ssh, the next cmd
     local CMD=${1[(wr)^(*=*|sudo|ssh|mosh|rake|-*)]:gs/%/%%}
     local LINE="${2:gs/%/%%}"
