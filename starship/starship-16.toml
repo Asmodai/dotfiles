@@ -67,7 +67,7 @@ status_err     = "196"
 status_ok      = "bright-green"
 
 [os]
-format   = '[ $symbol ](fg:os_fg bg:os_bg bold)[](bg:time_bg fg:os_bg)'
+format   = '[# ](fg:os_fg bg:os_bg bold)[](bg:time_bg fg:os_bg)'
 disabled = false
 
 # OS symbols.
