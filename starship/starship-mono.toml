@@ -145,7 +145,7 @@ show_always = true
 disabled    = false
 style_user  = "bold fg:user_norm bg:host_bg"
 style_root  = "bold fg:user_root bg:host_bg"
-format      = '[ $user]($style)'
+format      = '[$user]($style)'
 
 # Hostname block.
 [hostname]
