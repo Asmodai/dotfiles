@@ -55,10 +55,10 @@ set ruler
 set magic
 
 " Colour scheme.
-colorscheme slate
+"colorscheme slate
 
 " powerline magic.
-set rtp+=~/Library/Python/3.8/lib/python/site-packages/powerline/bindings/vim
+"set rtp+=~/Library/Python/3.8/lib/python/site-packages/powerline/bindings/vim
 
 " Always show status.
 set laststatus=2
