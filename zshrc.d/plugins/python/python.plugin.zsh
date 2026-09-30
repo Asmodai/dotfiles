@@ -18,3 +18,14 @@ then
   done
 fi
 
+# Look for any specific user python directories.
+PYTHON_VERSIONS=("3.9" "3.10" "3.11")
+for pyver in "${PYTHON_VERSIONS[@]}"
+do
+  if [ -d "${HOME}/Library/Python/${pyver}/bin" ]
+  then
+    PATH="${PATH}:${HOME}/Library/Python/${pyver}/bin"
+    export PATH
+  fi
+done
+unset PYTHON_VERSIONS

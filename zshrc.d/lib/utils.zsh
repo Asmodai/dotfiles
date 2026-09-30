@@ -51,7 +51,7 @@ function getDistro() {
     local gotLSB=$(getLSB)
     local sysname=$(uname -s)
 
-    case "${susname}" in
+    case "${sysname}" in
         Darwin)  echo "macOS";   return ;;
         FreeBSD) echo "FreeBSD"; return ;;
         NetBSD)  echo "NetBSD";  return ;;
@@ -67,11 +67,11 @@ function getDistro() {
         local releases=(/etc/*-release)
 
         case "${(j: :)releases}" in
-            (*almalinux*) echo "AlmaLinux" ;;
-            (*rocky*)     echo "Rocky"     ;;
-            (*centos*)    echo "CentOS"    ;;
-            (*redhat*)    echo "RedHat"    ;;
-            (*)           echo "Unknown"   ;;
+           (*almalinux*) echo "AlmaLinux"  ;;
+           (*rocky*)     echo "Rocky"      ;;
+           (*centos*)    echo "CentOS"     ;;
+           (*redhat*)    echo "RedHat"     ;;
+           (*)           echo "${sysname}" ;;
         esac
     fi
 }

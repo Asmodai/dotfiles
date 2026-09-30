@@ -1,5 +1,9 @@
-STARSHIP_DATA=/usr/local/share/starship
-export STARSHIP_DATA
+# Only care for this if it's not already set.
+if [[ "x${STARSHIP_DATA}" == "x" ]]
+then
+    STARSHIP_DATA=/usr/local/share/starship
+    export STARSHIP_DATA
+fi
 
 _starship=$(which starship 2>/dev/null)
 
